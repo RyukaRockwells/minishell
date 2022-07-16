@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 12:19:26 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/07/16 18:12:31 by nchow-yu         ###   ########.fr       */
+/*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
+/*   Updated: 2022/07/16 18:18:03 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-void	minishell(char **arg, char **envp)
-{
-	while (1)
-	{
-		//printf("%s\n", readline("Minishell> "));
-		readline("Minishell> ");
-	}
-}
+# include <stdio.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
-int	main(int nb, char **arg, char **envp)
-{
-	if (nb != 1)
-		printf("Error\n");
-	else
-	{
-		//printf("%s\n", readline("Minishell: "));
-		minishell(arg, envp);
-	}
-	return (0);
-}
+//struct a faire
+
+//main.c
+void	minishell(char **arg, char **envp);
+
+#endif
