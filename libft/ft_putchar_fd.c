@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/07/17 21:39:30 by nchow-yu         ###   ########.fr       */
+/*   Created: 2021/11/29 17:49:24 by nchow-yu          #+#    #+#             */
+/*   Updated: 2021/11/29 17:50:09 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-
-//struct a faire
-
-typedef struct s_data
+void	ft_putchar_fd(char c, int fd)
 {
-	char *name;
-	char *value;
-}				t_data;
-
-//main.c
-void	minishell(char **arg, char **envp);
-
-#endif
+	write(fd, &c, 1);
+}

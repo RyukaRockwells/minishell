@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/07/17 21:39:30 by nchow-yu         ###   ########.fr       */
+/*   Created: 2021/11/24 13:03:01 by nchow-yu          #+#    #+#             */
+/*   Updated: 2021/11/26 16:22:52 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-
-//struct a faire
-
-typedef struct s_data
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char *name;
-	char *value;
-}				t_data;
+	size_t			i;
+	unsigned char	*str;
 
-//main.c
-void	minishell(char **arg, char **envp);
-
-#endif
+	str = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (str[i] == (unsigned char)c)
+			return (str + i);
+		i++;
+	}
+	return (NULL);
+}

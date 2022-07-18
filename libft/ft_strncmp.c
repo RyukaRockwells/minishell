@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/07/17 21:39:30 by nchow-yu         ###   ########.fr       */
+/*   Created: 2021/11/24 11:30:50 by nchow-yu          #+#    #+#             */
+/*   Updated: 2021/11/26 18:54:35 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-
-//struct a faire
-
-typedef struct s_data
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char *name;
-	char *value;
-}				t_data;
+	size_t	i;
 
-//main.c
-void	minishell(char **arg, char **envp);
-
-#endif
+	i = 0;
+	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
+	{
+		if (s1[i] != s2[i])
+			return (*((unsigned char *)s1 + i) - *((unsigned char *)s2 + i));
+		i++;
+	}
+	return (0);
+}

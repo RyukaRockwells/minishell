@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/07/17 21:39:30 by nchow-yu         ###   ########.fr       */
+/*   Created: 2021/11/24 17:26:06 by nchow-yu          #+#    #+#             */
+/*   Updated: 2021/12/15 19:39:58 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-
-//struct a faire
-
-typedef struct s_data
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char *name;
-	char *value;
-}				t_data;
+	char	*tab;
+	size_t	i;
 
-//main.c
-void	minishell(char **arg, char **envp);
-
-#endif
+	i = 0;
+	tab = malloc(size * nmemb);
+	if (tab == NULL)
+		return (NULL);
+	while (i < nmemb * size)
+	{
+		tab[i] = 0;
+		i++;
+	}
+	return (tab);
+}

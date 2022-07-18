@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/07/17 21:39:30 by nchow-yu         ###   ########.fr       */
+/*   Created: 2021/11/29 17:50:46 by nchow-yu          #+#    #+#             */
+/*   Updated: 2021/11/29 17:57:48 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-
-//struct a faire
-
-typedef struct s_data
+void	ft_putnbr_fd(int n, int fd)
 {
-	char *name;
-	char *value;
-}				t_data;
+	long int	nb1;
 
-//main.c
-void	minishell(char **arg, char **envp);
-
-#endif
+	nb1 = n;
+	if (nb1 < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nb1 = nb1 *(-1);
+	}
+	if (nb1 < 10)
+		ft_putchar_fd(nb1 + '0', fd);
+	else
+	{
+		ft_putnbr_fd(nb1 / 10, fd);
+		ft_putnbr_fd(nb1 % 10, fd);
+	}
+}
