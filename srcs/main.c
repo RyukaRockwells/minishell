@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:19:26 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/07/22 18:01:16 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/07/22 19:39:48 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	minishell(char **arg, char **envp)
 {
 	char	*line;
 
-	ft_deco();
+	ft_deco(void);
 	while (1) //remplacer la boucle infini
 	{
 		line = readline("Minishell> ");
