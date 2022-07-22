@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/07/22 16:37:22 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/07/22 17:54:45 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ typedef struct s_data
 	char	*value;
 }				t_data;
 
+//ft_deco.c
+void	ft_deco(void);
+//ft_error.c
+void	ft_error(void);
 //main.c
 void	minishell(char **arg, char **envp);
-void	ft_error(void);
 
 #endif

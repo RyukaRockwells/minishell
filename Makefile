@@ -6,11 +6,11 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/07/22 16:26:55 by nchow-yu         ###   ########.fr        #
+#    Updated: 2022/07/22 18:01:32 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	srcs/main.c srcs/ft_error.c
+SRCS	=	srcs/main.c srcs/ft_error.c srcs/ft_deco.c
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 CC		=	gcc
