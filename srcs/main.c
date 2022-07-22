@@ -6,39 +6,56 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:19:26 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/07/17 20:24:47 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/07/22 16:37:02 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../include/minishell.h"
+
+void	ft_check(char *arg, char **envp)
+{
+	int		i;
+
+	i = 0;
+	while (arg != NULL)
+	{
+		/*if (ft_strcmp(arg[i], ">") == 0)
+			ft_redirect(arg, i);
+		else if (ft_strcmp(arg[i], "<") == 0)
+			ft_redirect(arg, i);
+		else if (ft_strcmp(arg[i], "|") == 0)
+			ft_pipe(arg, i);*/
+		i++;
+	}
+}
 
 void	minishell(char **arg, char **envp)
 {
 	char	*line;
 
-	while (1)
+	while (1) //remplacer la boucle infini
 	{
 		line = readline("Minishell> ");
-		if (line == "exit")
+		if (ft_strnstr(line, "exit", ft_strlen(line)) == 0)
 		{
 			printf("Wesh\n");
 			exit(EXIT_SUCCESS);
-		}//printf("%s\n", readline("Minishell> "));
-		else if (line == "gt")
-			printf("%s\n", "Je suis un gros toutou");
+		}
+		/*else if (ft_strncmp(line, NULL, ft_strlen(line)) == 0)
+			printf("line = NULL\n");*/
 		else
+		{
 			add_history(line);
+			//ft_check(line, envp);
+		}
 	}
 }
 
 int	main(int nb, char **arg, char **envp)
 {
 	if (nb != 1)
-		printf("Error\n");
+		ft_error();
 	else
-	{
-		//printf("%s\n", readline("Minishell: "));
 		minishell(arg, envp);
-	}
 	return (0);
 }

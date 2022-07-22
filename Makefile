@@ -6,14 +6,14 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/07/17 21:44:15 by nchow-yu         ###   ########.fr        #
+#    Updated: 2022/07/22 16:26:55 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	main.c
-LIBFT	=	libft/libft.a
+SRCS	=	srcs/main.c srcs/ft_error.c
+LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
-CC	=	gcc
+CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra -g3
 NAME	=	minishell
 
@@ -26,15 +26,15 @@ ${NAME}:	${OBJS} ${LIBFT}
 	${CC} ${CFLAGS} ${OBJS} ${LIBFT} -lreadline -L.local/lib -o ${NAME}
 
 ${LIBFT}:
-	make -C libft
+	make -C srcs/libft
 
 clean:
 	rm -rf ${OBJS}
-	make clean -C libft
+	make clean -C srcs/libft
 
 fclean:    clean
 	rm -rf ${NAME}
-	make fclean -C libft
+	make fclean -C srcs/libft
 
 re:	fclean all
 
