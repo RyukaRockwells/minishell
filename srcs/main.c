@@ -6,12 +6,12 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:19:26 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/07/22 19:39:48 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/15 16:25:58 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
+/*
 void	ft_check(char *arg, char **envp)
 {
 	int		i;
@@ -19,21 +19,31 @@ void	ft_check(char *arg, char **envp)
 	i = 0;
 	while (arg != NULL)
 	{
-		/*if (ft_strcmp(arg[i], ">") == 0)
+		if (ft_strcmp(arg[i], ">") == 0)
 			ft_redirect(arg, i);
 		else if (ft_strcmp(arg[i], "<") == 0)
 			ft_redirect(arg, i);
 		else if (ft_strcmp(arg[i], "|") == 0)
-			ft_pipe(arg, i);*/
+			ft_pipe(arg, i);
 		i++;
 	}
+}
+
+void	ft_redirect(char *arg, int i)
+{
+	if (arg[i + 1] == '>')
+		ft_redirect_out(arg, i);
+	else if (arg[i + 1] == '<')
+		ft_redirect_in(arg, i);
 }
 
 void	minishell(char **arg, char **envp)
 {
 	char	*line;
 
-	ft_deco(void);
+	ft_deco();
+	printf("arg: %s\n", arg[0]);
+	printf("envp: %s\n", envp[0]);
 	while (1) //remplacer la boucle infini
 	{
 		line = readline("Minishell> ");
@@ -42,21 +52,28 @@ void	minishell(char **arg, char **envp)
 			printf("Wesh\n");
 			exit(EXIT_SUCCESS);
 		}
-		/*else if (ft_strncmp(line, NULL, ft_strlen(line)) == 0)
-			printf("line = NULL\n");*/
+		else if (ft_strncmp(line, NULL, ft_strlen(line)) == 0)
+			printf("line = NULL\n");
 		else
 		{
 			add_history(line);
-			//ft_check(line, envp);
+			ft_check(line, envp);
 		}
 	}
+}
+*/
+
+void	ft_init(char *envp)
+{
+	
 }
 
 int	main(int nb, char **arg, char **envp)
 {
 	if (nb != 1)
 		ft_error();
-	else
-		minishell(arg, envp);
+	/*else
+		minishell(arg, envp);*/
+	ft_init(envp);
 	return (0);
 }
