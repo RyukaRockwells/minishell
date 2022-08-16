@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:19:26 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/15 16:25:58 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/16 19:53:15 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,30 @@ void	minishell(char **arg, char **envp)
 }
 */
 
-void	ft_init(char *envp)
+void	ft_check(char *line)
 {
-	
+	char	**args;
+	int		i;
+
+	args = ft_split(line, ' ');
+	i = 0;
+	if (args == NULL)
+		return ;
+	while (args[i] != NULL)
+		printf("args: %s\n", args[i++]);
+}
+
+void	ft_init(char **envp)
+{
+	char	*line;
+
+	ft_deco();
+	while (1)
+	{
+		line = readline("Minishell> ");
+		add_history(line);
+		ft_check(line);		
+	}
 }
 
 int	main(int nb, char **arg, char **envp)
