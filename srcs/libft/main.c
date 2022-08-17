@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:15:21 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/17 19:19:23 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:43:59 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	main(void)
 
 	line = "echo '-n -n'";
 	rslt = ft_split(line, ' ');
+	if (rslt == NULL)
+		return (1);
 	printf("%s\n", rslt[0]);
 	printf("%s\n", rslt[1]);
+	ft_free(rslt);
 }

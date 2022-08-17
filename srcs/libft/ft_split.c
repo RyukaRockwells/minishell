@@ -6,13 +6,13 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 17:21:07 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/17 19:14:58 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:48:38 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**ft_free(char **tab)
+char	**ft_free(char **tab)
 {
 	size_t	i;
 
@@ -35,7 +35,7 @@ static int	ft_nextmots(char *s, int pos, char c)
 	i = pos;
 	if (s == NULL)
 		return (0);
-	while (s[i] == c && s[i] != '\0' && s[i] != '"' && s[i] != '\'')
+	while (s[i] == c && s[i] != '\0' && s[i] == '"' && s[i] == '\'')
 		i++;
 	return (i);
 }
@@ -49,13 +49,13 @@ static int	ft_nbmots(char *s, char c)
 	nbmots = 0;
 	while (i < ft_strlen(s))
 	{
-		while (s[i] == c && s[i] != '\0' && s[i] != '"' && s[i] != '\'')
+		while (s[i] == c && s[i] != '\0' )//&& s[i] == '"' && s[i] == '\'')
 		{
 			i++;
 		}
 		if (s[i])
 			nbmots++;
-		while (s[i] != c && s[i] != '\0' && s[i] != '"' && s[i] != '\'')
+		while (s[i] != c && s[i] != '\0')// && s[i] != '"' && s[i] != '\'')
 		{
 			i++;
 		}
@@ -75,7 +75,7 @@ static char	**ft_assign(char const *s, char **res, int i, char c)
 	{
 		b = 0;
 		len_m = i;
-		while (s[len_m] != c && s[len_m] != '\0' && s[i] != '"' && s[i] != '\'')
+		while (s[len_m] != c && s[len_m] != '\0' )//&& s[len_m] != '"' && s[len_m] != '\'')
 			len_m++;
 		len_m = len_m - i;
 		res[a] = malloc(sizeof(char) * len_m + 1);
