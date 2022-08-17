@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:19:26 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/16 19:53:15 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/17 10:34:57 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,25 +76,15 @@ void	ft_check(char *line)
 		printf("args: %s\n", args[i++]);
 }
 
-void	ft_init(char **envp)
-{
-	char	*line;
-
-	ft_deco();
-	while (1)
-	{
-		line = readline("Minishell> ");
-		add_history(line);
-		ft_check(line);		
-	}
-}
-
 int	main(int nb, char **arg, char **envp)
 {
+	t_list list;
+
+	(void)arg;
 	if (nb != 1)
 		ft_error();
 	/*else
 		minishell(arg, envp);*/
-	ft_init(envp);
+	ft_init(envp, &list);
 	return (0);
 }

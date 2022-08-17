@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/16 19:50:18 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/17 10:49:29 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,18 @@ typedef struct s_token
 	int		type;
 	t_token	*next;
 }				t_token;
+
+typedef struct s_list
+{
+	int		code_exit;
+	char	*readline;
+	char	**envp;
+	int		nb_process;
+	t_token	*token;
+	int		fd_stdout;
+	int		fd_stdin;
+}				t_list;
+
 /*
 typedef struct s_data
 {
@@ -60,6 +72,8 @@ typedef struct s_data
 void	ft_deco(void);
 //ft_error.c
 void	ft_error(void);
+//ft_init.c
+void	ft_init(char *envp, t_list *list);
 //main.c
 void	minishell(char **arg, char **envp);
 
