@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/17 10:55:57 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:02:38 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_env(t_list *list, char **envp)
 	{
 		list->envp[i] = ft_strdup(envp[i]);
 		i++;
-	}
+	}//boucle while false
 }
 /*char	*line;
 
@@ -57,5 +57,4 @@ while (1)
 	add_history(line);
 	ft_check(line);		
 }*/
-/*ctrl + tab = switch file on group in vscode
-Je suis une blague a moi toute seule*/
+/*ctrl + tab = switch file on group in vscode*/

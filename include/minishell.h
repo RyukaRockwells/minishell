@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/17 10:49:29 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:09:01 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define REDIRECT_OUT 3
 # define OR 4
 # define AND 5
+# define S_QUOTES 6
+# define D_QUOTES 7
 
 //struct a revoir
 
