@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:19:26 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/17 10:34:57 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/18 11:08:23 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int	main(int nb, char **arg, char **envp)
 	/*else
 		minishell(arg, envp);*/
 	ft_init(envp, &list);
+	ft_miniloop(&list);
 	return (0);
 }

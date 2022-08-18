@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/17 19:09:01 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/18 11:39:26 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <signal.h>
 # include "../srcs/libft/libft.h"
 
 # define LITERAL 0
@@ -56,6 +57,7 @@ typedef struct s_list
 	t_token	*token;
 	int		fd_stdout;
 	int		fd_stdin;
+	t_list	*list;
 }				t_list;
 
 /*
@@ -74,8 +76,20 @@ typedef struct s_data
 void	ft_deco(void);
 //ft_error.c
 void	ft_error(void);
+void	ft_error_env(void);
+void	show_error(char *arg);
 //ft_init.c
 void	ft_init(char *envp, t_list *list);
+int		ft_env_nbline(char **envp);
+int		ft_env(t_list *list, char **envp);
+//ft_loop.c
+int		ft_get_cmd(t_list *list);
+void	ft_loop(t_list *list);
+//exit.c
+void	ft_exit(t_list *list);
+//signal.c
+void	ft_catch_signal(void);
+void	ft_catch_d(t_list *list);
 //main.c
 void	minishell(char **arg, char **envp);
 

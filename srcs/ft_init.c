@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/17 19:02:38 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/18 14:06:07 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_init(char **envp, t_list *list)
 	list->token = NULL;
 	list->fd_stdout = -1;
 	list->fd_stdin = -1;
+	list->list = *list;
 	ft_env(list, envp);
 }
 
@@ -42,11 +43,17 @@ void	ft_env(t_list *list, char **envp)
 	list->envp = malloc(sizeof(char *) * (ft_env_nbline(envp) + 1));
 	if (list->envp == NULL)
 		ft_error("malloc error");
+	while (i < ft_env_nbline(envp) + 1)
+	{
+		list->envp[i] = NULL;
+		i++;
+	}//NULL ?
+	i = 0;
 	while (envp[i] != NULL)
 	{
-		list->envp[i] = ft_strdup(envp[i]);
+		list->envp[i] = ft_strdup((const char *)envp[i]);
 		i++;
-	}//boucle while false
+	}//free(list->envp);
 }
 /*char	*line;
 
@@ -57,4 +64,5 @@ while (1)
 	add_history(line);
 	ft_check(line);		
 }*/
-/*ctrl + tab = switch file on group in vscode*/
+/*ctrl + tab = switch file on group in vscode
+crtl + \(|) = open in new tab the duplicate file en cours */
