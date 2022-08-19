@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 19:00:40 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/19 20:28:38 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_lexer(t_data *data)
 
 	status = ft_check_quotes(data->readline);
 	if (status > 0)
-		return (status);
+		return (QUOTES_NO_CLOSE);
 }
 
 int	ft_parser(t_data *data)

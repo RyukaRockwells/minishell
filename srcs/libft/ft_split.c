@@ -6,13 +6,13 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 17:21:07 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/18 14:25:21 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/19 22:00:04 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_free(char **tab)
+static char	**ft_free(char **tab)
 {
 	size_t	i;
 

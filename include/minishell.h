@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 19:02:12 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/19 22:08:10 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ void	ft_env(t_data *data, char **envp);
 //ft_loop.c
 int		ft_get_cmd(t_data *data);
 void	ft_loop(t_data *data);
+void	ft_reinit(t_data *data);
 //exit.c
+char	**ft_free(char **tab);
 void	ft_exit(t_data *data);
 //signal.c
 void	ft_catch_signal(void);
