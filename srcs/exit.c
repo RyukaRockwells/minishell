@@ -6,13 +6,13 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/18 11:30:37 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/19 16:46:32 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_exit(t_list *list)
+void	ft_exit(t_data *list)
 {
 	int	i;
 

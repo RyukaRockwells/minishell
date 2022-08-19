@@ -6,13 +6,13 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/18 14:06:07 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/19 17:22:31 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_init(char **envp, t_list *list)
+void	ft_init(char **envp, t_data *list)
 {
 	list->code_exit = 0;
 	list->readline = NULL;
@@ -21,7 +21,7 @@ void	ft_init(char **envp, t_list *list)
 	list->token = NULL;
 	list->fd_stdout = -1;
 	list->fd_stdin = -1;
-	list->list = *list;
+	list->list = list;
 	ft_env(list, envp);
 }
 
@@ -35,14 +35,14 @@ int	ft_env_nbline(char **envp)
 	return (i);
 }
 
-void	ft_env(t_list *list, char **envp)
+void	ft_env(t_data *list, char **envp)
 {
 	int		i;
 
 	i = 0;
 	list->envp = malloc(sizeof(char *) * (ft_env_nbline(envp) + 1));
 	if (list->envp == NULL)
-		ft_error("malloc error");
+		ft_putstr_fd("malloc error", 2);
 	while (i < ft_env_nbline(envp) + 1)
 	{
 		list->envp[i] = NULL;
@@ -65,4 +65,5 @@ while (1)
 	ft_check(line);		
 }*/
 /*ctrl + tab = switch file on group in vscode
-crtl + \(|) = open in new tab the duplicate file en cours */
+crtl + \(|) = open in new tab the duplicate file en cours
+I like to move it - Madagascar (Roi Julian)*/

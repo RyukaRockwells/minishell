@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signal.c                                        :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:12:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/18 11:27:24 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/19 18:35:48 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,30 @@
 
 void	ft_catch_signal(void)
 {
-	signal(SIGINT, &ft_signal);
-	signal(SIGQUIT, &ft_signal);
+	signal(SIGINT, &ft_catch_int);
+	signal(SIGQUIT, &ft_catch_quit);
 }
 
-void	ft_catch_d(t_list *list)
+void	ft_catch_d(t_data *list)
 {
-	write(1, "exit\n", 6);
+	write(1, "\nexit\n", 8);
 	ft_exit(list);
 }
+
+void	ft_catch_quit(int signal)
+{
+	if (signal == SIGQUIT)
+		write(1, "\b\b \b\b", 9);
+}
+
+void	ft_catch_int(int signal)
+{
+	if (signal == SIGINT)
+	{
+		write(1, "\n", 2);
+		rl_on_new_line();
+		rl_redisplay();
+		rl_replace_line("", 0);
+	}
+}
+
