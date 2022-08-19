@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 22:11:20 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/19 22:12:35 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void	ft_fill_new_token(char *content, t_data *data, int type)
 	ft_lstadd_back_token(&data->tokens_data, new_token);
 }
 
+**	ft_is_space :
 int	ft_is_space_sep(char c)
 {
 	if (c == '\t' || c == '\v'
