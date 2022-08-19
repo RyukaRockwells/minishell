@@ -6,23 +6,23 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 17:22:31 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/19 19:00:40 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_init(char **envp, t_data *list)
+void	ft_init(char **envp, t_data *data)
 {
-	list->code_exit = 0;
-	list->readline = NULL;
-	list->envp = NULL;
-	list->nb_process = 0;
-	list->token = NULL;
-	list->fd_stdout = -1;
-	list->fd_stdin = -1;
-	list->list = list;
-	ft_env(list, envp);
+	data->code_exit = 0;
+	data->readline = NULL;
+	data->envp = NULL;
+	data->nb_process = 0;
+	data->token = NULL;
+	data->fd_stdout = -1;
+	data->fd_stdin = -1;
+	data->data = data;
+	ft_env(data, envp);
 }
 
 int	ft_env_nbline(char **envp)
@@ -35,25 +35,25 @@ int	ft_env_nbline(char **envp)
 	return (i);
 }
 
-void	ft_env(t_data *list, char **envp)
+void	ft_env(t_data *data, char **envp)
 {
 	int		i;
 
 	i = 0;
-	list->envp = malloc(sizeof(char *) * (ft_env_nbline(envp) + 1));
-	if (list->envp == NULL)
+	data->envp = malloc(sizeof(char *) * (ft_env_nbline(envp) + 1));
+	if (data->envp == NULL)
 		ft_putstr_fd("malloc error", 2);
 	while (i < ft_env_nbline(envp) + 1)
 	{
-		list->envp[i] = NULL;
+		data->envp[i] = NULL;
 		i++;
 	}//NULL ?
 	i = 0;
 	while (envp[i] != NULL)
 	{
-		list->envp[i] = ft_strdup((const char *)envp[i]);
+		data->envp[i] = ft_strdup((const char *)envp[i]);
 		i++;
-	}//free(list->envp);
+	}//free(data->envp);
 }
 /*char	*line;
 

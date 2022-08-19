@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 18:38:18 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/19 19:02:12 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 //struct a revoir
 
 typedef struct s_token	t_token;
+typedef struct s_data	t_data;
 
 typedef struct s_token
 {
@@ -50,7 +51,7 @@ typedef struct s_data
 	t_token	*token;
 	int		fd_stdout;
 	int		fd_stdin;
-	t_list	*list;
+	t_data	*data;
 }				t_data;
 
 //ft_deco.c
@@ -60,22 +61,22 @@ void	ft_error(void);
 void	ft_error_env(void);
 void	show_error(int code_error);
 //ft_init.c
-void	ft_init(char **envp, t_data *list);
+void	ft_init(char **envp, t_data *data);
 int		ft_env_nbline(char **envp);
-void	ft_env(t_data *list, char **envp);
+void	ft_env(t_data *data, char **envp);
 //ft_loop.c
-int		ft_get_cmd(t_data *list);
-void	ft_loop(t_data *list);
+int		ft_get_cmd(t_data *data);
+void	ft_loop(t_data *data);
 //exit.c
-void	ft_exit(t_data *list);
+void	ft_exit(t_data *data);
 //signal.c
 void	ft_catch_signal(void);
-void	ft_catch_d(t_data *list);
+void	ft_catch_d(t_data *data);
 void	ft_catch_quit(int signal);
 void	ft_catch_int(int signal);
 //lexer.c
-int		ft_lexer(t_data *list);
-int		ft_parser(t_data *list);
+int		ft_lexer(t_data *data);
+int		ft_parser(t_data *data);
 //lexer_utils.c
 int		ft_is_space(char c);
 int		ft_is_separator(char c);

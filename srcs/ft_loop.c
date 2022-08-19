@@ -6,37 +6,37 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 17:53:03 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/19 19:00:40 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_get_cmd(t_data *list)
+int	ft_get_cmd(t_data *data)
 {
 	int	error_status;
 
-	error_status = ft_lexer(list);
+	error_status = ft_lexer(data);
 	if (error_status != 0)
 		return (error_status);
-	error_status = ft_parser(list);
+	error_status = ft_parser(data);
 }
 
-void	ft_loop(t_data *list)
+void	ft_loop(t_data *data)
 {
 	int	code_error;
 
 	code_error = 0;
 	ft_deco();
-	while (list->code_exit == 0)
+	while (data->code_exit == 0)
 	{
 		ft_catch_signal();
-		list->readline = readline("Minishell> ");//free(list->readline);
-		if (list->readline == NULL)
-			ft_catch_d(list);
-		if (list->readline[0] != 0)
-			add_history(list->readline);
-		code_error = ft_get_cmd(list);
+		data->readline = readline("Minishell> ");//free(data->readline);
+		if (data->readline == NULL)
+			ft_catch_d(data);
+		if (data->readline[0] != 0)
+			add_history(data->readline);
+		code_error = ft_get_cmd(data);
 		if (code_error != 0)
 			show_error(code_error);
 	}
@@ -137,7 +137,7 @@ void	ft_fill_new_token(char *content, t_data *data, int type)
 	t_token	*new_token;
 
 	new_token = ft_new_token(data, content, type);
-	ft_lstadd_back_token(&data->tokens_list, new_token);
+	ft_lstadd_back_token(&data->tokens_data, new_token);
 }
 
 int	ft_is_space_sep(char c)
@@ -150,7 +150,7 @@ int	ft_is_space_sep(char c)
 	return (1);
 }
 
-int	ft_fill_tokens_list(t_data *data)
+int	ft_fill_tokens_data(t_data *data)
 {
 	size_t	index;
 	int		statut;
