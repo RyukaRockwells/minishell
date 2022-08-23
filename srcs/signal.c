@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:12:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 22:17:38 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:01:29 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_catch_d(t_data *data)
 void	ft_catch_quit(int signal)
 {
 	if (signal == SIGQUIT)
-		write(1, "\b\b \b\b", 9);
+		ft_putstr_fd("\b\b  \b\b", 1);
 }
 
 void	ft_catch_int(int signal)
@@ -40,4 +40,3 @@ void	ft_catch_int(int signal)
 		rl_redisplay();
 	}
 }
-
