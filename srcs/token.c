@@ -1,44 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/30 19:08:47 by nchow-yu         ###   ########.fr       */
+/*   Created: 2022/08/26 20:20:13 by nchow-yu          #+#    #+#             */
+/*   Updated: 2022/08/30 19:07:30 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	**ft_free(char **tab)
+//get_quotes sunny
+int	ft_get_token(t_data *data, char *rdline, int i, int strlen)
 {
-	size_t	i;
+	char	*wd;
 
-	i = 0;
-	while (tab[i] != NULL)
-	{
-		free(tab[i]);
-		tab[i] = NULL;
-		i++;
-	}
-	free(tab);
-	tab = NULL;
-	return (NULL);
-}
-
-void	ft_exit(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	ft_free(data->envp);
-	free(data->readline);
-	while (i < 1024)/*Pourquoi 1024?*/
-	{
-		close(i);
-		i++;
-	}
-	exit(0);
+	wd = ft_substr(rdline, i, strlen);
+	if (wd == NULL)
+		ft_exit(data);
+	//free(wd);
+	ft_add_token(wd, data, LITERAL);
+	return (0);
 }

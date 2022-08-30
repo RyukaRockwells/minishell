@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:53:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/23 19:15:27 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/26 20:19:33 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_is_separator(char c)
 }
 
 //regarder dans lexer_utils.c pour la fonction ft_word_len
-//int	ft_
+//2e boucle if => fonctionnement bizarre
 
 int	ft_wdlen(char *str, int i)
 {

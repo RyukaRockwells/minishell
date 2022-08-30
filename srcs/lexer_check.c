@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:57:02 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/23 19:15:20 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:01:43 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	ft_check_metachar(char *str, int i)
 	return (0);
 }
 
-//J'aurais quel responsabilite? ou j'en aurais pas du tout
 int	ft_check_quotes(char *str)
 {
 	int		i;

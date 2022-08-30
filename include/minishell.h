@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 22:08:10 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:05:47 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ void	ft_error_env(void);
 void	show_error(int code_error);
 //ft_init.c
 void	ft_init(char **envp, t_data *data);
+void	ft_reinit(t_data *data);
 int		ft_env_nbline(char **envp);
 void	ft_env(t_data *data, char **envp);
 //ft_loop.c
 int		ft_get_cmd(t_data *data);
 void	ft_loop(t_data *data);
-void	ft_reinit(t_data *data);
 //exit.c
 char	**ft_free(char **tab);
 void	ft_exit(t_data *data);
@@ -79,11 +79,18 @@ void	ft_catch_int(int signal);
 //lexer.c
 int		ft_lexer(t_data *data);
 int		ft_parser(t_data *data);
+int		ft_get_word(t_data *data, int i);
+int		ft_word_quote(char *str, int i);
 //lexer_utils.c
 int		ft_is_space(char c);
 int		ft_is_separator(char c);
-int		ft_check_quotes(char *str);
+int		ft_wdlen(char *str, int i);
 //main.c
 void	minishell(char **arg, char **envp);
+//lexer_check.c
+int		ft_check_metachar(char *str, int i);
+int		ft_check_quotes(char *str);
+//token.c
+int		ft_get_token(t_data *data, char *rdline, int i, int strlen);
 
 #endif

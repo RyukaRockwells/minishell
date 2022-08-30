@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:19:26 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 19:00:40 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:20:09 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_check(char *line)
 
 int	main(int nb, char **arg, char **envp)
 {
-	t_data data;
+	t_data	data;
 
 	(void)arg;
 	if (nb != 1)

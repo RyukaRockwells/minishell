@@ -6,13 +6,13 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/08/19 17:30:07 by nchow-yu         ###   ########.fr        #
+#    Updated: 2022/08/30 19:04:27 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	srcs/main.c srcs/ft_error.c srcs/deco.c srcs/ft_loop.c srcs/exit.c \
 			srcs/ft_init.c srcs/signal.c srcs/lexer_utils.c srcs/lexer.c \
-			
+			srcs/token.c srcs/lexer_check.c
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 CC		=	gcc
