@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/02 13:27:45 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:53:20 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_catch_int(int signal);
 int		ft_lexer(t_data *data);
 int		ft_parser(t_data *data);
 int		ft_get_word(t_data *data, int i);
-int		ft_word_quote(char *str, int i);
+int		ft_word_quote(char *str, int i, char c);
 //lexer_utils.c
 int		ft_is_space(char c);
 int		ft_is_separator(char c);

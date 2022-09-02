@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/02 13:28:34 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:18:48 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_get_word(t_data *data, int i)
 	str = data->readline;
 	if (str[i] == 39 || str[i] == 34)
 	{
-		if (ft_word_quote(str, i) == 0)
+		if (ft_word_quote(str, i, str[i]) == 0)
 		{
 			ft_get_token(data, str, i, ft_wdlen(str, i));
 			return (ft_wdlen(str, i));
@@ -59,6 +59,7 @@ int	ft_get_word(t_data *data, int i)
 		word = ft_substr(str, i, ft_wdlen(str, i));
 		if (word == NULL)
 			ft_exit(data); /*free(word);*/
+		printf("word: %s\n", word);
 		ft_add_token(word, data, LITERAL);
 		return (ft_wdlen(str, i));
 	}
@@ -66,12 +67,12 @@ int	ft_get_word(t_data *data, int i)
 }
 
 //recup le mot entre quotes
-int	ft_word_quote(char *str, int i)
+int	ft_word_quote(char *str, int i, char c)
 {
 	int		j;
 
 	j = 0;
-	while (str[i] != 39 || str[i] != 34)
+	while (str[i] != c)
 	{	
 		i++;
 		j++;
