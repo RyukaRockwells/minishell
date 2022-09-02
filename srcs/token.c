@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 20:20:13 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/02 16:14:01 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:18:13 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	show_token(t_data *data)
 	tmp = data->token;
 	while (tmp != NULL)
 	{
-		printf("token: %s\n", tmp->value);
-		printf("type: %d\n", tmp->type);
+		printf("token: %s\n", tmp->value);//a enlever
+		printf("type: %d\n", tmp->type);//a enlever
 		tmp = tmp->next;
 	}
 }
