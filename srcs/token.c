@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 20:20:13 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/30 19:07:30 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/02 13:26:51 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,42 @@ int	ft_get_token(t_data *data, char *rdline, int i, int strlen)
 	//free(wd);
 	ft_add_token(wd, data, LITERAL);
 	return (0);
+}
+
+void	ft_add_token(char *word, t_data *data, int type)
+{
+	t_token	*new;
+	t_token	*tmp;
+
+	new = malloc(sizeof(t_token));
+	if (new == NULL)
+		ft_exit(data);
+	new->value = word;
+	new->type = type;
+	new->next = NULL;
+	if (data->token == 0)
+	{
+		data->token = new;
+		return ;
+	}
+	if (new != 0)
+	{
+		if (new == NULL)
+			return ;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+}
+
+void	show_token(t_data *data)
+{
+	t_token	*tmp;
+
+	tmp = data->token;
+	while (tmp != NULL)
+	{
+		printf("token: %s\n", tmp->value);
+		tmp = tmp->next;
+	}
 }

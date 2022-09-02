@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/30 19:11:39 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/02 13:28:34 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	ft_lexer(t_data *data)
 		//index += ft_get_separators(data, i);
 		i++;
 	}
+	show_token(data);
 	return (0);
 }
 
