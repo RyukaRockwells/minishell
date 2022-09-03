@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:53:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/02 18:17:47 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/03 15:24:31 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,17 @@ int	ft_wdlen(char *str, int i)
 	int	j;
 
 	j = 0;
+	printf("j au debut: %d\n", j);//a enlever
 	while (str[i] != '\0')
 	{
-		if (ft_check_metachar(str, i) == 1)
+		printf("j in while: %d\n", j);//a enlever
+		if (ft_check_metachar(str, i) == 0)
 			return (j);
-		if (str[i++] == 34)
+		if (str[i] == 34)
 		{
-			j++;
+			printf("j dans if: %d\n", j);//a enlever
 			i++;
+			j++;
 			while (str[i] != 34)
 			{
 				i++;
@@ -62,7 +65,8 @@ int	ft_wdlen(char *str, int i)
 		}
 		if (ft_is_word_util(str, i, j) == 1)
 			return (j);
+		j++;
+		i++;
 	}
-	printf("j: %d\n", j);//a enlever
 	return (j);
 }

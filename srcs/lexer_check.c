@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:57:02 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/30 19:01:43 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/03 14:09:38 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	ft_check_metachar(char *str, int i)
 {
 	if (ft_is_separator(str[i]) == 0 || ft_is_space(str[i]) == 0)
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
 
 int	ft_check_quotes(char *str)

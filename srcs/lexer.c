@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/02 16:18:48 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/03 15:51:43 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,11 @@ int	ft_lexer(t_data *data)
 	i = 0;
 	while (i < ft_strlen(data->readline))
 	{
-		if (ft_is_space(data->readline[i]))
-			i++;
 		i += ft_get_word(data, i);
 		//index += ft_get_quote(data->readline, i);
 		//index += ft_get_separators(data, i);
 		i++;
 	}
-	show_token(data);
 	return (0);
 }
 
@@ -46,6 +43,7 @@ int	ft_get_word(t_data *data, int i)
 	char	*str;
 
 	str = data->readline;
+	printf("str = %s\n", str);//a enlever
 	if (str[i] == 39 || str[i] == 34)
 	{
 		if (ft_word_quote(str, i, str[i]) == 0)
@@ -57,9 +55,11 @@ int	ft_get_word(t_data *data, int i)
 	if (str[i] >= 33 && str[i] <= 126 && ft_check_metachar(str, i))
 	{
 		word = ft_substr(str, i, ft_wdlen(str, i));
+		printf("wdlen = %d\n", ft_wdlen(str, i));
+		printf("word substr: %s\n", word);//a enlever
 		if (word == NULL)
 			ft_exit(data); /*free(word);*/
-		printf("word: %s\n", word);
+		printf("word dans get_word: %s\n", word);
 		ft_add_token(word, data, LITERAL);
 		return (ft_wdlen(str, i));
 	}

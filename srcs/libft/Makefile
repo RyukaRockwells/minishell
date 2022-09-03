@@ -6,7 +6,7 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 18:56:16 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/07/22 16:02:01 by nchow-yu         ###   ########.fr        #
+#    Updated: 2022/09/03 15:17:56 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,19 +28,19 @@ NAME	=	libft.a
 all:	${OBJS} ${OBJSBONUS} ${NAME}
 
 %.o:	%.c
-	${CC} -o $@ -c $<
+	@${CC} -o $@ -c $<
 
 ${NAME}:	${OBJS} ${OBJSBONUS}
-	ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
+	@ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
 
 bonus:	${OBJS} ${OBJSBONUS}
-	ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
+	@ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
 
 clean:
-	rm -f ${OBJS} ${OBJSBONUS}
+	@rm -f ${OBJS} ${OBJSBONUS}
 
 fclean:    clean
-	rm -f ${NAME}
+	@rm -f ${NAME}
 
 re:	fclean ${NAME}
 

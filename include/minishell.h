@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/02 14:53:20 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/03 15:48:12 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,8 @@ int		ft_check_quotes(char *str);
 int		ft_get_token(t_data *data, char *rdline, int i, int strlen);
 void	ft_add_token(char *word, t_data *data, int type);
 void	show_token(t_data *data);
+//token_list.c
+void	ft_tokenadd_back(t_token **tok, t_token *new);
+t_token	*ft_tokenlast(t_token *tok);
 
 #endif
