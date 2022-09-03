@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/03 16:02:12 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:20:55 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	ft_lexer(t_data *data)
 	while (i < ft_strlen(data->readline))
 	{
 		i += ft_get_word(data, i);
-		//index += ft_get_quote(data->readline, i);
-		//index += ft_get_separators(data, i);
+		i += ft_get_sep(data, i);
 		i++;
 	}
 	return (0);
@@ -62,6 +61,30 @@ int	ft_get_word(t_data *data, int i)
 		//printf("word dans get_word: %s\n", word);
 		ft_add_token(word, data, LITERAL);
 		return (ft_wdlen(str, i));
+	}
+	return (0);
+}
+
+int	ft_get_sep(t_data *data, int i)
+{
+	char	*sep;
+	char	*str;
+
+	str = data->readline;
+	if (ft_is_space(str[i]) == 0)
+		ft_add_space(data, str, i);
+	if (str[i] == '<' || str[i] == '>')
+	{
+		ft_redirect(data, str, i);
+		if (str[i] == str[i] && str[i + 1] == str[i])
+			return (1);
+	}
+	if (str[i] == '|')
+	{
+		sep = ft_substr(str, i, 1);
+		if (sep == NULL)
+			ft_exit(data);
+		ft_add_token(sep, data, PIPE);
 	}
 	return (0);
 }

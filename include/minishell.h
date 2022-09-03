@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/03 15:48:12 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:11:56 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # define PIPE 2
 # define REDIRECT_IN 3
 # define REDIRECT_OUT 4
-# define OR 5
-# define AND 6
-# define S_QUOTES 7
-# define D_QUOTES 8
+# define S_QUOTES 5
+# define D_QUOTES 6
+# define ESPACE 7
+# define HEREDOC 8
 
 # define QUOTES_NO_CLOSE 11
 //struct a revoir
@@ -80,16 +80,19 @@ void	ft_catch_int(int signal);
 int		ft_lexer(t_data *data);
 int		ft_parser(t_data *data);
 int		ft_get_word(t_data *data, int i);
+int		ft_get_sep(t_data *data, int i);
 int		ft_word_quote(char *str, int i, char c);
 //lexer_utils.c
 int		ft_is_space(char c);
 int		ft_is_separator(char c);
 int		ft_wdlen(char *str, int i);
-//main.c
-void	minishell(char **arg, char **envp);
+int		ft_add_space(t_data *data, char *str, int i);
+int		ft_redirect(t_data *data, char *str, int i);
 //lexer_check.c
 int		ft_check_metachar(char *str, int i);
 int		ft_check_quotes(char *str);
+//main.c
+void	minishell(char **arg, char **envp);
 //token.c
 int		ft_get_token(t_data *data, char *rdline, int i, int strlen);
 void	ft_add_token(char *word, t_data *data, int type);
