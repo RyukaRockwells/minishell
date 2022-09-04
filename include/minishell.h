@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/03 20:11:56 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/04 11:16:42 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
