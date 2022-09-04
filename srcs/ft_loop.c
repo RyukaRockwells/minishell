@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_loop.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanauth <sanauth@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 17:56:51 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/04 20:51:11 by sanauth          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_get_cmd(t_data *data)
 	int	error_status;
 
 	error_status = ft_lexer(data);
-	show_token(data);
+	//show_token(data);
 	if (error_status != 0)
 		return (error_status);
 	error_status = ft_parser(data);
