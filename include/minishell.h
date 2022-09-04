@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanauth <sanauth@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 15:08:22 by sanauth          ###   ########.fr       */
+/*   Updated: 2022/09/04 17:56:24 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # define HEREDOC 8
 
 # define QUOTES_NO_CLOSE 11
+# define EMPTY_TOK 12
+# define PIPE_ERROR 13
+
 //struct a revoir
 
 typedef struct s_token	t_token;
@@ -93,6 +96,8 @@ int		ft_redirect(t_data *data, char *str, int i);
 //lexer_check.c
 int		ft_check_metachar(char *str, int i);
 int		ft_check_quotes(char *str);
+void	ft_check_squotes(char *str, int *i, int *j);
+void	ft_check_dquotes(char *str, int *i, int *j);
 //main.c
 void	minishell(char **arg, char **envp);
 //token.c
@@ -102,5 +107,10 @@ void	show_token(t_data *data);
 //token_list.c
 void	ft_tokenadd_back(t_token **tok, t_token *new);
 t_token	*ft_tokenlast(t_token *tok);
+//parser.c
+int		ft_parser(t_data *data);
+//parser_utils.c
+int		ft_empty_tok(t_token *tmp);
+int		ft_pre_check(t_token *tok);
 
 #endif

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanauth <sanauth@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 20:20:13 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 16:08:20 by sanauth          ###   ########.fr       */
+/*   Updated: 2022/09/04 16:08:20 by sanauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// get_quotes sunny
-int ft_get_token(t_data *data, char *rdline, int i, int strlen)
+//get_quotes sunny
+int	ft_get_token(t_data *data, char *rdline, int i, int strlen)
 {
-	char *wd;
+	char	*wd;
 
 	wd = ft_substr(rdline, i, strlen);
 	if (wd == NULL)
@@ -41,8 +41,8 @@ void ft_add_token(char *word, t_data *data, int type)
 	ft_tokenadd_back(&data->token, new);
 	free(new);
 }
-
 /*void	show_token(t_data *data)
+
 {
 	t_token	*tmp;
 	int		i;

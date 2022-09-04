@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: sanauth <sanauth@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
 /*   Updated: 2022/09/04 16:07:35 by sanauth          ###   ########.fr       */
+=======
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
+/*   Updated: 2022/08/30 19:08:47 by nchow-yu         ###   ########.fr       */
+>>>>>>> Nicole
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +49,7 @@ void	ft_exit(t_data *data)
 	}
 	exit(0);
 }
+<<<<<<< HEAD
 
 void	ft_free_lex(t_token *data)
 {
@@ -72,3 +80,5 @@ void	ft_free_lex(t_token *data)
 	}
 }
 */
+=======
+>>>>>>> Nicole

@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_list.c                                       :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 15:42:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 15:28:17 by sanauth         ###   ########.fr       */
+/*   Created: 2022/09/04 12:01:35 by nchow-yu          #+#    #+#             */
+/*   Updated: 2022/09/04 12:10:54 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_tokenadd_back(t_token **tok, t_token *new)
+int	ft_parser(t_data *data)
 {
-	t_token	*last_elmt;
+	t_token	*tmp;
+	int		error_code;
 
-	if (*tok != NULL)
-	{
-		if (*tok == NULL)
-			*tok = new;
-		else
-		{
-			last_elmt = ft_tokenlast(*(tok));
-			last_elmt->next = new;
-		}
-	}
-}
-
-t_token	*ft_tokenlast(t_token *tok)
-{
-	if (tok != NULL)
-	{
-		while (tok->next != NULL)
-			tok = tok->next;
-	}
-	return (tok);
+	tmp = data->token;
+	error_code = ft_pre_check(tmp);
+	if (error_code > 0)
+		return (error_code);
 }

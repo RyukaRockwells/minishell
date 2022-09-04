@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_list.c                                       :+:      :+:    :+:   */
+/*   parser_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 15:42:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 15:28:17 by sanauth         ###   ########.fr       */
+/*   Created: 2022/09/04 12:09:10 by nchow-yu          #+#    #+#             */
+/*   Updated: 2022/09/04 17:45:09 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_tokenadd_back(t_token **tok, t_token *new)
+int	ft_empty_tok(t_token *tmp)
 {
-	t_token	*last_elmt;
-
-	if (*tok != NULL)
+	while (tmp != NULL)
 	{
-		if (*tok == NULL)
-			*tok = new;
-		else
-		{
-			last_elmt = ft_tokenlast(*(tok));
-			last_elmt->next = new;
-		}
+		if (tmp->type != ESPACE)
+			return (1);
+		tmp = tmp->next;
 	}
+	return (0);
 }
 
-t_token	*ft_tokenlast(t_token *tok)
+int	ft_pre_check(t_token *tok)
 {
-	if (tok != NULL)
-	{
-		while (tok->next != NULL)
-			tok = tok->next;
-	}
-	return (tok);
+	if (ft_empty_tok(tok) == 0)
+		return (EMPTY_TOK);
+	if (tok->type == PIPE)
+		return (PIPE_ERROR);
+	if (tok->type == ESPACE)
+		if (tok->next->type == PIPE)
+			return (PIPE_ERROR);
+	return (0);
 }

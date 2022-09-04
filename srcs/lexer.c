@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanauth <sanauth@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 16:09:23 by sanauth          ###   ########.fr       */
+/*   Updated: 2022/09/04 17:57:57 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ int	ft_lexer(t_data *data)
 	return (0);
 }
 
-int	ft_parser(t_data *data)
-{
-	return (0);
-}
 //!!!revoir le fonctionnement de ft_wdlen!!!
 
 int	ft_get_word(t_data *data, int i)

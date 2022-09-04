@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanauth <sanauth@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:53:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 16:08:03 by sanauth          ###   ########.fr       */
+/*   Updated: 2022/09/04 17:59:29 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,6 @@ int	ft_is_separator(char c)
 	return (1);
 }
 
-//regarder dans lexer_utils.c pour la fonction ft_word_len
-//2e boucle if => fonctionnement bizarre
-//metachar != mot, si fin est \0 on sort
-/*
-int	ft_is_word_util(char *read_line, int index, int len)
-{
-	if (ft_check_metachar(read_line, index))
-	{
-		if (read_line[index] == '\0')
-			return (len);
-	}
-	return (0);
-}
-*/
 int	ft_wdlen(char *str, int i)
 {
 	int	j;
@@ -51,25 +37,9 @@ int	ft_wdlen(char *str, int i)
 		if (ft_check_metachar(str, i) == 0)
 			return (j);
 		if (str[i] == 34)
-		{
-			i++;
-			j++;
-			while (str[i] != 34)
-			{
-				i++;
-				j++;
-			}
-		}
+			ft_check_dquotes(str, &i, &j);
 		if (str[i] == 39)
-		{
-			i++;
-			j++;
-			while (str[i] != 39)
-			{
-				i++;
-				j++;
-			}
-		}
+			ft_check_squotes(str, &i, &j);
 		if (ft_check_metachar(str, i) == 0)
 			if (str[i] == '\0')
 				return (j);
