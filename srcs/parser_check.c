@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   parser_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 11:12:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 16:46:01 by nchow-yu         ###   ########.fr       */
+/*   Created: 2022/09/04 12:09:10 by nchow-yu          #+#    #+#             */
+/*   Updated: 2022/09/04 17:45:09 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_catch_signal(void)
+int	ft_empty_tok(t_token *tmp)
 {
-	signal(SIGINT, &ft_catch_int);
-	signal(SIGQUIT, &ft_catch_quit);
-}
-
-void	ft_catch_d(t_data *data)
-{
-	write(1, "exit\n", 6);
-	ft_exit(data);
-}
-
-void	ft_catch_quit(int signal)
-{
-	if (signal == SIGQUIT)
-		ft_putstr_fd("\b\b  \b\b", 1);
-}
-
-void	ft_catch_int(int signal)
-{
-	if (signal == SIGINT)
+	while (tmp != NULL)
 	{
-		write(1, "\n", 2);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
+		if (tmp->type != ESPACE)
+			return (1);
+		tmp = tmp->next;
 	}
+	return (0);
+}
+
+int	ft_pre_check(t_token *tok)
+{
+	if (ft_empty_tok(tok) == 0)
+		return (EMPTY_TOK);
+	if (tok->type == PIPE)
+		return (PIPE_ERROR);
+	if (tok->type == ESPACE)
+		if (tok->next->type == PIPE)
+			return (PIPE_ERROR);
+	return (0);
 }

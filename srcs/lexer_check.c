@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:57:02 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/03 14:09:38 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/04 11:51:44 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,26 @@ int	ft_check_quotes(char *str)
 		}
 	}
 	return (quotes);
+}
+
+void	ft_check_squotes(char *str, int *i, int *j)
+{
+	(*i)++;
+	(*j)++;
+	while (str[*i] != 39)
+	{
+		(*i)++;
+		(*j)++;
+	}
+}
+
+void	ft_check_dquotes(char *str, int *i, int *j)
+{
+	(*i)++;
+	(*j)++;
+	while (str[*i] != 34)
+	{
+		(*i)++;
+		(*j)++;
+	}
 }

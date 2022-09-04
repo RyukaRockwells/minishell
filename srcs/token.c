@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 20:20:13 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/03 20:04:01 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/04 12:30:23 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_add_token(char *word, t_data *data, int type)
 	new->type = type;
 	new->next = NULL;
 	ft_tokenadd_back(&data->token, new);
+	//free(new);
 }
 
 void	show_token(t_data *data)
