@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 20:23:25 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:31:57 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,3 @@ void	ft_env(t_data *data, char **envp)
 		i++;
 	}//free(data->envp);
 }
-/*char	*line;
-
-ft_deco();
-while (1)
-{
-	line = readline("Minishell> ");
-	add_history(line);
-	ft_check(line);		
-}*/
-/*ctrl + tab = switch file on group in vscode
-crtl + \(|) = open in new tab the duplicate file en cours
-I like to move it - Madagascar (Roi Julian)*/

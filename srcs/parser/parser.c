@@ -6,11 +6,11 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:01:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 23:26:05 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:33:10 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 int	ft_pipe(t_token *tok)
 {

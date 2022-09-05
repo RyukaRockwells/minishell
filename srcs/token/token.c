@@ -6,11 +6,11 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 20:20:13 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 22:49:51 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/05 13:33:52 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 //get_quotes sunny
 int	ft_get_token(t_data *data, char *rdline, int i, int strlen)

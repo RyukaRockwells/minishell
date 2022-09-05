@@ -6,11 +6,11 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/04 22:49:57 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/05 13:33:31 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 int	ft_lexer(t_data *data)
 {
