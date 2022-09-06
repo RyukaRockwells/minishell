@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:53:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/05 13:33:28 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:06:57 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_redirect(t_data *data, char *str, int i)
 			ft_exit(data);
 		//free(sep);
 		if (str[i] == '>')
-			ft_add_token(sep, data, REDIRECT_OUT);
+			ft_add_token(sep, data, D_REDIRECT_OUT);
 		else if (str[i] == '<')
 			ft_add_token(sep, data, HEREDOC);
 	}
