@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:01:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/07 17:33:27 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:21:50 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ int	ft_parser(t_data *data)
 
 	tmp = data->token;
 	error_code = ft_pre_check(tmp);
+	printf("error_code = %d\n", error_code);
 	if (error_code > 0)
+	{
+		printf("error_code > 0\n");
 		return (error_code);
+	}
+	printf("next step\n");
 	while (tmp != NULL)
 	{
 		if (tmp->type == PIPE)

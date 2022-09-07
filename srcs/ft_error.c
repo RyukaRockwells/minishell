@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:26:20 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/07 16:56:34 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:22:41 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	show_error(int code_error)
 	if (code_error == QUOTES_NO_CLOSE)
 		ft_putstr_fd("minishell: quotes no close\n", 2);
 	if (code_error == EMPTY_TOK)
-		ft_putstr_fd("\0", 2);
+		ft_putstr_fd("This is a hole\n", 2);
 	if (code_error == PIPE_ERROR)
 		ft_putstr_fd("minishell: pipe error\n", 2);
 	if (code_error == REDIR_IN_ERROR)
