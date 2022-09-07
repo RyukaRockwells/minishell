@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:09:10 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/06 16:32:28 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:33:27 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_empty_tok(t_token *tmp)
 //s'il y a un espace et rien = error
 int	ft_check_redirect(t_token *tmp)
 {
-	if (tmp->type == REDIR_IN || tmp->type == REDIR_OUT
+	if (tmp->type == REDIRECT_IN || tmp->type == REDIRECT_OUT
 		|| tmp->type == D_REDIRECT_OUT)
 	{
 		if (tmp->next == NULL)
@@ -38,8 +38,12 @@ int	ft_check_redirect(t_token *tmp)
 		{
 			if (tmp->next->next == NULL)
 				return (ERROR);
-			return (ft_check_next_tok(tmp->next->next->type));
+			if (ft_check_next_tok(tmp->next->next->type) != 0)
+				return (ft_check_next_tok(tmp->next->next->type));
 		}
+		if (tmp->next->type != ESPACE)
+			if (ft_check_next_tok(tmp->next->type) != 0)
+				return (ft_check_next_tok(tmp->next->type));
 	}
 	return (0);
 }
@@ -50,12 +54,28 @@ int	ft_pre_check(t_token *tok)
 		return (EMPTY_TOK);
 	if (tok->type == PIPE)
 		return (PIPE_ERROR);
+	printf("pre check ok\n");
 	if (tok->type == ESPACE)
+	{
+		printf("tok->type == ESPACE\n");
 		if (tok->next->type == PIPE)
 			return (PIPE_ERROR);
+	}
 	return (0);
 }
 
+int	ft_check_next_tok(int type)
+{
+	if (type == PIPE)
+		return (PIPE_ERROR);
+	if (type == REDIRECT_IN)
+		return (REDIR_IN_ERROR);
+	if (type == REDIRECT_OUT)
+		return (REDIR_OUT_ERROR);
+	if (type == D_REDIRECT_OUT)
+		return (D_REDIR_OUT_ERROR);
+	return (0);
+}
 /*
 if (token->next->type == T_SPACE)
 {

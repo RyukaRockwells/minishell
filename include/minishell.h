@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/06 16:20:18 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:33:27 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 # define EMPTY_TOK 12
 # define PIPE_ERROR 13
 # define ERROR 14
+# define REDIR_IN_ERROR 15
+# define REDIR_OUT_ERROR 16
+# define D_REDIR_OUT_ERROR 17
 
 //struct a revoir
 
@@ -82,37 +85,39 @@ void	ft_catch_signal(void);
 void	ft_catch_d(t_data *data);
 void	ft_catch_quit(int signal);
 void	ft_catch_int(int signal);
-//lexer.c
+//lexer/lexer.c
 int		ft_lexer(t_data *data);
 int		ft_parser(t_data *data);
 int		ft_get_word(t_data *data, int i);
 int		ft_get_sep(t_data *data, int i);
 int		ft_word_quote(char *str, int i, char c);
-//lexer_utils.c
+//lexer/lexer_utils.c
 int		ft_is_space(char c);
 int		ft_is_separator(char c);
 int		ft_wdlen(char *str, int i);
 int		ft_add_space(t_data *data, char *str, int i);
 int		ft_redirect(t_data *data, char *str, int i);
-//lexer_check.c
+//lexer/lexer_check.c
 int		ft_check_metachar(char *str, int i);
 int		ft_check_quotes(char *str);
 void	ft_check_squotes(char *str, int *i, int *j);
 void	ft_check_dquotes(char *str, int *i, int *j);
 //main.c
 void	minishell(char **arg, char **envp);
-//token.c
+//token/token.c
 int		ft_get_token(t_data *data, char *rdline, int i, int strlen);
 void	ft_add_token(char *word, t_data *data, int type);
 void	show_token(t_data *data);
-//token_list.c
+//tken/token_list.c
 void	ft_tokenadd_back(t_token **tok, t_token *new);
 t_token	*ft_tokenlast(t_token *tok);
-//parser.c
+//parser/parser.c
+int		ft_pipe(t_token *tok);
 int		ft_parser(t_data *data);
-//parser_check.c
+//parser/parser_check.c
 int		ft_empty_tok(t_token *tmp);
 int		ft_pre_check(t_token *tok);
 int		ft_check_redirect(t_token *tmp);
+int		ft_check_next_tok(int type);
 
 #endif
