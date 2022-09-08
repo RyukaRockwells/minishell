@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:09:10 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/07 17:33:27 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:38:14 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,9 @@ int	ft_pre_check(t_token *tok)
 		return (EMPTY_TOK);
 	if (tok->type == PIPE)
 		return (PIPE_ERROR);
-	printf("pre check ok\n");
 	if (tok->type == ESPACE)
-	{
-		printf("tok->type == ESPACE\n");
 		if (tok->next->type == PIPE)
 			return (PIPE_ERROR);
-	}
 	return (0);
 }
 

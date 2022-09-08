@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/07 17:33:27 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:40:05 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ void	show_token(t_data *data);
 //tken/token_list.c
 void	ft_tokenadd_back(t_token **tok, t_token *new);
 t_token	*ft_tokenlast(t_token *tok);
-//parser/parser.c
+//parser/parser2.c
 int		ft_pipe(t_token *tok);
 int		ft_parser(t_data *data);
-//parser/parser_check.c
+//parser/parser_check2.c
 int		ft_empty_tok(t_token *tmp);
 int		ft_pre_check(t_token *tok);
 int		ft_check_redirect(t_token *tmp);
