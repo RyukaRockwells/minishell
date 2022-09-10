@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:53:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/06 16:06:57 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:49:19 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ int	ft_is_separator(char c)
 	return (1);
 }
 
+int	ft_is_word_util(char *read_line, int index, int len)
+{
+	if (ft_check_metachar(read_line, index) == 0)
+	{
+		if (read_line[index] == '\0')
+			return (len);
+	}
+	return (0);
+}
+
 int	ft_wdlen(char *str, int i)
 {	
 	int	j;
@@ -37,12 +47,19 @@ int	ft_wdlen(char *str, int i)
 		if (ft_check_metachar(str, i) == 0)
 			return (j);
 		if (str[i] == 34)
+		{
 			ft_check_dquotes(str, &i, &j);
+			/*printf("j dquotes = %d\n", j);
+			return (j + 1);*/
+		}/*
 		if (str[i] == 39)
+		{
 			ft_check_squotes(str, &i, &j);
-		if (ft_check_metachar(str, i) == 0)
-			if (str[i] == '\0')
-				return (j);
+			printf("j squotes = %d\n", j);
+			return (j + 1);
+		}*/
+		if (ft_is_word_util(str, i, j))
+			return (j);
 		j++;
 		i++;
 	}

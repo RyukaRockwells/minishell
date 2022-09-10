@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/05 14:31:57 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:59:26 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_reinit(t_data *data)
 {
 	data->readline = NULL;
 	data->nb_process = 0;
-	data->token = NULL;
+	ft_free_token_list(data);
 }
 
 int	ft_env_nbline(char **envp)

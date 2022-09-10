@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:26:20 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/07 19:22:41 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:25:33 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	show_error(int code_error)
 		ft_putstr_fd("minishell: redirect out error\n", 2);
 	if (code_error == D_REDIR_OUT_ERROR)
 		ft_putstr_fd("minishell: double redirect out error\n", 2);
+	if (code_error == HEREDOC_ERROR)
+		ft_putstr_fd("minishell: heredoc error\n", 2);
 	if (code_error == ERROR)
 		ft_putstr_fd("minishell: error\n", 2);
 }

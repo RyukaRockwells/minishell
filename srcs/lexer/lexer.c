@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/08 18:18:42 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:05:28 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ int	ft_get_word(t_data *data, int i)
 		if (ft_word_quote(str, i, str[i]) == 0)
 		{
 			ft_get_token(data, str, i, ft_wdlen(str, i));
-			printf("wdlen= %d\n", ft_wdlen(str, i));//a enlever
+			//printf("wdlen si 1st 34/39 = %d\n", ft_wdlen(str, i));//a enlever
 			return (ft_wdlen(str, i));
 		}
 	}
 	if (str[i] >= 33 && str[i] <= 126 && ft_check_metachar(str, i))
 	{
 		word = ft_substr(str, i, ft_wdlen(str, i));
-		printf("wdlen = %d\n", ft_wdlen(str, i));
-		printf("word substr: %s\n", word);//a enlever
+		//printf("wdlen = %d\n", ft_wdlen(str, i));
+		//printf("word substr: %s\n", word);//a enlever
 		if (word == NULL)
 			ft_exit(data); /*free(word);*/
 		//printf("word dans get_word: %s\n", word);

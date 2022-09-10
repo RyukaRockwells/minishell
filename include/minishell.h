@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/08 17:06:58 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:00:10 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define REDIR_IN_ERROR 15
 # define REDIR_OUT_ERROR 16
 # define D_REDIR_OUT_ERROR 17
+# define HEREDOC_ERROR 18
 
 //struct a revoir
 
@@ -80,6 +81,7 @@ void	ft_loop(t_data *data);
 //exit.c
 char	**ft_free(char **tab);
 void	ft_exit(t_data *data);
+void	ft_free_token_list(t_data *data);
 //signal.c
 void	ft_catch_signal(void);
 void	ft_catch_d(t_data *data);
@@ -108,7 +110,7 @@ void	minishell(char **arg, char **envp);
 int		ft_get_token(t_data *data, char *rdline, int i, int strlen);
 void	ft_add_token(char *word, t_data *data, int type);
 void	show_token(t_data *data);
-//tken/token_list.c
+//token/token_list.c
 void	ft_tokenadd_back(t_token **tok, t_token *new);
 t_token	*ft_tokenlast(t_token *tok);
 //parser/parser2.c
