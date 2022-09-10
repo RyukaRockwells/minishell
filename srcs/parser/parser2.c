@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:27:21 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/08 13:38:27 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:01:28 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_parser(t_data *data)
 	int		error_status;
 
 	list = data->token;
-	error_status = ft_pre_parser(list);
+	error_status = ft_pre_check(list);
 	if (error_status > 0)
 		return (error_status);
 	return (0);

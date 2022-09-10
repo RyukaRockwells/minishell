@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/08 13:40:05 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:06:58 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ t_token	*ft_tokenlast(t_token *tok);
 int		ft_pipe(t_token *tok);
 int		ft_parser(t_data *data);
 //parser/parser_check2.c
-int		ft_empty_tok(t_token *tmp);
+int		ft_empty_tok(t_token *tok);
 int		ft_pre_check(t_token *tok);
 int		ft_check_redirect(t_token *tmp);
 int		ft_check_next_tok(int type);

@@ -6,27 +6,23 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:09:10 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/08 13:38:14 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:15:25 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_empty_tok(t_token *tmp)
+int	ft_empty_tok(t_token *tok)
 {
-	if (tmp != NULL)
+	while (tok != NULL)
 	{
-		if (tmp->type != ESPACE)
+		if (tok->type != ESPACE)
 			return (1);
-		tmp = tmp->next;
+		tok = tok->next;
 	}
 	return (0);
 }
 
-//check s'il y a une redirect
-//s'il y a vide apres = error
-//s'il y a un espace :
-//s'il y a un espace et rien = error
 int	ft_check_redirect(t_token *tmp)
 {
 	if (tmp->type == REDIRECT_IN || tmp->type == REDIRECT_OUT
