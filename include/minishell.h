@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/11 17:18:20 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:19:41 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@
 typedef struct s_token	t_token;
 typedef struct s_data	t_data;
 
+typedef struct s_here_tok
+{
+	int			fd;
+	t_here_fd	*next;
+}			t_here_fd;
+
 typedef struct s_token
 {
 	char	*value;
@@ -55,14 +61,15 @@ typedef struct s_token
 
 typedef struct s_data
 {
-	int		code_exit;
-	char	*readline;
-	char	**envp;
-	int		nb_process;
-	t_token	*token;
-	int		fd_stdout;
-	int		fd_stdin;
-	t_data	*data;
+	int			code_exit;
+	char		*readline;
+	char		**envp;
+	int			nb_process;
+	t_token		*token;
+	int			fd_stdout;
+	int			fd_stdin;
+	t_data		*data;
+	t_here_fd	*here_fd;
 }				t_data;
 
 //ft_deco.c

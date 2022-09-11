@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:26:20 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/11 17:19:15 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:48:46 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	show_error(int code_error)
 		ft_putstr_fd("minishell: syntax error near unexpected token `>>'\n", 2);
 	if (code_error == HEREDOC_ERROR)
 		ft_putstr_fd("minishell: syntax error near unexpected token `<<'\n", 2);
-	IF (code_error == NEWLINE_ERROR)
+	if (code_error == NEWLINE_ERROR)
 		ft_putstr_fd("minishell: syntax error near unexpected token `newline'\n", 2);
 	if (code_error == ERROR)
 		ft_putstr_fd("minishell: error\n", 2);

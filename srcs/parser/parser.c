@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:01:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/11 17:25:49 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:07:52 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ int	ft_heredoc(t_token *tok)
 		if (tok->next->next->type == PIPE)
 			return (PIPE_ERROR);
 	}
+	else
+	{
+		if (tok->next->type != LITERAL)
+			return (HEREDOC_ERROR);
+	}
+	return (0);
 }
 
 int	ft_parser(t_data *data)

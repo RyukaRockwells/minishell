@@ -6,7 +6,7 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/09/11 16:54:58 by nchow-yu         ###   ########.fr        #
+#    Updated: 2022/09/11 18:07:27 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS	=	srcs/main.c srcs/error.c srcs/deco.c srcs/ft_loop.c srcs/exit.c \
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra #-g3 -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra -g3 -fsanitize=address
 NAME	=	minishell
 
 %.o:	%.c
