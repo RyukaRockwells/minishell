@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/10 20:43:30 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/11 15:19:42 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_exit(t_data *data)
 	i = 0;
 	ft_free(data->envp);//a bouger dans token_list
 	free(data->readline);//idem
-	while (i < 1024)/*Pourquoi 1024?*/
+	while (i < 1024) /*Pourquoi 1024?*/
 	{
 		close(i);
 		i++;
@@ -54,7 +54,7 @@ void	ft_free_token_list(t_data *data)
 	t_token	*tmp;
 
 	//dprintf(2,"free token list\n");
-	printf("%p\n", data->token);
+	//printf("%p\n", data->token);
 	while (data->token != NULL)
 	{
 		//dprintf(2,"TOKEN\n");

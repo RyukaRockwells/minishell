@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:01:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/10 17:37:30 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:25:49 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	ft_pipe(t_token *tok)
 
 int	ft_heredoc(t_token *tok)
 {
-	if (tok->next->type != ESPACE)
+	if (tok->next->type == ESPACE)
 	{
 		if (tok->next->next == NULL)
-			return (HEREDOC_ERROR);
+			return (NEWLINE_ERROR);
 		if (tok->next->next->type == HEREDOC)
 			return (HEREDOC_ERROR);
 		if (tok->next->next->type == PIPE)

@@ -6,11 +6,11 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/09/10 19:00:36 by nchow-yu         ###   ########.fr        #
+#    Updated: 2022/09/11 16:54:58 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	srcs/main.c srcs/ft_error.c srcs/deco.c srcs/ft_loop.c srcs/exit.c \
+SRCS	=	srcs/main.c srcs/error.c srcs/deco.c srcs/ft_loop.c srcs/exit.c \
 			srcs/ft_init.c srcs/signal.c srcs/lexer/lexer_utils.c srcs/lexer/lexer.c \
 			srcs/token/token.c srcs/lexer/lexer_check.c srcs/token/token_list.c \
 			srcs/parser/parser.c srcs/parser/parser_check.c

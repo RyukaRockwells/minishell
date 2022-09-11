@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/10 17:05:28 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/11 15:28:36 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	ft_get_word(t_data *data, int i)
 	char	*str;
 
 	str = data->readline;
-	//printf("str = %s\n", str);//a enlever
 	if (str[i] == 39 || str[i] == 34)
 	{
 		if (ft_word_quote(str, i, str[i]) == 0)
@@ -57,10 +56,8 @@ int	ft_get_word(t_data *data, int i)
 			ft_exit(data); /*free(word);*/
 		//printf("word dans get_word: %s\n", word);
 		ft_add_token(word, data, LITERAL);
-		//free(word);
 		return (ft_wdlen(str, i));
 	}
-	//free(word);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/10 18:59:26 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/11 15:20:48 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,13 @@ void	ft_env(t_data *data, char **envp)
 	{
 		data->envp[i] = NULL;
 		i++;
-	}//NULL ?
+	}
+	//NULL ?
 	i = 0;
 	while (envp[i] != NULL)
 	{
 		data->envp[i] = ft_strdup((const char *)envp[i]);
 		i++;
-	}//free(data->envp);
+	}
+	//free(data->envp);
 }

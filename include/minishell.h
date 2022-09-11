@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/10 19:00:10 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:18:20 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define REDIR_OUT_ERROR 16
 # define D_REDIR_OUT_ERROR 17
 # define HEREDOC_ERROR 18
+# define NEWLINE_ERROR 19
 
 //struct a revoir
 
