@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/11 19:19:41 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/12 17:38:13 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@
 
 //struct a revoir
 
-typedef struct s_token	t_token;
-typedef struct s_data	t_data;
+typedef struct s_token		t_token;
+typedef struct s_data		t_data;
+typedef struct s_here_tok	t_here_tok;
 
 typedef struct s_here_tok
 {
 	int			fd;
-	t_here_fd	*next;
+	t_here_tok	*next;
 }			t_here_fd;
 
 typedef struct s_token
@@ -69,7 +70,7 @@ typedef struct s_data
 	int			fd_stdout;
 	int			fd_stdin;
 	t_data		*data;
-	t_here_fd	*here_fd;
+	t_here_tok	*here_fd;
 }				t_data;
 
 //ft_deco.c

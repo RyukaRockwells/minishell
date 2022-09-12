@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:09:10 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/10 17:26:27 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:17:02 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	ft_check_redirect(t_token *tmp)
 		|| tmp->type == D_REDIRECT_OUT)
 	{
 		if (tmp->next == NULL)
-			return (ERROR);
+			return (NEWLINE_ERROR);
 		if (tmp->next->type == ESPACE)
 		{
 			if (tmp->next->next == NULL)
-				return (ERROR);
+				return (NEWLINE_ERROR);
 			if (ft_check_next_tok(tmp->next->next->type) != 0)
 				return (ft_check_next_tok(tmp->next->next->type));
 		}
@@ -66,5 +66,7 @@ int	ft_check_next_tok(int type)
 		return (REDIR_OUT_ERROR);
 	if (type == D_REDIRECT_OUT)
 		return (D_REDIR_OUT_ERROR);
+	if (type == HEREDOC)
+		return (HEREDOC_ERROR);
 	return (0);
 }

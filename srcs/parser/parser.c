@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:01:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/11 18:07:52 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:35:05 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	ft_heredoc(t_token *tok)
 	return (0);
 }
 
+//heredoc a completer
 int	ft_parser(t_data *data)
 {
 	t_token	*tmp;

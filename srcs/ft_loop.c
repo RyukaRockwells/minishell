@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/11 15:20:34 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:46:20 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_get_cmd(t_data *data)
 	}*/
 }
 //crtl-d = agit que quand rdline est vide
+
+void	ft_
 
 void	ft_loop(t_data *data)
 {
