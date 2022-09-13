@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/12 17:38:13 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:14:01 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@
 # define ESPACE 8
 # define HEREDOC 9
 
-# define QUOTES_NO_CLOSE 11
-# define EMPTY_TOK 12
-# define PIPE_ERROR 13
-# define ERROR 14
-# define REDIR_IN_ERROR 15
-# define REDIR_OUT_ERROR 16
-# define D_REDIR_OUT_ERROR 17
-# define HEREDOC_ERROR 18
-# define NEWLINE_ERROR 19
+# define QUOTES_NO_CLOSE 20
+# define EMPTY_TOK 21
+# define PIPE_ERROR 22
+# define ERROR 23
+# define REDIR_IN_ERROR 24
+# define REDIR_OUT_ERROR 25
+# define D_REDIR_OUT_ERROR 26
+# define HEREDOC_ERROR 27
+# define NEWLINE_ERROR 28
 
 //struct a revoir
 
@@ -86,6 +86,7 @@ int		ft_env_nbline(char **envp);
 void	ft_env(t_data *data, char **envp);
 //ft_loop.c
 int		ft_get_cmd(t_data *data);
+void	ft_tok(t_data *data);
 void	ft_loop(t_data *data);
 //exit.c
 char	**ft_free(char **tab);
