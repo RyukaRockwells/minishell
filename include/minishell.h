@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/13 21:14:01 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:28:48 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define D_QUOTES 7
 # define ESPACE 8
 # define HEREDOC 9
+# define CMD 10
 
 # define QUOTES_NO_CLOSE 20
 # define EMPTY_TOK 21
@@ -40,6 +41,7 @@
 # define D_REDIR_OUT_ERROR 26
 # define HEREDOC_ERROR 27
 # define NEWLINE_ERROR 28
+
 
 //struct a revoir
 
@@ -67,6 +69,7 @@ typedef struct s_data
 	char		**envp;
 	int			nb_process;
 	t_token		*token;
+	t_token		*tok_exe;
 	int			fd_stdout;
 	int			fd_stdin;
 	t_data		*data;
@@ -88,6 +91,8 @@ void	ft_env(t_data *data, char **envp);
 int		ft_get_cmd(t_data *data);
 void	ft_tok(t_data *data);
 void	ft_loop(t_data *data);
+t_token	*ft_sep_redtok(t_data *data, t_token *tmp);
+int		ft_chose_tok(t_data *data, char *value, int type);
 //exit.c
 char	**ft_free(char **tab);
 void	ft_exit(t_data *data);
@@ -119,6 +124,8 @@ void	minishell(char **arg, char **envp);
 //token/token.c
 int		ft_get_token(t_data *data, char *rdline, int i, int strlen);
 void	ft_add_token(char *word, t_data *data, int type);
+void	ft_addtok(char *word, t_data *data, int type);
+void	show_token2(t_data *data);
 void	show_token(t_data *data);
 //token/token_list.c
 void	ft_tokenadd_back(t_token **tok, t_token *new);

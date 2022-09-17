@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/11 15:19:42 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/17 13:19:38 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_exit(t_data *data)
 void	ft_free_token_list(t_data *data)
 {
 	t_token	*tmp;
+	t_token	*tmp2;
 
 	//dprintf(2,"free token list\n");
 	//printf("%p\n", data->token);
@@ -63,5 +64,14 @@ void	ft_free_token_list(t_data *data)
 		free(tmp->value);
 		tmp->value = NULL;
 		free(tmp);
+	}
+	while (data->tok_exe != NULL)
+	{
+		//dprintf(2,"TOKEN\n");
+		tmp2 = data->tok_exe;
+		data->tok_exe = data->tok_exe->next;
+		//free(tmp2->value);
+		tmp2->value = NULL;
+		free(tmp2);
 	}
 }

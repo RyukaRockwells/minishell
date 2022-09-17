@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/13 21:09:03 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:46:24 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ int	ft_get_cmd(t_data *data)
 	error_status = ft_parser(data);
 	if (error_status != 0)
 		return (error_status);
-	/*else
+	else
 	{
 		ft_tok(data);
-	}*/
+	}
+	show_token2(data);
 }
 //crtl-d = agit que quand rdline est vide
 
@@ -34,24 +35,58 @@ void	ft_tok(t_data *data)
 {
 	t_token	*tmp;
 
-	tmp = data->tok;
+	tmp = data->token;
 	while (tmp != NULL)
 	{
-		if (tmp->next != NULL && tmp->next->type != LITERAL)
-			return ;
+		if (tmp->next != NULL && tmp->next->type == ESPACE)
+			tmp = tmp->next;
 		if (tmp->type == ESPACE)
 			tmp = tmp->next;
+		printf("I'M HERE tmp->value: %s\n", tmp->value);
 		if (tmp->type == REDIRECT_IN || tmp->type == REDIRECT_OUT
 			|| tmp->type == D_REDIRECT_OUT)
-			tmp = ft_contoken(data, tmp);
+		{
+			printf("I'M tmp->value: %s\n", tmp->value);
+			tmp = ft_sep_redtok(data, tmp);
+		}
 		else if (tmp->type == LITERAL)
-			tmp = ft_addtok(tmp->value, data, 10);
+		{
+			printf("HERE tmp->value: %s\n", tmp->value);
+			ft_addtok(tmp->value, data, CMD);
+		}
 		else if (tmp->type == PIPE)
-			tmp = ft_addtok(tmp->value, data, 11);
-		printf("type = %d\n", tmp->type);
-		printf("word = %s\n", tmp->word);
+			ft_addtok(tmp->value, data, PIPE);
 		tmp = tmp->next;
 	}
+}
+
+t_token	*ft_sep_redtok(t_data *data, t_token *tmp)
+{
+	if (tmp->next->type != ESPACE)
+	{
+		ft_chose_tok(data, tmp->next->value, tmp->type);
+		tmp = tmp->next;
+	}
+	else if (tmp->next->type == ESPACE)
+	{
+		ft_chose_tok(data, tmp->next->next->value, tmp->type);
+		tmp = tmp->next->next;
+	}
+}
+
+int	ft_chose_tok(t_data *data, char *value, int type)
+{
+	if (value == NULL || data == NULL)
+		ft_exit(data);
+	if (type == REDIRECT_IN)
+		ft_addtok(value, data, REDIRECT_IN);
+	else if (type == REDIRECT_OUT)
+		ft_addtok(value, data, REDIRECT_OUT);
+	else if (type == D_REDIRECT_OUT)
+		ft_addtok(value, data, D_REDIRECT_OUT);
+	else if (type == HEREDOC)
+		ft_addtok(value, data, HEREDOC);
+	return (0);
 }
 
 void	ft_loop(t_data *data)
@@ -96,5 +131,44 @@ void	ft_group_tokens(t_data *data)
 		list = list->next;
 	}
 }
+
+void	ft_fill_new_token_2(char *content, t_data *data, int type)
+{
+	t_token	*new_token;
+
+	new_token = ft_new_token(data, content, type);
+	ft_lstadd_back_token(&data->gp_tokens_list, new_token);
+}
+
+int	ft_get_redir_tkn(t_data *data, char *content, int type)
+{
+	if (!content || !data)
+		ft_exit(data);
+	if (type == T_REDIRECT_OUT)
+		ft_fill_new_token_2(content, data, T_REDIRECT_OUT);
+	if (type == T_REDIRECT_IN)
+		ft_fill_new_token_2(content, data, T_REDIRECT_IN);
+	if (type == T_HEREDOC)
+		ft_fill_new_token_2(content, data, T_HEREDOC);
+	if (type == D_REDIRECT_OUT)
+		ft_fill_new_token_2(content, data, D_REDIRECT_OUT);
+	return (0);
+}
+
+t_token	*ft_fill_redir_tkn(t_data *data, t_token *list)
+{
+	if (list->next->type != T_SPACE)
+	{
+		ft_get_redir_tkn(data, list->next->value, list->type);
+		list = list->next;
+	}
+	else if (list->next->type == T_SPACE)
+	{
+		ft_get_redir_tkn(data, list->next->next->value, list->type);
+		list = list->next->next;
+	}
+	return (list);
+}
+
 
 */
