@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/17 13:13:53 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/17 15:10:51 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,18 @@ void	ft_env(t_data *data, char **envp)
 		i++;
 	}
 	//free(data->envp);
+}
+
+void	ft_print_env(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	printf("ENVPPPPPPPPPPPPPPPPPPPPPP:\n");
+	while (data->envp[i] != NULL)
+	{
+		ft_putstr_fd(data->envp[i], 1);
+		ft_putstr_fd("\n", 1);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/16 19:28:48 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:35:54 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@
 # define D_REDIR_OUT_ERROR 26
 # define HEREDOC_ERROR 27
 # define NEWLINE_ERROR 28
-
 
 //struct a revoir
 
@@ -87,6 +86,7 @@ void	ft_init(char **envp, t_data *data);
 void	ft_reinit(t_data *data);
 int		ft_env_nbline(char **envp);
 void	ft_env(t_data *data, char **envp);
+//void	ft_print_env(t_data *data);
 //ft_loop.c
 int		ft_get_cmd(t_data *data);
 void	ft_tok(t_data *data);
@@ -100,7 +100,6 @@ void	ft_free_token_list(t_data *data);
 //signal.c
 void	ft_catch_signal(void);
 void	ft_catch_d(t_data *data);
-void	ft_catch_quit(int signal);
 void	ft_catch_int(int signal);
 //lexer/lexer.c
 int		ft_lexer(t_data *data);
