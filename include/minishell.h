@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/17 16:35:54 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:46:20 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 typedef struct s_token		t_token;
 typedef struct s_data		t_data;
 typedef struct s_here_tok	t_here_tok;
+typedef struct s_exe		t_exe;
 
 typedef struct s_here_tok
 {
@@ -61,12 +62,36 @@ typedef struct s_token
 	t_token	*next;
 }				t_token;
 
+typedef struct s_exe
+{
+	char	**cmd;
+	int		in;
+	int		out;
+	int		i;
+	pid_t	pid;
+	t_exe	*next;
+}			t_exe;
+
+/*
+typedef struct s_exec_elm
+{
+	char				**cmd;
+	int					fd_in;
+	int					fd_out;
+	int					index;
+	int					has_redirect_pb;
+	pid_t				pid;
+	struct s_exec_elm	*next;
+
+}	t_exec_elm;
+*/
+
 typedef struct s_data
 {
 	int			code_exit;
 	char		*readline;
 	char		**envp;
-	int			nb_process;
+	//int			nb_process; //for multi-pipe
 	t_token		*token;
 	t_token		*tok_exe;
 	int			fd_stdout;
@@ -137,5 +162,9 @@ int		ft_empty_tok(t_token *tok);
 int		ft_pre_check(t_token *tok);
 int		ft_check_redirect(t_token *tmp);
 int		ft_check_next_tok(int type);
+//exec/create_list.c
+//exec/exe_list.c
+t_exe	ft_addexe(t_exe **exe, t_exe *new);
+t_exe	*ft_exelast(t_exe *exe);
 
 #endif
