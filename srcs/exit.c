@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/23 16:04:58 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:54:10 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ void	ft_free_token_list(t_data *data)
 		exe->cmd[0] = NULL;
 		free(exe);
 	}
+	free(data->exe);
 }

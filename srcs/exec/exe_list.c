@@ -6,21 +6,30 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:44:15 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/23 15:14:21 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:17:24 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+int	ft_nb_pipe(t_token *lst)
+{
+	int	nb;
+
+	nb = 0;
+	while (lst != NULL)
+	{
+		if (lst->type == PIPE)
+			nb++;
+		lst = lst->next;
+	}
+	return (nb);
+}
+
 void	ft_exe_lst(t_data *data)
 {
-	while (data->tok_exe != NULL)
-	{
-		if (data->tok_exe->type == PIPE)
-			data->nb_pipe++;
-		data->tok_exe = data->tok_exe->next;
-	}
-	data->tok_exe = ft_create_list(data);
+	data->nb_pipe = ft_nb_pipe(data->token);
+	data->exe = ft_create_list(data, data->nb_pipe);
 	show_exe(data);
 }
 

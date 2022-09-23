@@ -6,14 +6,14 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:49:24 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/23 15:45:09 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:17:30 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 //pas besoin de i
-t_exe	*ft_create_list(t_data *data)
+t_exe	*ft_create_list(t_data *data, int nb_pipe)
 {
 	int		i;
 	t_exe	*new;
@@ -21,7 +21,7 @@ t_exe	*ft_create_list(t_data *data)
 
 	i = 0;
 	new = NULL;
-	while (i < data->nb_pipe)
+	while (i < nb_pipe)
 	{
 		exe = ft_new_exelst(data);
 		exe->i = i;
