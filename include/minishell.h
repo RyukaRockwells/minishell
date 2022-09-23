@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/22 18:46:20 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:14:31 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_exe
 	int		in;
 	int		out;
 	int		i;
+	int		pb;
 	pid_t	pid;
 	t_exe	*next;
 }			t_exe;
@@ -91,9 +92,10 @@ typedef struct s_data
 	int			code_exit;
 	char		*readline;
 	char		**envp;
-	//int			nb_process; //for multi-pipe
+	int			nb_pipe; //for multi-pipe
 	t_token		*token;
 	t_token		*tok_exe;
+	t_exe		*exe;
 	int			fd_stdout;
 	int			fd_stdin;
 	t_data		*data;
@@ -163,7 +165,11 @@ int		ft_pre_check(t_token *tok);
 int		ft_check_redirect(t_token *tmp);
 int		ft_check_next_tok(int type);
 //exec/create_list.c
+t_exe	*ft_create_list(t_data *data);
+t_exe	*ft_new_exelst(t_data *data);
+void	show_exe(t_data *data);
 //exec/exe_list.c
+void	ft_exe_lst(t_data *data);
 t_exe	ft_addexe(t_exe **exe, t_exe *new);
 t_exe	*ft_exelast(t_exe *exe);
 

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/17 15:08:37 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:04:58 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,37 @@ void	ft_exit(t_data *data)
 
 void	ft_free_token_list(t_data *data)
 {
-	t_token	*tmp;
-	t_token	*tmp2;
+	t_token	*tok;
+	t_token	*tok_exe;
+	t_exe	*exe;
 
 	//dprintf(2,"free token list\n");
 	//printf("%p\n", data->token);
 	while (data->token != NULL)
 	{
 		//dprintf(2,"TOKEN\n");
-		tmp = data->token;
+		tok = data->token;
 		data->token = data->token->next;
-		free(tmp->value);
-		tmp->value = NULL;
-		free(tmp);
+		free(tok->value);
+		tok->value = NULL;
+		free(tok);
 	}
 	while (data->tok_exe != NULL)
 	{
 		//dprintf(2,"TOKEN\n");
-		tmp2 = data->tok_exe;
+		tok_exe = data->tok_exe;
 		data->tok_exe = data->tok_exe->next;
-		//free(tmp2->value);
-		tmp2->value = NULL;
-		free(tmp2);
+		//free(tok_exe->value);
+		tok_exe->value = NULL;
+		free(tok_exe);
+	}
+	while (data->exe != NULL)
+	{
+		//dprintf(2,"TOKEN\n");
+		exe = data->exe;
+		data->exe = data->exe->next;
+		//free(exe->value);
+		exe->cmd[0] = NULL;
+		free(exe);
 	}
 }
