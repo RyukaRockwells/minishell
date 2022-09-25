@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:44:15 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/23 19:17:24 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/25 18:06:51 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_nb_pipe(t_token *lst)
 	while (lst != NULL)
 	{
 		if (lst->type == PIPE)
-			nb++;
+			nb += 1;
 		lst = lst->next;
 	}
 	return (nb);
@@ -30,6 +30,7 @@ void	ft_exe_lst(t_data *data)
 {
 	data->nb_pipe = ft_nb_pipe(data->token);
 	data->exe = ft_create_list(data, data->nb_pipe);
+	printf("nb_pipe = %d\n", data->nb_pipe);
 	show_exe(data);
 }
 
@@ -59,6 +60,22 @@ t_exe	*ft_exelast(t_exe *exe)
 	return (exe);
 }
 
+t_exe	*ft_get_idexe(t_exe *exe, int i)
+{
+	int	j;
+
+	j = 0;
+	if (exe == NULL)
+		return (NULL);
+	while (exe != NULL)
+	{
+		if (i == j)
+			return (exe);
+		j++;
+		exe = exe->next;
+	}
+	return (NULL);
+}
 /*
 
 int	ft_count_pipe(t_data *data, t_token *token_list)

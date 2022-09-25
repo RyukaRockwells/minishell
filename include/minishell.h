@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/23 19:17:20 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/25 18:28:39 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,12 +164,15 @@ int		ft_empty_tok(t_token *tok);
 int		ft_pre_check(t_token *tok);
 int		ft_check_redirect(t_token *tmp);
 int		ft_check_next_tok(int type);
-//exec/create_list.c
-int		ft_nb_pipe(t_token *lst);
+//pre_exec/create_list.c
 t_exe	*ft_create_list(t_data *data, int nb_pipe);
 t_exe	*ft_new_exelst(t_data *data);
 void	show_exe(t_data *data);
-//exec/exe_list.c
+void	ft_fd_exec(t_data *data);
+int		*ft_create_pipe(t_data *data);
+//pre_exec/exe_list.c
+t_exe	*ft_get_idexe(t_exe *exe, int i);
+int		ft_nb_pipe(t_token *lst);
 void	ft_exe_lst(t_data *data);
 t_exe	ft_addexe(t_exe **exe, t_exe *new);
 t_exe	*ft_exelast(t_exe *exe);

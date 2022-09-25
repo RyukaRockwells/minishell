@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:01:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/12 18:35:05 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/25 17:18:26 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,26 @@
 
 int	ft_pipe(t_token *tok)
 {
-	if (tok->next == NULL)
+	t_token	*tmp;
+	int		word;
+
+	word = 0;
+	tmp = tok;
+	if (tmp->next == NULL)
 		return (PIPE_ERROR);
-	if (tok->next->type == PIPE)
+	if (tmp->next->type == PIPE)
 		return (PIPE_ERROR);
-	if (tok->next == NULL && tok->type != LITERAL)
+	if (tmp->next == NULL && tmp->type != LITERAL)
 		return (PIPE_ERROR);
+	while (tmp->next != NULL)
+	{
+		if (tmp->next->type == LITERAL)
+			word = 1;
+		if (tmp->next->type == PIPE && word < 1)
+			return (PIPE_ERROR);
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
 int	ft_heredoc(t_token *tok)
