@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:44:15 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/25 18:06:51 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/26 14:50:16 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,3 @@ t_exe	*ft_get_idexe(t_exe *exe, int i)
 	}
 	return (NULL);
 }
-/*
-
-int	ft_count_pipe(t_data *data, t_token *token_list)
-{
-	int	nb_of_pipe;
-
-	(void)data;
-	nb_of_pipe = 0;
-	while (token_list)
-	{
-		if (token_list->type == T_PIPE)
-			nb_of_pipe += 1;
-		token_list = token_list->next;
-	}
-	return (nb_of_pipe);
-}
-*/
