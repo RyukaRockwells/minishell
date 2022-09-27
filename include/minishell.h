@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/27 18:56:47 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/27 22:48:19 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,20 @@ typedef struct s_token		t_token;
 typedef struct s_data		t_data;
 typedef struct s_here_tok	t_here_tok;
 typedef struct s_exe		t_exe;
+typedef struct s_fd			t_fd;
 
 typedef struct s_here_tok
 {
 	int			fd;
 	t_here_tok	*next;
 }			t_here_fd;
+
+typedef struct s_fd
+{
+	int		fd;
+	t_fd	*next;
+
+}	t_fd;
 
 typedef struct s_token
 {
