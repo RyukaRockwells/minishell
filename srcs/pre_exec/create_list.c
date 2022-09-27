@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:49:24 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/26 18:09:24 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:17:22 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,6 @@ t_exe	*ft_new_exelst(t_data *data)
 	return (new);
 }
 
-/*
-void	show_exe(t_data *data)
-{
-	t_exe	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = data->exe;
-	printf("show_exe\n");
-	if (tmp == NULL)
-		printf("\nNULL\n\n");
-	else
-	{
-		while (i < data->nb_pipe - 1)
-		{
-			printf("exe->in = %d\nexe->out = %d\n\n", tmp->in, tmp->out);
-			i++;
-		}
-	}
-}
-*/
-
 int	*ft_create_pipe(t_data *data)
 {
 	int	*fd;
@@ -110,7 +88,35 @@ void	ft_fd_exec(t_data *data)
 		ft_get_idexe(data->exe, i + 1)->in = fd[0];
 		i++;
 	}
+	/*i = 0;
+	while (i < data->nb_pipe - 1)
+	{
+		printf("\n\nexe->in = %d\nexe->out = %d\n\n", data->exe->in, data->exe->out);
+		i++;
+	}*/
 }
+
+/*
+void	show_exe(t_data *data)
+{
+	t_exe	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = data->exe;
+	printf("show_exe\n");
+	if (tmp == NULL)
+		printf("\nNULL\n\n");
+	else
+	{
+		while (i < data->nb_pipe - 1)
+		{
+			printf("exe->in = %d\nexe->out = %d\n\n", tmp->in, tmp->out);
+			i++;
+		}
+	}
+}
+*/
 
 // void	ft_free_exe(t_exe *exe)
 // {

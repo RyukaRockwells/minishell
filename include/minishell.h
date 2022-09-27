@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/26 18:08:12 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:56:47 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_token
 	t_token	*next;
 }				t_token;
 
+//pb c'est pour pas exe quand il a pb de redirect
 typedef struct s_exe
 {
 	char	**cmd;
@@ -72,20 +73,6 @@ typedef struct s_exe
 	pid_t	pid;
 	t_exe	*next;
 }			t_exe;
-
-/*
-typedef struct s_exec_elm
-{
-	char				**cmd;
-	int					fd_in;
-	int					fd_out;
-	int					index;
-	int					has_redirect_pb;
-	pid_t				pid;
-	struct s_exec_elm	*next;
-
-}	t_exec_elm;
-*/
 
 typedef struct s_data
 {

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:44:15 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/26 14:50:16 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:12:05 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ void	ft_exe_lst(t_data *data)
 {
 	data->nb_pipe = ft_nb_pipe(data->token);
 	data->exe = ft_create_list(data, data->nb_pipe);
-	printf("nb_pipe = %d\n", data->nb_pipe);
-	show_exe(data);
+	ft_fd_exec(data);
+	//printf("nb_pipe = %d\n", data->nb_pipe);
+	//show_exe(data);
 }
 
 t_exe	ft_addexe(t_exe **exe, t_exe *new)

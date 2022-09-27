@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_list.c                                       :+:      :+:    :+:   */
+/*   check_exe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 15:42:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/27 19:01:40 by nchow-yu         ###   ########.fr       */
+/*   Created: 2022/09/27 19:21:49 by nchow-yu          #+#    #+#             */
+/*   Updated: 2022/09/27 19:42:47 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "../../include/minishell.h"
 
-void	ft_tokenadd_back(t_token **tok, t_token *new)
+void	ft_check_cmd_redirect(t_data *data)
 {
-	t_token	*last_elmt;
+	int		i;
+	t_token	*tok;
+	t_exe	*exe;
 
-	if (tok != NULL)
+	i = 0;
+	tok = data->tok_exe;
+	while (tok != NULL)
 	{
-		if (*tok == NULL)
-			*tok = new;
-		else
-		{
-			last_elmt = ft_tokenlast(*(tok));
-			last_elmt->next = new;
-		}
+		if (tok->type == PIPE)
+			i++;
+		exe = ft_get_idexe(data->exe, i);
+		if (tok->type == HEREDOC)
+			ft_check_heredoc(data, tok, i);
+		tok = tok->next;
 	}
 }
 
-t_token	*ft_tokenlast(t_token *tok)
+void	ft_check_heredoc(t_data *data, t_token *tok, int i)
 {
-	if (tok != NULL)
-	{
-		while (tok->next != NULL)
-			tok = tok->next;
-	}
-	return (tok);
+	t_
 }

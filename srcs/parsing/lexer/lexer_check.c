@@ -6,11 +6,11 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:57:02 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/05 13:33:24 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:00:06 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 int	ft_check_metachar(char *str, int i)
 {

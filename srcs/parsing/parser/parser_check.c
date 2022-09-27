@@ -6,11 +6,11 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:09:10 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/26 14:51:02 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:22:28 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 int	ft_empty_tok(t_token *tok)
 {
@@ -88,17 +88,4 @@ static void	ft_create_pipe_between_process(t_data *data)
 		i++;
 	}
 }
-
-static int	*ft_create_pipe(t_data *data)
-{
-	int	*fd_pipe;
-
-	fd_pipe = ft_malloc(data, sizeof(int) * 2);
-	if (!fd_pipe)
-		ft_exit(data);
-	if (pipe(fd_pipe) == -1)
-		ft_exit_pipe_error(data);
-	return (fd_pipe);
-}
-
 */
