@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/29 13:23:14 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:46:47 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ int		ft_check_next_tok(int type);
 //pre_exec/create_list.c
 t_exe	*ft_create_list(t_data *data, int nb_pipe);
 t_exe	*ft_new_exelst(t_data *data);
+t_exe	*ft_exe_cmd(t_data *data);
 //void	show_exe(t_data *data);
 void	ft_fd_exec(t_data *data);
 int		*ft_create_pipe(t_data *data);

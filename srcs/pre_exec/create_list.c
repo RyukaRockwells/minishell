@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:49:24 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/29 13:44:10 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:13:01 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ t_exe	*ft_create_list(t_data *data, int nb_pipe)
 
 	i = 0;
 	new = NULL;
+	if (nb_pipe == 0)
+	{
+		new = ft_exe_cmd(data);
+		ft_addexe(&new, exe);
+		return (new);
+	}
 	while (i < nb_pipe)
 	{
 		exe = ft_new_exelst(data);
@@ -27,6 +33,26 @@ t_exe	*ft_create_list(t_data *data, int nb_pipe)
 		ft_addexe(&new, exe);
 		i++;
 	}
+	return (new);
+}
+
+t_exe	*ft_exe_cmd(t_data *data)
+{
+	t_exe	*new;
+
+	new = malloc(sizeof(t_exe));
+	if (new == NULL)
+		ft_exit(data);
+	new->cmd = malloc(sizeof(char *));
+	if (new->cmd == NULL)
+		ft_exit(data);
+	(new->cmd)[0] = NULL;
+	new->in = -1;
+	new->out = -1;
+	new->i = -1;
+	new->pb = 0;
+	new->pid = -1;
+	new->next = NULL;
 	return (new);
 }
 
@@ -88,12 +114,6 @@ void	ft_fd_exec(t_data *data)
 		ft_get_idexe(data->exe, i + 1)->in = fd[0];
 		i++;
 	}
-	/*i = 0;
-	while (i < data->nb_pipe - 1)
-	{
-		printf("\n\nexe->in = %d\nexe->out = %d\n\n", data->exe->in, data->exe->out);
-		i++;
-	}*/
 }
 
 /*
