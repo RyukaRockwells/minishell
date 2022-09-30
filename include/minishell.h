@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/29 18:46:47 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:38:41 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,6 @@ typedef struct s_here_tok
 	t_here_tok	*next;
 }			t_here_fd;
 
-typedef struct s_fd
-{
-	int		fd;
-	t_fd	*next;
-
-}	t_fd;
-
 typedef struct s_token
 {
 	char	*value;
@@ -93,8 +86,8 @@ typedef struct s_data
 	t_exe		*exe;
 	int			fd_stdout;
 	int			fd_stdin;
+	t_here_tok	*last_fd;
 	t_data		*data;
-	t_here_tok	*here_fd;
 }				t_data;
 
 //ft_deco.c
@@ -123,6 +116,9 @@ int		ft_chose_tok(t_data *data, char *value, int type);
 char	**ft_free(char **tab);
 void	ft_exit(t_data *data);
 void	ft_free_token_list(t_data *data);
+void	ft_free_exe(t_data *data);
+void	ft_free_fd(t_data *data);
+void	ft_free_data(t_data *data);
 
 //signal.c
 void	ft_catch_signal(void);
@@ -156,8 +152,6 @@ void	minishell(char **arg, char **envp);
 int		ft_get_token(t_data *data, char *rdline, int i, int strlen);
 void	ft_add_token(char *word, t_data *data, int type);
 void	ft_addtok(char *word, t_data *data, int type);
-void	show_token2(t_data *data);
-void	show_token(t_data *data);
 
 //token/token_list.c
 void	ft_tokenadd_back(t_token **tok, t_token *new);
@@ -176,7 +170,6 @@ int		ft_check_next_tok(int type);
 //pre_exec/create_list.c
 t_exe	*ft_create_list(t_data *data, int nb_pipe);
 t_exe	*ft_new_exelst(t_data *data);
-t_exe	*ft_exe_cmd(t_data *data);
 //void	show_exe(t_data *data);
 void	ft_fd_exec(t_data *data);
 int		*ft_create_pipe(t_data *data);
@@ -187,5 +180,22 @@ int		ft_nb_pipe(t_token *lst);
 void	ft_exe_lst(t_data *data);
 t_exe	ft_addexe(t_exe **exe, t_exe *new);
 t_exe	*ft_exelast(t_exe *exe);
+
+//exec/exec.c
+void	ft_exe_cmd(t_data *data);
+void	ft_exe_cmd_simple(t_data *data);
+char	**ft_lst_to_tab(char **env);
+
+//free/all_free.c
+void	ft_free_all(t_data *data);
+void	ft_free_token(t_data *data);
+void	ft_free_tok_exe(t_data *data);
+void	ft_free_data(t_data *data);
+void	ft_free_exe(t_data *data);
+void	ft_free_tab(char **envp);
+
+//show/show.c
+void	show_token2(t_data *data);
+void	show_token(t_data *data);
 
 #endif

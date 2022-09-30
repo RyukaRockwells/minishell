@@ -6,19 +6,25 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/09/29 16:52:49 by nchow-yu         ###   ########.fr        #
+#    Updated: 2022/09/30 16:38:35 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	srcs/main.c srcs/error.c srcs/deco.c srcs/ft_loop.c srcs/exit.c \
-			srcs/ft_init.c srcs/signal.c srcs/parsing/lexer/lexer_utils.c srcs/parsing/lexer/lexer.c \
-			srcs/parsing/token/token.c srcs/parsing/lexer/lexer_check.c srcs/parsing/token/token_list.c \
-			srcs/parsing/parser/parser.c srcs/parsing/parser/parser_check.c srcs/pre_exec/create_list.c \
-			srcs/pre_exec/exe_list.c
+			srcs/ft_init.c srcs/signal.c ${TOKEN} ${PARSER} ${EXEC} ${PRE_EXEC} \
+			${LEXER} ${FREE} ${SHOW}
+SHOW	=	srcs/show/show.c
+TOKEN	=	srcs/parsing/token/token.c srcs/parsing/token/token_list.c
+PARSER	=	srcs/parsing/parser/parser.c srcs/parsing/parser/parser_check.c
+LEXER	=	srcs/parsing/lexer/lexer.c srcs/parsing/lexer/lexer_utils.c srcs/parsing/lexer/lexer_check.c
+PRE_EXEC=	srcs/pre_exec/create_list.c srcs/pre_exec/exe_list.c
+FREE	=	srcs/free/all_free.c
+
+EXEC	=	srcs/exec/exec.c
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra #-g3 -fsanitize=address
 NAME	=	minishell
 
 %.o:	%.c

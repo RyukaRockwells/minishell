@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/23 14:40:11 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:31:57 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_get_cmd(t_data *data)
 	int	error_status;
 
 	error_status = ft_lexer(data);
-	show_token(data);
 	if (error_status != 0)
 		return (error_status);
 	error_status = ft_parser(data);
@@ -109,6 +108,8 @@ void	ft_loop(t_data *data)
 		code_error = ft_get_cmd(data);
 		if (code_error != 0)
 			show_error(code_error);
+		else
+			ft_exe_cmd(data);
 		ft_reinit(data);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/29 18:02:04 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:09:43 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,52 +39,10 @@ void	ft_exit(t_data *data)
 	int	i;
 
 	i = 0;
-	ft_free(data->envp);//a bouger dans token_list
-	free(data->readline);//idem
-	while (i < 1024) /*Pourquoi 1024?*/
+	while (i < 1024)
 	{
 		close(i);
 		i++;
 	}
 	exit(0);
-}
-
-void	ft_free_token_list(t_data *data)
-{
-	t_token	*tok;
-	t_token	*tok_exe;
-	t_exe	*exe;
-
-	//dprintf(2,"free token list\n");
-	//printf("%p\n", data->token);
-	while (data->token != NULL)
-	{
-		//dprintf(2,"TOKEN\n");
-		tok = data->token;
-		data->token = data->token->next;
-		free(tok->value);
-		tok->value = NULL;
-		free(tok);
-	}
-	while (data->tok_exe != NULL)
-	{
-		//dprintf(2,"TOKEN\n");
-		tok_exe = data->tok_exe;
-		data->tok_exe = data->tok_exe->next;
-		//free(tok_exe->value);
-		tok_exe->value = NULL;
-		free(tok_exe);
-	}
-	while (data->exe != NULL)
-	{
-		//dprintf(2,"TOKEN\n");
-		exe = data->exe;
-		if (data->exe->next != NULL)
-			data->exe = data->exe->next;
-		//free(exe->value);
-		free(exe->cmd);
-		exe->cmd = NULL;
-		free(exe);
-	}
-	free(data->exe);
 }

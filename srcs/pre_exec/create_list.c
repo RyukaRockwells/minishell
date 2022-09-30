@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:49:24 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/29 19:13:01 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:25:09 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,21 @@ t_exe	*ft_create_list(t_data *data, int nb_pipe)
 
 	i = 0;
 	new = NULL;
+	exe = NULL;
 	if (nb_pipe == 0)
 	{
-		new = ft_exe_cmd(data);
-		ft_addexe(&new, exe);
+		new = ft_new_exelst(data);
+		ft_addexe(&exe, new);
 		return (new);
 	}
 	while (i < nb_pipe)
 	{
-		exe = ft_new_exelst(data);
-		exe->i = i;
-		ft_addexe(&new, exe);
+		new = ft_new_exelst(data);
+		new->i = i;
+		ft_addexe(&exe, new);
 		i++;
 	}
-	return (new);
-}
-
-t_exe	*ft_exe_cmd(t_data *data)
-{
-	t_exe	*new;
-
-	new = malloc(sizeof(t_exe));
-	if (new == NULL)
-		ft_exit(data);
-	new->cmd = malloc(sizeof(char *));
-	if (new->cmd == NULL)
-		ft_exit(data);
-	(new->cmd)[0] = NULL;
-	new->in = -1;
-	new->out = -1;
-	new->i = -1;
-	new->pb = 0;
-	new->pid = -1;
-	new->next = NULL;
-	return (new);
+	return (exe);
 }
 
 t_exe	*ft_new_exelst(t_data *data)
@@ -87,8 +68,6 @@ int	*ft_create_pipe(t_data *data)
 		ft_exit(data);
 	if (pipe(fd) == -1)
 	{
-		ft_free(data->envp);
-		free(data->readline);
 		while (i < 1024)
 		{
 			close(i);
@@ -106,6 +85,11 @@ void	ft_fd_exec(t_data *data)
 
 	i = 0;
 	ft_get_idexe(data->exe, 0)->in = 0;
+	if (data->nb_pipe == 0)
+	{
+		ft_get_idexe(data->exe, 0)->out = 1;
+		return ;
+	}
 	ft_get_idexe(data->exe, data->nb_pipe - 1)->out = 1;
 	while (i < data->nb_pipe - 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:12:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/17 14:05:28 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:17:48 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_catch_signal(void)
 void	ft_catch_d(t_data *data)
 {
 	write(1, "exit\n", 6);
+	ft_free(data->envp);
 	ft_exit(data);
 }
 

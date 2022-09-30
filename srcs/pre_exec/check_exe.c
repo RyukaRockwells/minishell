@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:21:49 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/27 22:55:15 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:39:16 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	ft_check_heredoc(t_data *data, int i)
 {
 	t_fd	*fd;
 
-	fd = ft_fd_heredoc(data);
+	if (data->last_fd == NULL)
+		return ;
 	if (ft_get_idexe(data->exe, i)->fd_in != 0)
 		close(ft_get_idexe(data->exe, i)->fd_in);
 	ft_get_idexe(data->exe, i)->fd_in = fd->fd_in;

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/23 16:14:08 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:38:58 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_init(char **envp, t_data *data)
 	data->exe = NULL;
 	data->fd_stdout = -1;
 	data->fd_stdin = -1;
+	data->last_fd = NULL;
 	data->data = data;
 	ft_env(data, envp);
 }
@@ -31,7 +32,7 @@ void	ft_reinit(t_data *data)
 {
 	data->readline = NULL;
 	data->nb_pipe = 0;
-	ft_free_token_list(data);
+	ft_free_all(data);
 }
 
 int	ft_env_nbline(char **envp)
@@ -57,14 +58,12 @@ void	ft_env(t_data *data, char **envp)
 		data->envp[i] = NULL;
 		i++;
 	}
-	//NULL ?
 	i = 0;
 	while (envp[i] != NULL)
 	{
 		data->envp[i] = ft_strdup((const char *)envp[i]);
 		i++;
 	}
-	//free(data->envp);
 }
 
 void	ft_print_env(t_data *data)
