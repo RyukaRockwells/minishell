@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/30 16:31:57 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/01 19:07:49 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_get_cmd(t_data *data)
 		ft_tok(data);
 		ft_exe_lst(data);
 	}
-	show_token2(data);
+	return (0);
 }
 //crtl-d = agit que quand rdline est vide
 
@@ -43,18 +43,11 @@ void	ft_tok(t_data *data)
 			tmp = tmp->next;
 		if (tmp->type == ESPACE)
 			tmp = tmp->next;
-		//printf("I'M HERE tmp->value: %s\n", tmp->value);
 		if (tmp->type == REDIRECT_IN || tmp->type == REDIRECT_OUT
 			|| tmp->type == D_REDIRECT_OUT)
-		{
-			//printf("I'M tmp->value: %s\n", tmp->value);
 			tmp = ft_sep_redtok(data, tmp);
-		}
 		else if (tmp->type == LITERAL)
-		{
-			//printf("HERE tmp->value: %s\n", tmp->value);
 			ft_addtok(tmp->value, data, CMD);
-		}
 		else if (tmp->type == PIPE)
 			ft_addtok(tmp->value, data, PIPE);
 		tmp = tmp->next;
@@ -98,9 +91,8 @@ void	ft_loop(t_data *data)
 	ft_deco();
 	while (data->code_exit == 0)
 	{
-		//ft_print_env(data);
 		ft_catch_signal();
-		data->readline = readline("Minichouille> ");//free(data->readline);
+		data->readline = readline("Minichouille> ");
 		if (data->readline == NULL)
 			ft_catch_d(data);
 		if (data->readline[0] != 0)

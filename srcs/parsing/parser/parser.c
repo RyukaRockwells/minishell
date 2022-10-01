@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:01:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/27 19:01:05 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:06:48 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_pipe(t_token *tok)
 	return (0);
 }
 
-int	ft_heredoc(t_token *tok)
+int	ft_heredoc(t_data *data, t_token *tok)
 {
 	if (tok->next->type == ESPACE)
 	{
@@ -46,11 +46,15 @@ int	ft_heredoc(t_token *tok)
 			return (HEREDOC_ERROR);
 		if (tok->next->next->type == PIPE)
 			return (PIPE_ERROR);
+		if (ft_check_heredoc(data, tok->next->next) == EXIT_HEREDOC)
+			return (EXIT_HEREDOC);
 	}
 	else
 	{
 		if (tok->next->type != LITERAL)
 			return (HEREDOC_ERROR);
+		if (ft_check_heredoc(data, tok->next) == EXIT_HEREDOC)
+			return (EXIT_HEREDOC);
 	}
 	return (0);
 }
@@ -76,7 +80,7 @@ int	ft_parser(t_data *data)
 		{
 			if (tmp->next == NULL)
 				return (HEREDOC_ERROR);
-			error_code = ft_heredoc(tmp);
+			error_code = ft_heredoc(data, tmp);
 		}
 		if (error_code > 0)
 			return (error_code);

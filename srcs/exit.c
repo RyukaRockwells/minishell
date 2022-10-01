@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/30 17:09:43 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/01 19:47:03 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,18 @@ void	ft_exit(t_data *data)
 		i++;
 	}
 	exit(0);
+}
+
+void	ft_exit_here(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	perror(NULL);
+	while (i < 1024)
+	{
+		close(i);
+		i++;
+	}
+	exit(1);
 }

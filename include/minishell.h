@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/30 17:38:41 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/01 19:47:12 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
@@ -41,20 +42,20 @@
 # define D_REDIR_OUT_ERROR 26
 # define HEREDOC_ERROR 27
 # define NEWLINE_ERROR 28
+# define EXIT_HEREDOC 29
 
 //struct a revoir
 
 typedef struct s_token		t_token;
 typedef struct s_data		t_data;
-typedef struct s_here_tok	t_here_tok;
 typedef struct s_exe		t_exe;
 typedef struct s_fd			t_fd;
 
-typedef struct s_here_tok
+typedef struct s_fd
 {
 	int			fd;
-	t_here_tok	*next;
-}			t_here_fd;
+	t_fd		*next;
+}			t_fd;
 
 typedef struct s_token
 {
@@ -80,13 +81,14 @@ typedef struct s_data
 	int			code_exit;
 	char		*readline;
 	char		**envp;
+	int			last_pipe;
 	int			nb_pipe; //for multi-pipe
 	t_token		*token;
 	t_token		*tok_exe;
 	t_exe		*exe;
 	int			fd_stdout;
 	int			fd_stdin;
-	t_here_tok	*last_fd;
+	t_fd		*last_fd;
 	t_data		*data;
 }				t_data;
 
@@ -115,15 +117,19 @@ int		ft_chose_tok(t_data *data, char *value, int type);
 //exit.c
 char	**ft_free(char **tab);
 void	ft_exit(t_data *data);
-void	ft_free_token_list(t_data *data);
-void	ft_free_exe(t_data *data);
-void	ft_free_fd(t_data *data);
-void	ft_free_data(t_data *data);
+void	ft_exit_here(t_data *data);
 
 //signal.c
 void	ft_catch_signal(void);
 void	ft_catch_d(t_data *data);
 void	ft_catch_int(int signal);
+
+//main.c
+void	minishell(char **arg, char **envp);
+
+//****-----------------****
+//****------LEXER------****
+//****-----------------****
 
 //lexer/lexer.c
 int		ft_lexer(t_data *data);
@@ -145,8 +151,9 @@ int		ft_check_quotes(char *str);
 void	ft_check_squotes(char *str, int *i, int *j);
 void	ft_check_dquotes(char *str, int *i, int *j);
 
-//main.c
-void	minishell(char **arg, char **envp);
+//****-----------------****
+//****------TOKEN------****
+//****-----------------****
 
 //token/token.c
 int		ft_get_token(t_data *data, char *rdline, int i, int strlen);
@@ -157,6 +164,10 @@ void	ft_addtok(char *word, t_data *data, int type);
 void	ft_tokenadd_back(t_token **tok, t_token *new);
 t_token	*ft_tokenlast(t_token *tok);
 
+//****-----------------****
+//****------PARSER-----****
+//****-----------------****
+
 //parser/parser2.c
 int		ft_pipe(t_token *tok);
 int		ft_parser(t_data *data);
@@ -166,6 +177,10 @@ int		ft_empty_tok(t_token *tok);
 int		ft_pre_check(t_token *tok);
 int		ft_check_redirect(t_token *tmp);
 int		ft_check_next_tok(int type);
+
+//****-----------------****
+//****-----PRE_EXEC----****
+//****-----------------****
 
 //pre_exec/create_list.c
 t_exe	*ft_create_list(t_data *data, int nb_pipe);
@@ -181,10 +196,18 @@ void	ft_exe_lst(t_data *data);
 t_exe	ft_addexe(t_exe **exe, t_exe *new);
 t_exe	*ft_exelast(t_exe *exe);
 
+//****-----------------****
+//****------EXEC-------****
+//****-----------------****
+
 //exec/exec.c
 void	ft_exe_cmd(t_data *data);
 void	ft_exe_cmd_simple(t_data *data);
 char	**ft_lst_to_tab(char **env);
+
+//****-----------------****
+//****-------FREE------****
+//****-----------------****
 
 //free/all_free.c
 void	ft_free_all(t_data *data);
@@ -194,8 +217,34 @@ void	ft_free_data(t_data *data);
 void	ft_free_exe(t_data *data);
 void	ft_free_tab(char **envp);
 
+//****-----------------****
+//****------SHOW-------****
+//****-----------------****
+
 //show/show.c
 void	show_token2(t_data *data);
 void	show_token(t_data *data);
+
+//****-----------------****
+//****-----HEREDOC-----****
+//****-----------------****
+
+//heredoc/heredoc.c
+t_fd	*ft_start_fd(t_data *data, int fd);
+void	ft_read_here(int fd[2], t_data *data, char *str_here);
+int		ft_check_heredoc(t_data *data, t_token *here_tok);
+
+//heredoc/heredoc_utils.c
+void	ft_rm_quotes(t_data *data, char **str);
+void	ft_fdadd_back(t_fd **alst, t_fd *new);
+t_fd	*ft_fdlast(t_fd *here_fd);
+void	ft_waitpid_h(t_data *data, int i);
+
+//heredoc/heredoc_utils2.c
+int		ft_op_d_quotes(t_data *data, char **str, int *i);
+int		ft_op_s_quotes(t_data *data, char **str, int *i);
+int		ft_cl_d_quotes(t_data *data, char **str, int *i);
+int		ft_cl_s_quotes(t_data *data, char **str, int *i);
+void	ft_rm_str(t_data *data, char **str, int len, int i);
 
 #endif
