@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/01 19:47:12 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/02 18:15:50 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define D_REDIR_OUT_ERROR 26
 # define HEREDOC_ERROR 27
 # define NEWLINE_ERROR 28
-# define EXIT_HEREDOC 29
+# define EXIT_HEREDOC 130
 
 //struct a revoir
 
@@ -82,7 +82,7 @@ typedef struct s_data
 	char		*readline;
 	char		**envp;
 	int			last_pipe;
-	int			nb_pipe; //for multi-pipe
+	int			nb_pipe;
 	t_token		*token;
 	t_token		*tok_exe;
 	t_exe		*exe;
@@ -196,6 +196,11 @@ void	ft_exe_lst(t_data *data);
 t_exe	ft_addexe(t_exe **exe, t_exe *new);
 t_exe	*ft_exelast(t_exe *exe);
 
+//pre_exec/check_exe.c
+void	ft_check_cmd_redirect(t_data *data);
+void	ft_add_exe_h(t_data *data, int i);
+t_fd	*ft_fd_heredoc(t_data *data, int i);
+
 //****-----------------****
 //****------EXEC-------****
 //****-----------------****
@@ -216,6 +221,7 @@ void	ft_free_tok_exe(t_data *data);
 void	ft_free_data(t_data *data);
 void	ft_free_exe(t_data *data);
 void	ft_free_tab(char **envp);
+void	ft_free_fd_heredoc(t_data *data);
 
 //****-----------------****
 //****------SHOW-------****

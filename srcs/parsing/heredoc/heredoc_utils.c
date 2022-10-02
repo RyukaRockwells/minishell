@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:43:30 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/01 19:09:18 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/02 17:45:39 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ void	ft_waitpid_h(t_data *data, int i)
 	waitpid(i, &status, 0);
 	if (WIFEXITED(status))
 		data->last_pipe = WEXITSTATUS(status);
-	else if (WIFSIGNALED(status))
-		data->last_pipe = WTERMSIG(status);
+	else
+		data->last_pipe = status;
 }

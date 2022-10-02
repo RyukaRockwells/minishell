@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/30 17:19:00 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/02 18:47:13 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,35 @@ void	ft_exe_cmd(t_data *data)
 		ft_exe_cmd_simple(data);
 	/*else
 		ft_exe_cmd_pipe(data);*/
+}
+
+void	ft_exe_cmd_pipe(t_data *data)
+{
+	int		i;
+	int		pipefd[2];
+	pid_t	pid;
+
+	i = 0;
+	while (i < data->nb_pipe)
+	{
+		pipe(pipefd);
+		pid = fork();
+		if (pid == 0)
+		{
+			dup2(pipefd[1], 1);
+			close(pipefd[0]);
+			ft_exe_cmd_simple(data);
+			exit(0);
+		}
+		else
+		{
+			dup2(pipefd[0], 0);
+			close(pipefd[1]);
+			waitpid(pid, NULL, 0);
+			i++;
+		}
+	}
+	ft_exe_cmd_simple(data);
 }
 
 void	ft_exe_cmd_simple(t_data *data)
@@ -48,9 +77,9 @@ void	ft_exe_cmd_simple(t_data *data)
 		}
 		else
 			ft_error(data, data->exe->cmd[0], 1);
-	}*/
+	}
 	ft_free_tab(envp);
-}
+}*/
 
 char	**ft_lst_to_tab(char **envp)
 {

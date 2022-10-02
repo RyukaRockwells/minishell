@@ -6,7 +6,7 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/10/01 18:00:48 by nchow-yu         ###   ########.fr        #
+#    Updated: 2022/10/02 16:17:11 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SHOW	=	srcs/show/show.c
 TOKEN	=	srcs/parsing/token/token.c srcs/parsing/token/token_list.c
 PARSER	=	srcs/parsing/parser/parser.c srcs/parsing/parser/parser_check.c
 LEXER	=	srcs/parsing/lexer/lexer.c srcs/parsing/lexer/lexer_utils.c srcs/parsing/lexer/lexer_check.c
-PRE_EXEC=	srcs/pre_exec/create_list.c srcs/pre_exec/exe_list.c
+PRE_EXEC=	srcs/pre_exec/create_list.c srcs/pre_exec/exe_list.c srcs/pre_exec/check_exe.c
 FREE	=	srcs/free/all_free.c
 EXEC	=	srcs/exec/exec.c
 HEREDOC	=	srcs/parsing/heredoc/heredoc.c srcs/parsing/heredoc/heredoc_utils.c \
