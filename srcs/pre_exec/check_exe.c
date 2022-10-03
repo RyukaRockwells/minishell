@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:21:49 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/02 18:12:01 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:04:12 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,17 @@ void	ft_check_cmd_redirect(t_data *data)
 		exe = ft_get_idexe(data->exe, i);
 		if (tok->type == HEREDOC)
 			ft_add_exe_h(data, i);
-		/*if (exe->pb != 1)
+		if (exe->pb != 1)
 		{
 			if (tok->type == CMD)
-				ft_add_exe_cmd(data, i);
-			else if (tok->type == REDIRECT_IN || tok->type == REDIRECT_OUT
+				ft_add_exe_cmd(data, tok, i);
+			/*else if (tok->type == REDIRECT_IN || tok->type == REDIRECT_OUT
 				|| tok->type == D_REDIRECT_OUT)
 				if (ft_add_exe_redir(data, i);
-					exe->pb = 1;
-		}*/
+					exe->pb = 1;*/
+		}
 		tok = tok->next;
 	}
-}
-
-void	ft_add_exe_h(t_data *data, int i)
-{
-	t_fd	*fd;
-
-	fd = ft_fd_heredoc(data, i);
-	if (ft_get_idexe(data->exe, i)->in != 0)
-		close(ft_get_idexe(data->exe, i)->in);
-	ft_get_idexe(data->exe, i)->in = fd->fd;
-	ft_free_fd_heredoc(data);
 }
 
 t_fd	*ft_fd_heredoc(t_data *data, int i)

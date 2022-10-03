@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/02 18:15:50 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:02:32 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,8 +198,10 @@ t_exe	*ft_exelast(t_exe *exe);
 
 //pre_exec/check_exe.c
 void	ft_check_cmd_redirect(t_data *data);
-void	ft_add_exe_h(t_data *data, int i);
 t_fd	*ft_fd_heredoc(t_data *data, int i);
+
+//pre_exec/add_exe.c
+void	ft_add_exe_h(t_data *data, int i);
 
 //****-----------------****
 //****------EXEC-------****
@@ -207,8 +209,6 @@ t_fd	*ft_fd_heredoc(t_data *data, int i);
 
 //exec/exec.c
 void	ft_exe_cmd(t_data *data);
-void	ft_exe_cmd_simple(t_data *data);
-char	**ft_lst_to_tab(char **env);
 
 //****-----------------****
 //****-------FREE------****
