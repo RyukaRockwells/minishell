@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:12:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/30 17:17:48 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:58:12 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,20 @@ void	ft_catch_int(int signal)
 		rl_on_new_line();
 		rl_redisplay();
 	}
+}
+
+void	ft_sigint(int sig)
+{
+	if (sig == SIGINT)
+	{
+		printf("\n");
+		exit(130);
+	}
+}
+
+void	ft_catch_ctrld_h(t_data *data, char *eof)
+{
+	printf("Minichouille: warning: here-document");
+	printf("delimited by end_of_file (wanted `%s')\n", eof);
+	ft_exit(data);
 }

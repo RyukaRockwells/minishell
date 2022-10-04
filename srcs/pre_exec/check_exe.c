@@ -27,7 +27,7 @@ void	ft_check_cmd_redirect(t_data *data)
 		exe = ft_get_idexe(data->exe, i);
 		if (tok->type == HEREDOC)
 			ft_add_exe_h(data, i);
-		if (exe->pb != 1)
+		if (data->exe->pb != 1)
 		{
 			if (tok->type == CMD)
 				ft_add_exe_cmd(data, tok, i);
