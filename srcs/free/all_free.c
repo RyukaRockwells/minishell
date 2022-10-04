@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:11:18 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/02 17:56:43 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:17:02 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_free_all(t_data *data)
 	ft_free_tok_exe(data);
 	ft_free_data(data);
 	ft_free_exe(data);
+	ft_free_fd_heredoc(data);
 }
 
 void	ft_free_token(t_data *data)

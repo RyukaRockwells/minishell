@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/04 17:02:00 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/04 18:25:24 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,11 +260,13 @@ void	ft_rm_str(t_data *data, char **str, int len, int i);
 //****-----------------****
 //****------UTILS------****
 //****-----------------****
+//utils/utils.c
 int		ft_strcmp(char *s1, char *s2);
 
 //****-----------------****
 //****------EXPAND-----****
 //****-----------------****
+//expand/expand.c
 void	ft_expand_token(t_data *data, t_token *token);
 void	ft_expand_pipe(t_data *data, char **str, int *i);
 void	ft_expand_h(t_data *data, char **str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:43:30 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/02 17:45:39 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:01:38 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_rm_quotes(t_data *data, char **str)
 			else if ((*str)[i] == '\'')
 				s_quotes = ft_cl_s_quotes(data, str, &i);
 		}
+		i++;
 	}
 }
 

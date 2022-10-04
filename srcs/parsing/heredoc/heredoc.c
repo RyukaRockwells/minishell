@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:16:34 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/04 16:59:51 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/04 19:22:56 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_read_here(int fd[2], t_data *data, char *str_here)
 	if (ft_strchr(str_here, '\'') != NULL && ft_strchr(str_here, '\"') != NULL)
 		expand = 1;
 	ft_rm_quotes(data, &str_here);
-	printf("str_here: %s\n", str_here);
+	ft_exe_heredoc(fd, expand, data, str_here);
 }
 
 void	ft_exe_heredoc(int fd[2], int expand, t_data *data, char *str_here)
@@ -46,19 +46,26 @@ void	ft_exe_heredoc(int fd[2], int expand, t_data *data, char *str_here)
 	tmp = ft_strdup("");
 	while (1)
 	{
-		signal(SIGINT, &ft_sigint);
+		if (signal(SIGINT, &ft_sigint))
+		{
+			ft_free(data->envp);
+			ft_reinit(data);
+		}
 		str = readline("heredoc> ");
 		if (str == NULL)
+		{
+			ft_free(data->envp);
+			free(tmp);
 			ft_catch_ctrld_h(data, str_here);
+		}
 		if (ft_strcmp(str, str_here) == 0)
 			break ;
 		if (expand > 0 && ft_strchr(str, '$') != NULL)
-			//ft_expand_dollar(data, &str);
-			printf("Pandawa\n");
+			ft_expand_h(data, &str);
 	}
 }
 
-//SIG_IN ignore les signaux renseigne
+//SIG_IN ignore les signaux renseigné
 int	ft_check_heredoc(t_data *data, t_token *here_tok)
 {
 	int		id;
