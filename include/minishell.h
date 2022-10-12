@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/04 18:25:24 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/12 15:54:01 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	ft_exit(t_data *data);
 void	ft_exit_here(t_data *data);
 
 //signal.c
+void	ft_sginit(t_data *data);
 void	ft_catch_signal(void);
 void	ft_catch_d(t_data *data);
 void	ft_catch_int(int signal);

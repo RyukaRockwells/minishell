@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/27 19:00:47 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:05:31 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,14 @@ int	ft_get_word(t_data *data, int i)
 		if (ft_word_quote(str, i, str[i]) == 0)
 		{
 			ft_get_token(data, str, i, ft_wdlen(str, i));
-			//printf("wdlen si 1st 34/39 = %d\n", ft_wdlen(str, i));//a enlever
 			return (ft_wdlen(str, i));
 		}
 	}
 	if (str[i] >= 33 && str[i] <= 126 && ft_check_metachar(str, i))
 	{
 		word = ft_substr(str, i, ft_wdlen(str, i));
-		//printf("wdlen = %d\n", ft_wdlen(str, i));
-		//printf("word substr: %s\n", word);//a enlever
 		if (word == NULL)
-			ft_exit(data); /*free(word);*/
-		//printf("word dans get_word: %s\n", word);
+			ft_exit(data);
 		ft_add_token(word, data, LITERAL);
 		return (ft_wdlen(str, i));
 	}
@@ -81,7 +77,6 @@ int	ft_get_sep(t_data *data, int i)
 		if (sep == NULL)
 			ft_exit(data);
 		ft_add_token(sep, data, PIPE);
-		//free(sep);
 	}
 	return (0);
 }
