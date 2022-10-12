@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 15:37:34 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/02/03 11:58:07 by nchow-yu         ###   ########.fr       */
+/*   Created: 2022/02/01 16:09:42 by nchow-yu          #+#    #+#             */
+/*   Updated: 2022/02/03 11:58:25 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -30,14 +30,3 @@ char	*get_save(int fd, char *str);
 char	*ft_free(char **str);
 
 #endif
-
-/*
-get_save, nous permet  de recupere la ou les lignes et/ou le petit bout manquant de taille buffer_size
-ce qui va nous donner le buffer (chaine de caractere) de taille buffer_size et non la ligne a afficher
-join va fusionner str et le buff (str le reste save)
-
-get_line, nous permet de recupere la premiere ligne du buffer_size, c'est a dire que l'on copie 
-la premiere ligne jusqu'a soit "\n" soit "\0" et on retourne le resultat
-
-new_str, va stocker le suite de la premiere ligne dans res depuis str
-*/

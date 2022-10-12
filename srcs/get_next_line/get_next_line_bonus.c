@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 15:36:55 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/02/03 15:57:37 by nchow-yu         ###   ########.fr       */
+/*   Created: 2022/02/01 16:06:11 by nchow-yu          #+#    #+#             */
+/*   Updated: 2022/02/02 12:44:02 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <string.h>
+#include "get_next_line_bonus.h"
 
 char	*get_line(char *str)
 {
@@ -65,11 +64,11 @@ char	*new_str(char *str)
 
 char	*get_save(int fd, char *str)
 {
-	char				*save;
-	long long int		size;
+	char	*save;
+	int		size;
 
 	save = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (save == NULL)
+	if (!save)
 		return (NULL);
 	size = 1;
 	while (ft_strchr(str) == 0 && size != 0)
@@ -91,19 +90,19 @@ char	*get_save(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	static char		*buff;
+	static	char	*(buff[1024]);
 	char			*res;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buff = get_save(fd, buff);
-	if (buff == NULL)
+	buff[fd] = get_save(fd, buff[fd]);
+	if (!buff[fd])
 		return (NULL);
-	res = get_line(buff);
+	res = get_line(buff[fd]);
 	if (res == NULL)
-		return (ft_free(&buff));
-	buff = new_str(buff);
-	if (buff == NULL)
+		return (ft_free(&buff[fd]));
+	buff[fd] = new_str(buff[fd]);
+	if (buff[fd] == NULL)
 		return (NULL);
 	return (res);
 }
