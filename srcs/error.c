@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:26:20 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/11 17:48:46 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:11:25 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	show_error(int code_error)
 	if (code_error == QUOTES_NO_CLOSE)
 		ft_putstr_fd("minishell: quotes no close\n", 2);
 	if (code_error == EMPTY_TOK)
-		ft_putstr_fd("This is a hole\n", 2);
+		ft_putstr_fd("\n", 2);
 	if (code_error == PIPE_ERROR)
 		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
 	if (code_error == REDIR_IN_ERROR)
@@ -41,7 +41,8 @@ void	show_error(int code_error)
 	if (code_error == HEREDOC_ERROR)
 		ft_putstr_fd("minishell: syntax error near unexpected token `<<'\n", 2);
 	if (code_error == NEWLINE_ERROR)
-		ft_putstr_fd("minishell: syntax error near unexpected token `newline'\n", 2);
+		ft_putstr_fd("minishell: syntax error near unexpected token `newline'\n" \
+		, 2);
 	if (code_error == ERROR)
 		ft_putstr_fd("minishell: error\n", 2);
 }

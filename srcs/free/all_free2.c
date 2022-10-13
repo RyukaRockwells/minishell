@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   all_free2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 16:19:52 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/13 17:59:34 by nicole           ###   ########.fr       */
+/*   Created: 2022/10/13 19:07:17 by nicole            #+#    #+#             */
+/*   Updated: 2022/10/13 19:07:35 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	ft_free_tab(char **envp)
 {
 	int	i;
 
 	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0')
+	while (envp[i] != NULL)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		free(envp[i]);
+		envp[i] = NULL;
 		i++;
 	}
-	return (s1[i] - s2[i]);
+	free(envp);
+}
+
+void	ft_free_fd_heredoc(t_data *data)
+{
+	t_fd	*fd;
+
+	while (data->last_fd != NULL)
+	{
+		fd = data->last_fd;
+		data->last_fd = data->last_fd->next;
+		free(fd);
+	}
 }

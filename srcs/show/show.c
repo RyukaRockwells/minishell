@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   show.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:32:41 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/30 16:35:48 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:04:26 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
+/*
 void	show_token2(t_data *data)
 {
 	t_token	*tmp;
@@ -63,3 +63,4 @@ void	show_token(t_data *data)
 		i++;
 	}
 }
+*/

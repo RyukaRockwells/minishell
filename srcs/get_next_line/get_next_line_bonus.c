@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 16:06:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/02/02 12:44:02 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:44:08 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_line(char *str)
 		i++;
 	res = malloc(sizeof(char) * i + 2);
 	if (res == NULL)
-		return (ft_free(&str));
+		return (ft_free_gnl(&str));
 	i = 0;
 	while (str[i] != '\0' && str[i] != '\n')
 	{
@@ -50,9 +50,9 @@ char	*new_str(char *str)
 	j = 0;
 	while (str[i] != '\0' && str[i] != '\n')
 		i++;
-	res = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	res = malloc(sizeof(char) * (ft_strlen_gnl(str) - i + 1));
 	if (res == NULL)
-		return (ft_free(&str));
+		return (ft_free_gnl(&str));
 	if (str[i] == '\n')
 		i++;
 	while (str[i] != '\0')
@@ -71,18 +71,18 @@ char	*get_save(int fd, char *str)
 	if (!save)
 		return (NULL);
 	size = 1;
-	while (ft_strchr(str) == 0 && size != 0)
+	while (ft_strchr_gnl(str) == 0 && size != 0)
 	{
 		size = read(fd, save, BUFFER_SIZE);
 		if (size == -1)
 		{
 			free(save);
-			return (ft_free(&str));
+			return (ft_free_gnl(&str));
 		}
 		save[size] = '\0';
-		str = ft_strjoin(str, save);
+		str = ft_strjoin_gnl(str, save);
 		if (str == NULL)
-			return (ft_free(&save));
+			return (ft_free_gnl(&save));
 	}
 	free(save);
 	return (str);
@@ -94,15 +94,19 @@ char	*get_next_line(int fd)
 	char			*res;
 
 	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
+	{
+		ft_free_gnl(&buff[0]);
 		return (NULL);
+	}
 	buff[fd] = get_save(fd, buff[fd]);
 	if (!buff[fd])
 		return (NULL);
 	res = get_line(buff[fd]);
 	if (res == NULL)
-		return (ft_free(&buff[fd]));
+		return (ft_free_gnl(&buff[fd]));
 	buff[fd] = new_str(buff[fd]);
 	if (buff[fd] == NULL)
 		return (NULL);
+	res[ft_strlen_gnl(res) - 1] = '\0';
 	return (res);
 }

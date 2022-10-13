@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/12 15:54:01 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/13 20:17:36 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/history.h>
 # include <signal.h>
 # include "../srcs/libft/libft.h"
+# include "../srcs/get_next_line/get_next_line_bonus.h"
 
 # define LITERAL 1
 # define PIPE 2
@@ -120,7 +121,6 @@ void	ft_exit(t_data *data);
 void	ft_exit_here(t_data *data);
 
 //signal.c
-void	ft_sginit(t_data *data);
 void	ft_catch_signal(void);
 void	ft_catch_d(t_data *data);
 void	ft_catch_int(int signal);
@@ -188,7 +188,6 @@ int		ft_check_next_tok(int type);
 //pre_exec/create_list.c
 t_exe	*ft_create_list(t_data *data, int nb_pipe);
 t_exe	*ft_new_exelst(t_data *data);
-//void	show_exe(t_data *data);
 void	ft_fd_exec(t_data *data);
 int		*ft_create_pipe(t_data *data);
 
@@ -224,6 +223,8 @@ void	ft_free_token(t_data *data);
 void	ft_free_tok_exe(t_data *data);
 void	ft_free_data(t_data *data);
 void	ft_free_exe(t_data *data);
+
+//free/all_free2.c
 void	ft_free_tab(char **envp);
 void	ft_free_fd_heredoc(t_data *data);
 
@@ -243,7 +244,7 @@ void	show_token(t_data *data);
 t_fd	*ft_start_fd(t_data *data, int fd);
 void	ft_read_here(int fd[2], t_data *data, char *str_here);
 int		ft_check_heredoc(t_data *data, t_token *here_tok);
-void	ft_exe_heredoc(int fd[2], int expand, t_data *data, char *str_here);
+void	ft_exe_heredoc(int fd, int expand, t_data *data, char *str_here);
 
 //heredoc/heredoc_utils.c
 void	ft_rm_quotes(t_data *data, char **str);
@@ -262,7 +263,7 @@ void	ft_rm_str(t_data *data, char **str, int len, int i);
 //****------UTILS------****
 //****-----------------****
 //utils/utils.c
-int		ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 
 //****-----------------****
 //****------EXPAND-----****

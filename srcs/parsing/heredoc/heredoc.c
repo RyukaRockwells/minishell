@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:16:34 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/12 15:58:39 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/13 20:39:54 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ void	ft_read_here(int fd[2], t_data *data, char *str_here)
 	str = str_here;
 	if (ft_strchr(str_here, '\'') != NULL && ft_strchr(str_here, '\"') != NULL)
 		expand = 1;
-	ft_rm_quotes(data, &str_here);
-	ft_exe_heredoc(fd, expand, data, str_here);
+	ft_rm_quotes(data, &str);
+	ft_exe_heredoc(fd[1], expand, data, str);
 	ft_free(data->envp);
 	ft_reinit(data);
-	perror(NULL);
 	while (i < 1024)
 	{
 		close(i);
@@ -48,39 +47,26 @@ void	ft_read_here(int fd[2], t_data *data, char *str_here)
 	exit(0);
 }
 
-void	ft_exe_heredoc(int fd[2], int expand, t_data *data, char *str_here)
+void	ft_exe_heredoc(int fd, int expand, t_data *data, char *str_here)
 {
 	char	*tmp;
-	char	*str;
+	int		delimiter_found;
 
-	str = NULL;
-	tmp = ft_strdup("");
-	while (1)
+	tmp = "";
+	delimiter_found = 0;
+	signal(SIGINT, &ft_sigint);
+	while (delimiter_found == 0)
 	{
-		if (signal(SIGINT, &ft_sigint))
-		{
-			free(tmp);
-			ft_reinit(data);
-		}
-		str = readline("heredoc> ");
-		if (str == NULL)
-		{
-			ft_free(data->envp);
-			free(tmp);
-			free(data->data);
-			ft_catch_ctrld_h(data, str_here);
-		}
-		fprintf(stderr, "str = %s\n", str);
-		fprintf(stderr, "str_here = %s\n", str_here);
-		if (ft_strcmp(str, str_here) == 0)
-			break ;
-		if (expand > 0 && ft_strchr(str, '$') != NULL)
-			ft_expand_h(data, &str);
-		write(fd[1], str, ft_strlen(str));
-		write(fd[1], "\n", 1);
-		free(str);
+		write(1, "heredoc> ", 9);
+		tmp = get_next_line(0);
+		if (ft_strcmp(tmp, str_here) == 0)
+			delimiter_found = 1;
+		if (expand > 0 && ft_strchr(tmp, '$') != NULL)
+			ft_expand_h(data, &tmp);
+		write(fd, tmp, ft_strlen(tmp));
+		free(tmp);
 	}
-	free(tmp);
+	get_next_line(-1);
 }
 
 //SIG_IN ignore les signaux renseigné

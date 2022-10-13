@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_linus_utils_bonus.c                       :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 16:11:04 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/02/01 16:13:18 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:56:43 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*ft_free(char **str)
+char	*ft_free_gnl(char **str)
 {
 	if (*str == NULL)
 		return (NULL);
@@ -21,7 +21,7 @@ char	*ft_free(char **str)
 	return (NULL);
 }
 
-int	ft_strlen(char *s)
+int	ft_strlen_gnl(char *s)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-int	ft_strchr(char *s)
+int	ft_strchr_gnl(char *s)
 {
 	int	i;
 
@@ -49,15 +49,15 @@ int	ft_strchr(char *s)
 	return (0);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*dest;
 	int		i;
 	int		len;
 
-	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	dest = malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
 	if (dest == NULL)
-		return (ft_free(&s1));
+		return (ft_free_gnl(&s1));
 	i = 0;
 	while (s1 != NULL && s1[i] != '\0')
 	{

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:11:18 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/04 19:17:02 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/13 19:07:31 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,30 +73,4 @@ void	ft_free_exe(t_data *data)
 		free(exe);
 	}
 	free(data->exe);
-}
-
-void	ft_free_tab(char **envp)
-{
-	int	i;
-
-	i = 0;
-	while (envp[i] != NULL)
-	{
-		free(envp[i]);
-		envp[i] = NULL;
-		i++;
-	}
-	free(envp);
-}
-
-void	ft_free_fd_heredoc(t_data *data)
-{
-	t_fd	*fd;
-
-	while (data->last_fd != NULL)
-	{
-		fd = data->last_fd;
-		data->last_fd = data->last_fd->next;
-		free(fd);
-	}
 }

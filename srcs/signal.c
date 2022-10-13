@@ -6,18 +6,11 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:12:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/12 15:55:41 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/13 19:18:49 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-static	t_data	*g_data;
-
-void	ft_sginit(t_data *data)
-{
-	g_data = data;
-}
 
 void	ft_catch_signal(void)
 {
@@ -47,8 +40,6 @@ void	ft_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{
-		ft_free(g_data->envp);
-		ft_free_all(g_data);
 		printf("\n");
 		exit(130);
 	}

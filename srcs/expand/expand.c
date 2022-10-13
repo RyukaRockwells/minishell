@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:28:10 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/04 17:04:03 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/13 19:05:36 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_expand_pipe(t_data *data, char **str, int *i)
 	tmp = ft_itoa(data->last_pipe);
 	if (tmp == NULL)
 		ft_exit(data);
-	
 }
 
 void	ft_expand_h(t_data *data, char **str)

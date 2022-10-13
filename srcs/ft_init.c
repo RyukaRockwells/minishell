@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/12 15:53:45 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/13 19:19:24 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_init(char **envp, t_data *data)
 	data->fd_stdout = -1;
 	data->fd_stdin = -1;
 	data->last_fd = NULL;
-	ft_sginit(data);
 	ft_env(data, envp);
 }
 

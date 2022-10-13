@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:44:15 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/30 15:50:47 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:10:15 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_exe_lst(t_data *data)
 	data->nb_pipe = ft_nb_pipe(data->token);
 	data->exe = ft_create_list(data, data->nb_pipe);
 	ft_fd_exec(data);
-	//show_exe(data);
 }
 
 t_exe	ft_addexe(t_exe **exe, t_exe *new)
