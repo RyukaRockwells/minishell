@@ -6,11 +6,11 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:43:30 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/04 19:01:38 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/14 21:05:48 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "../../include/minishell.h"
 
 void	ft_rm_quotes(t_data *data, char **str)
 {

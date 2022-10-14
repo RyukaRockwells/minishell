@@ -6,11 +6,11 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:12:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/13 19:18:49 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/14 22:12:21 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 void	ft_catch_signal(void)
 {
@@ -39,16 +39,24 @@ void	ft_catch_int(int signal)
 void	ft_sigint(int sig)
 {
 	if (sig == SIGINT)
-	{
 		printf("\n");
-		exit(130);
-	}
 }
 
 void	ft_catch_ctrld_h(t_data *data, char *eof)
 {
+	int		i;
+
+	i = 0;
 	printf("Minichouille: warning: here-document");
 	printf("delimited by end_of_file (wanted `%s')\n", eof);
+	ft_free(data->envp);
 	ft_reinit(data);
-	ft_exit(data);
+	while (i < 1024)
+	{
+		close(i);
+		i++;
+	}
+	exit(0);
 }
+//CRTL-C et D vont agir pareil dans le sujet c'est pas demander de gerer les signaux
+//du heredoc

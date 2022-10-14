@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 16:06:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/13 19:44:08 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/14 22:02:45 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,18 @@ char	*get_save(int fd, char *str)
 	while (ft_strchr_gnl(str) == 0 && size != 0)
 	{
 		size = read(fd, save, BUFFER_SIZE);
+		//ft_check_read(size);
 		if (size == -1)
 		{
 			free(save);
-			return (ft_free_gnl(&str));
+			ft_free_gnl(&str);
+			return ((char *)-1);
+		}
+		else if (size == 0)
+		{
+			free(save);
+			ft_free_gnl(&str);
+			return (NULL);
 		}
 		save[size] = '\0';
 		str = ft_strjoin_gnl(str, save);
@@ -99,8 +107,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	buff[fd] = get_save(fd, buff[fd]);
-	if (!buff[fd])
-		return (NULL);
+	if (!buff[fd] || buff[fd] == (char *)-1)
+		return (buff[fd]);
 	res = get_line(buff[fd]);
 	if (res == NULL)
 		return (ft_free_gnl(&buff[fd]));

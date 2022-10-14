@@ -6,26 +6,25 @@
 #    By: nicole <nicole@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/10/13 19:08:37 by nicole           ###   ########.fr        #
+#    Updated: 2022/10/14 21:10:42 by nicole           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	srcs/main.c srcs/error.c srcs/deco.c srcs/ft_loop.c srcs/exit.c \
-			srcs/ft_init.c srcs/signal.c ${TOKEN} ${PARSER} ${EXEC} ${PRE_EXEC} \
-			${LEXER} ${FREE} ${SHOW} ${HEREDOC} ${EXPAND} ${UTILS} ${GNL}
+SRCS	=	$(addprefix srcs/, main.c error.c deco.c ft_loop.c exit.c \
+			ft_init.c) ${TOKEN} ${PARSER} ${EXEC} ${PRE_EXEC} \
+			${LEXER} ${FREE} ${SHOW} ${HEREDOC} ${EXPAND} ${UTILS} ${GNL} ${SIGNAL}
 SHOW	=	srcs/show/show.c
-TOKEN	=	srcs/parsing/token/token.c srcs/parsing/token/token_list.c
-PARSER	=	srcs/parsing/parser/parser.c srcs/parsing/parser/parser_check.c
-LEXER	=	srcs/parsing/lexer/lexer.c srcs/parsing/lexer/lexer_utils.c srcs/parsing/lexer/lexer_check.c
-PRE_EXEC=	srcs/pre_exec/create_list.c srcs/pre_exec/exe_list.c srcs/pre_exec/check_exe.c \
-			srcs/pre_exec/add_exe.c
+SIGNAL	=	$(addprefix srcs/signal/, signal.c signal2.c)
+TOKEN	=	$(addprefix srcs/parsing/token/, token.c token_list.c)
+PARSER	=	$(addprefix srcs/parsing/parser/, parser.c parser_check.c)
+LEXER	=	$(addprefix srcs/parsing/lexer/, lexer.c lexer_utils.c lexer_check.c)
+PRE_EXEC=	$(addprefix srcs/pre_exec/, create_list.c exe_list.c check_exe.c add_exe.c)
 FREE	=	srcs/free/all_free.c srcs/free/all_free2.c
 EXEC	=	srcs/exec/exec.c
-HEREDOC	=	srcs/parsing/heredoc/heredoc.c srcs/parsing/heredoc/heredoc_utils.c \
-			srcs/parsing/heredoc/heredoc_utils2.c
-EXPAND	=	srcs/expand/expand.c
+HEREDOC	=	$(addprefix srcs/heredoc/, heredoc.c heredoc_utils.c heredoc_utils2.c)
+EXPAND	=	$(addprefix srcs/expand/, expand.c expand_utils.c)
 UTILS	=	srcs/utils/utils.c
-GNL		=	srcs/get_next_line/get_next_line_bonus.c srcs/get_next_line/get_next_line_utils_bonus.c
+GNL		=	$(addprefix srcs/get_next_line/, get_next_line_bonus.c get_next_line_utils_bonus.c)
 
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:38:34 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/01 18:02:35 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/14 21:05:43 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "../../include/minishell.h"
 
 int	ft_op_d_quotes(t_data *data, char **str, int *i)
 {

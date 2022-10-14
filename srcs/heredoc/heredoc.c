@@ -6,11 +6,11 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:16:34 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/13 20:39:54 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/14 22:15:27 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/minishell.h"
+#include "../../include/minishell.h"
 
 t_fd	*ft_start_fd(t_data *data, int fd)
 {
@@ -24,19 +24,11 @@ t_fd	*ft_start_fd(t_data *data, int fd)
 	return (new);
 }
 
-void	ft_read_here(int fd[2], t_data *data, char *str_here)
+void	ft_close_here(int fd, t_data *data, char *str_here)
 {
-	int		expand;
-	char	*str;
 	int		i;
 
 	i = 0;
-	expand = 0;
-	str = str_here;
-	if (ft_strchr(str_here, '\'') != NULL && ft_strchr(str_here, '\"') != NULL)
-		expand = 1;
-	ft_rm_quotes(data, &str);
-	ft_exe_heredoc(fd[1], expand, data, str);
 	ft_free(data->envp);
 	ft_reinit(data);
 	while (i < 1024)
@@ -47,29 +39,34 @@ void	ft_read_here(int fd[2], t_data *data, char *str_here)
 	exit(0);
 }
 
-void	ft_exe_heredoc(int fd, int expand, t_data *data, char *str_here)
+void	ft_read_heredoc(int fd, t_data *data, char *str_here)
 {
 	char	*tmp;
 	int		delimiter_found;
 
 	tmp = "";
 	delimiter_found = 0;
-	signal(SIGINT, &ft_sigint);
+	ft_catch_c_heredoc();
 	while (delimiter_found == 0)
 	{
 		write(1, "heredoc> ", 9);
 		tmp = get_next_line(0);
+		if (tmp == (char *)-1)
+			ft_close_here(fd, data, str_here);
+		if (tmp == NULL)
+			ft_catch_ctrld_h(data, str_here);
 		if (ft_strcmp(tmp, str_here) == 0)
 			delimiter_found = 1;
-		if (expand > 0 && ft_strchr(tmp, '$') != NULL)
-			ft_expand_h(data, &tmp);
+		if (ft_strchr(tmp, '$') != NULL)
+			ft_expand_h(fd, data, &tmp);
 		write(fd, tmp, ft_strlen(tmp));
+		write(fd, "\n", 1);
 		free(tmp);
 	}
 	get_next_line(-1);
+	ft_close_here(fd, data, str_here);
 }
 
-//SIG_IN ignore les signaux renseigné
 int	ft_check_heredoc(t_data *data, t_token *here_tok)
 {
 	int		id;
@@ -89,7 +86,7 @@ int	ft_check_heredoc(t_data *data, t_token *here_tok)
 	if (id == 0)
 	{
 		signal(SIGINT, SIG_DFL);
-		ft_read_here(fd, data, here_tok->value);
+		ft_read_heredoc(fd[1], data, here_tok->value);
 	}
 	if (close(fd[1]) == -1)
 		ft_exit_here(data);

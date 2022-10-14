@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/13 20:17:36 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/14 21:34:14 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,13 @@ char	**ft_free(char **tab);
 void	ft_exit(t_data *data);
 void	ft_exit_here(t_data *data);
 
+//main.c
+void	minishell(char **arg, char **envp);
+
+//****-----------------****
+//****-----SIGNAL------****
+//****-----------------****
+
 //signal.c
 void	ft_catch_signal(void);
 void	ft_catch_d(t_data *data);
@@ -127,8 +134,8 @@ void	ft_catch_int(int signal);
 void	ft_sigint(int sig);
 void	ft_catch_ctrld_h(t_data *data, char *eof);
 
-//main.c
-void	minishell(char **arg, char **envp);
+//signal2.c
+void	ft_catch_c_heredoc(void);
 
 //****-----------------****
 //****------LEXER------****
@@ -242,9 +249,9 @@ void	show_token(t_data *data);
 
 //heredoc/heredoc.c
 t_fd	*ft_start_fd(t_data *data, int fd);
-void	ft_read_here(int fd[2], t_data *data, char *str_here);
+void	ft_close_here(int fd, t_data *data, char *str_here);
 int		ft_check_heredoc(t_data *data, t_token *here_tok);
-void	ft_exe_heredoc(int fd, int expand, t_data *data, char *str_here);
+void	ft_read_heredoc(int fd, t_data *data, char *str_here);
 
 //heredoc/heredoc_utils.c
 void	ft_rm_quotes(t_data *data, char **str);
@@ -264,13 +271,21 @@ void	ft_rm_str(t_data *data, char **str, int len, int i);
 //****-----------------****
 //utils/utils.c
 int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strcpy(char *dest, char *str);
 
 //****-----------------****
 //****------EXPAND-----****
 //****-----------------****
 //expand/expand.c
-void	ft_expand_token(t_data *data, t_token *token);
-void	ft_expand_pipe(t_data *data, char **str, int *i);
-void	ft_expand_h(t_data *data, char **str);
+/*void	ft_expand_token(t_data *data, t_token *token);
+void	ft_expand_pipe(t_data *data, char **str, int *i);*/
+char	*ft_replace_var(t_data *data, char ***str, int *i);
+void	ft_expand_h(int fd, t_data *data, char **str);
+
+//expand/expand_utils.c
+int		ft_length_var(int i, char *str);
+int		ft_length_end_var(int length, char *str);
+int		ft_get_last_id_var(char *str);
+char	*ft_get_var(char *str, int i, int length);
 
 #endif

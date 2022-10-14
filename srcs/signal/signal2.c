@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_exe.c                                          :+:      :+:    :+:   */
+/*   signal2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 15:01:44 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/13 20:49:20 by nicole           ###   ########.fr       */
+/*   Created: 2022/10/14 21:05:29 by nicole            #+#    #+#             */
+/*   Updated: 2022/10/14 22:01:36 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_add_exe_h(t_data *data, int i)
+void	ft_catch_c_heredoc(void)
 {
-	t_fd	*fd;
+	struct sigaction	sa;
 
-	fd = ft_fd_heredoc(data, i);
-	if (ft_get_idexe(data->exe, i)->in != 0)
-		close(ft_get_idexe(data->exe, i)->in);
-	ft_get_idexe(data->exe, i)->in = fd->fd;
-	ft_free_fd_heredoc(data);
-}
-
-void	ft_add_exe_cmd(t_data *data, t_token *tok_exe, int i)
-{
-	char	**str_cmd;
-	char	**new_cmd;
-	int		j;
-
-	//ft_expand_token(data, tok_exe);
+	sa.sa_handler = &ft_sigint;
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, SIGINT);
+	sigaction(SIGINT, &sa, 0);
 }
