@@ -6,37 +6,11 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:43:30 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/14 21:05:48 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/20 07:30:26 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-void	ft_rm_quotes(t_data *data, char **str)
-{
-	int	d_quotes;
-	int	s_quotes;
-	int	i;
-
-	i = 0;
-	d_quotes = 0;
-	s_quotes = 0;
-	while ((*str)[i] != '\0')
-	{
-		if (d_quotes != 0)
-			d_quotes = ft_op_d_quotes(data, str, &i);
-		else if (s_quotes != 0)
-			s_quotes = ft_op_s_quotes(data, str, &i);
-		else
-		{
-			if ((*str)[i] == '"')
-				d_quotes = ft_cl_d_quotes(data, str, &i);
-			else if ((*str)[i] == '\'')
-				s_quotes = ft_cl_s_quotes(data, str, &i);
-		}
-		i++;
-	}
-}
 
 void	ft_fdadd_back(t_fd **alst, t_fd *new)
 {

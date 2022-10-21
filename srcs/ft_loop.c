@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_loop.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/02 16:23:34 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/20 07:14:50 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_get_cmd(t_data *data)
 	{
 		ft_tok(data);
 		ft_exe_lst(data);
-		ft_check_cmd_redirect(data);
+		//ft_check_cmd_redirect(data);
 	}
 	return (0);
 }
