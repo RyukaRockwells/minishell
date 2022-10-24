@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:28:10 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/24 16:31:53 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/24 17:24:22 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_replace_var(t_data *data, char ***str, int *i)
 
 	env = "";
 	(*i) += 1;
-	length = ft_length_var(*i, (*(*str)), data);
+	length = ft_length_var(*i, (*(*str)));
 	length_end = ft_length_end_var(length, (*(*str)));
 	if (env == NULL)
 		ft_exit(data);
@@ -40,25 +40,35 @@ char	*ft_replace_var(t_data *data, char ***str, int *i)
 	return (tmp);
 }
 
+int	ft_exp_is_exit(t_data *data, char **str)
+{
+	char	*tmp;
+
+	tmp = (*str) + 1;
+	if (getenv(tmp) == NULL)
+		return (0);
+	return (1);
+}
+
 void	ft_expand_h(int fd, t_data *data, char **str)
 {
 	int		i;
-	char	**show;
-	char	*new_str;
 
 	i = 0;
-	new_str = NULL;
 	while ((*str)[i] != '\0')
 	{
 		if ((*str)[i] == '$')
 		{
 			if ((*str)[i + 1] == '?')
 				write(fd, "error_code\n", 11);
+			else if (ft_exp_is_exit(data, str) == 0)
+				return ;
 			else
 			{
 				(*str) = ft_replace_var(data, &str, &i);
 				return ;
 			}
+			
 		}
 		i++;
 	}

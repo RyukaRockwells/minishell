@@ -6,22 +6,24 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:08:32 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/24 16:35:44 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/24 17:10:09 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_length_var(int i, char *str, t_data *data)
+int	ft_length_var(int i, char *str)
 {
 	int		length;
 
 	length = 0;
+	/**str++;
 	if (getenv(str) == NULL)
 	{
+		ft_free(data->envp);
 		ft_free_all(data);
 		ft_exit(data);
-	}
+	}*/
 	while (str[i] != '\0' && str[i] != ' ')
 	{
 		i++;
