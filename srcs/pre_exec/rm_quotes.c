@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/21 02:10:53 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/24 15:32:28 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_rm_quotes(t_data *data)
 	int		j;
 
 	str = data->readline;
-	tmp = malloc(sizeof(char) * ft_length_str_without_quotes(str));
+	tmp = malloc(sizeof(char) * ft_length_str_without_quotes(str) + 1);
 	i = 0;
 	j = 0;
 	while (str[i] != '\0')

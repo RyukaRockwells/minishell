@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/20 07:14:50 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/24 16:25:00 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ void	ft_loop(t_data *data)
 		code_error = ft_get_cmd(data);
 		if (code_error != 0)
 			show_error(code_error);
-		else
-			ft_exe_cmd(data);
+		//else
+		//	ft_exe_cmd(data);
 		ft_reinit(data);
 	}
 }

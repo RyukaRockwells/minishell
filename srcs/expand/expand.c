@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:28:10 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/20 07:31:35 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/24 16:31:53 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ char	*ft_replace_var(t_data *data, char ***str, int *i)
 
 	env = "";
 	(*i) += 1;
-	length = ft_length_var(*i, (*(*str)));
+	length = ft_length_var(*i, (*(*str)), data);
 	length_end = ft_length_end_var(length, (*(*str)));
 	if (env == NULL)
 		ft_exit(data);
 	env = ft_get_var((*(*str)), *i, length);
-	printf("%s = %s\n", env, getenv(env));
 	tmp = malloc(sizeof(char) * ft_strlen(getenv(env)) + length_end + 1);
 	if (tmp == NULL)
 		ft_exit(data);

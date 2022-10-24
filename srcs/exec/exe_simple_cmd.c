@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/21 01:43:03 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/24 15:18:55 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ void	ft_exe_cmd_simple(t_data *data)
 	char	*lst_cmd;
 
 	lst_cmd = ft_rm_quotes(data);
-	ft_rm_quotes_token(data);
+	//ft_rm_quotes_token(data);
 	p_exe = fork();
 	if (p_exe == 0)
 		execute(lst_cmd, data->envp);
 	waitpid(p_exe, &status, 0);
+	free(lst_cmd);
 }
 //a remplacer
 char	*check_path(char **path, char *cmd)

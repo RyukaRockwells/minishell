@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/20 07:31:18 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/24 16:33:24 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ char	*ft_replace_var(t_data *data, char ***str, int *i);
 void	ft_expand_h(int fd, t_data *data, char **str);
 
 //expand/expand_utils.c
-int		ft_length_var(int i, char *str);
+int		ft_length_var(int i, char *str, t_data *data);
 int		ft_length_end_var(int length, char *str);
 int		ft_get_last_id_var(char *str);
 char	*ft_get_var(char *str, int i, int length);
