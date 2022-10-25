@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/24 17:10:38 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 16:09:07 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ char	*ft_strcpy(char *dest, char *str);
 //expand/expand.c
 /*void	ft_expand_token(t_data *data, t_token *token);
 void	ft_expand_pipe(t_data *data, char **str, int *i);*/
-char	*ft_replace_var(t_data *data, char ***str, int *i);
+char	*ft_replace_var(t_data *data, char *str, int *i);
 void	ft_expand_h(int fd, t_data *data, char **str);
 
 //expand/expand_utils.c
