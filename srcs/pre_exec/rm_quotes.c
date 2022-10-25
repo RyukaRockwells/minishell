@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/24 15:32:28 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 17:58:03 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_length_each_part(t_data *data)
 	}
 	return (i);
 }
-
+/*
 char	*ft_remove_quotes(char	*str)
 {
 	char	*tmp;
@@ -118,3 +118,4 @@ void	ft_rm_quotes_token(t_data *data)
 		tok = tok->next;
 	}
 }
+*/

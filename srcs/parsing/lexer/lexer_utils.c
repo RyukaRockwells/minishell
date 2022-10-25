@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:53:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/13 19:04:57 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 18:01:28 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,12 @@ int	ft_wdlen(char *str, int i)
 int	ft_add_space(t_data *data, char *str, int i)
 {
 	char	*tok_space;
-	t_token	*space;
 
 	if (ft_is_space(str[i] == 1) && i == 0)
 	{
 		tok_space = ft_substr(str, i, 1);
 		if (tok_space == NULL)
-			ft_exit(data);
+			ft_exit();
 		ft_add_token(tok_space, data, ESPACE);
 		return (0);
 	}
@@ -66,22 +65,22 @@ int	ft_add_space(t_data *data, char *str, int i)
 	{
 		tok_space = ft_substr(str, i, 1);
 		if (tok_space == NULL)
-			ft_exit(data);
+			ft_exit();
 		ft_add_token(tok_space, data, ESPACE);
 		return (0);
 	}
 	return (0);
 }
 
-int	ft_redirect(t_data *data, char *str, int i)
+void	ft_redirect(t_data *data, char *str, int i)
 {
 	char	*sep;
 
-	if (str[i] == str[i] && str[i + 1] == str[i])
+	if (/*str[i] == str[i] && */str[i + 1] == str[i])
 	{
 		sep = ft_substr(str, i, 2);
 		if (sep == NULL)
-			ft_exit(data);
+			ft_exit();
 		if (str[i] == '>')
 			ft_add_token(sep, data, D_REDIRECT_OUT);
 		else if (str[i] == '<')
@@ -91,7 +90,7 @@ int	ft_redirect(t_data *data, char *str, int i)
 	{
 		sep = ft_substr(str, i, 1);
 		if (sep == NULL)
-			ft_exit(data);
+			ft_exit();
 		if (str[i] == '<')
 			ft_add_token(sep, data, REDIRECT_IN);
 		else if (str[i] == '>')

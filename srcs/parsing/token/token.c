@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 20:20:13 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/30 16:33:16 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/25 17:47:06 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_get_token(t_data *data, char *rdline, int i, int strlen)
 
 	wd = ft_substr(rdline, i, strlen);
 	if (wd == NULL)
-		ft_exit(data);
+		ft_exit();
 	ft_add_token(wd, data, LITERAL);
 	return (0);
 }
@@ -29,7 +29,7 @@ void	ft_add_token(char *word, t_data *data, int type)
 
 	new = malloc(sizeof(t_token));
 	if (new == NULL)
-		ft_exit(data);
+		ft_exit();
 	new->value = word;
 	new->type = type;
 	new->next = NULL;
@@ -42,7 +42,7 @@ void	ft_addtok(char *word, t_data *data, int type)
 
 	new = malloc(sizeof(t_token));
 	if (new == NULL)
-		ft_exit(data);
+		ft_exit();
 	new->value = word;
 	new->type = type;
 	new->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/25 16:09:07 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 18:48:20 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int		ft_chose_tok(t_data *data, char *value, int type);
 
 //exit.c
 char	**ft_free(char **tab);
-void	ft_exit(t_data *data);
-void	ft_exit_here(t_data *data);
+void	ft_exit(void);
+void	ft_exit_here(void);
 
 //main.c
 void	minishell(char **arg, char **envp);
@@ -108,6 +108,7 @@ void	ft_free_exe(t_data *data);
 //free/all_free2.c
 void	ft_free_tab(char **envp);
 void	ft_free_fd_heredoc(t_data *data);
+void	ft_free_exe_simple(t_data *data, char **cmd, char *av);
 
 //****-----------------****
 //****------SHOW-------****
@@ -122,8 +123,8 @@ void	show_token(t_data *data);
 //****-----------------****
 
 //heredoc/heredoc.c
-t_fd	*ft_start_fd(t_data *data, int fd);
-void	ft_close_here(int fd, t_data *data, char *str_here);
+t_fd	*ft_start_fd(int fd);
+void	ft_close_here(t_data *data);
 int		ft_check_heredoc(t_data *data, t_token *here_tok);
 void	ft_read_heredoc(int fd, t_data *data, char *str_here);
 
@@ -145,8 +146,9 @@ char	*ft_strcpy(char *dest, char *str);
 //expand/expand.c
 /*void	ft_expand_token(t_data *data, t_token *token);
 void	ft_expand_pipe(t_data *data, char **str, int *i);*/
-char	*ft_replace_var(t_data *data, char *str, int *i);
-void	ft_expand_h(int fd, t_data *data, char **str);
+char	*ft_replace_var(char *str, int *i);
+int		ft_exp_is_exist(char **str);
+void	ft_expand_h(int fd, char **str);
 
 //expand/expand_utils.c
 int		ft_length_var(int i, char *str);

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/24 16:25:00 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 18:27:44 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,13 @@ t_token	*ft_sep_redtok(t_data *data, t_token *tmp)
 		ft_chose_tok(data, tmp->next->next->value, tmp->type);
 		tmp = tmp->next->next;
 	}
+	return (tmp);
 }
 
 int	ft_chose_tok(t_data *data, char *value, int type)
 {
 	if (value == NULL || data == NULL)
-		ft_exit(data);
+		ft_exit();
 	if (type == REDIRECT_IN)
 		ft_addtok(value, data, REDIRECT_IN);
 	else if (type == REDIRECT_OUT)
@@ -101,8 +102,8 @@ void	ft_loop(t_data *data)
 		code_error = ft_get_cmd(data);
 		if (code_error != 0)
 			show_error(code_error);
-		//else
-		//	ft_exe_cmd(data);
+		else
+			ft_exe_cmd(data);
 		ft_reinit(data);
 	}
 }
@@ -140,7 +141,7 @@ void	ft_fill_new_token_2(char *content, t_data *data, int type)
 int	ft_get_redir_tkn(t_data *data, char *content, int type)
 {
 	if (!content || !data)
-		ft_exit(data);
+		ft_exit();
 	if (type == T_REDIRECT_OUT)
 		ft_fill_new_token_2(content, data, T_REDIRECT_OUT);
 	if (type == T_REDIRECT_IN)

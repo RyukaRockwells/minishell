@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/05 13:05:31 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 18:00:06 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_lexer(t_data *data)
 	if (status > 0)
 		return (QUOTES_NO_CLOSE);
 	i = 0;
-	while (i < ft_strlen(data->readline))
+	while (i < (int)ft_strlen(data->readline))
 	{
 		i += ft_get_word(data, i);
 		i += ft_get_sep(data, i);
@@ -50,7 +50,7 @@ int	ft_get_word(t_data *data, int i)
 	{
 		word = ft_substr(str, i, ft_wdlen(str, i));
 		if (word == NULL)
-			ft_exit(data);
+			ft_exit();
 		ft_add_token(word, data, LITERAL);
 		return (ft_wdlen(str, i));
 	}
@@ -68,14 +68,14 @@ int	ft_get_sep(t_data *data, int i)
 	if (str[i] == '<' || str[i] == '>')
 	{
 		ft_redirect(data, str, i);
-		if (str[i] == str[i] && str[i + 1] == str[i])
+		if (/*str[i] == str[i] && */str[i + 1] == str[i])
 			return (1);
 	}
 	if (str[i] == '|')
 	{
 		sep = ft_substr(str, i, 1);
 		if (sep == NULL)
-			ft_exit(data);
+			ft_exit();
 		ft_add_token(sep, data, PIPE);
 	}
 	return (0);

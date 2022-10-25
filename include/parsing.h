@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:22:14 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/20 07:23:56 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 18:01:59 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_is_space(char c);
 int		ft_is_separator(char c);
 int		ft_wdlen(char *str, int i);
 int		ft_add_space(t_data *data, char *str, int i);
-int		ft_redirect(t_data *data, char *str, int i);
+void	ft_redirect(t_data *data, char *str, int i);
 
 //lexer/lexer_check.c
 int		ft_check_metachar(char *str, int i);

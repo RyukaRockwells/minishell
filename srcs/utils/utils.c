@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:19:52 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/14 21:43:24 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 18:07:47 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strcpy(char *dest, char *str)
 	dest[i] = '\0';
 	return (dest);
 }
-
+/*
 char	*ft_check_size(int size)
 {
 	if (size == 0)
@@ -47,3 +47,4 @@ char	*ft_check_size(int size)
 	else if (size == -1)
 		return ("-1");
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/24 15:18:55 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 18:48:08 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_exe_cmd_simple(t_data *data)
 	//ft_rm_quotes_token(data);
 	p_exe = fork();
 	if (p_exe == 0)
-		execute(lst_cmd, data->envp);
+		execute(lst_cmd, data->envp, data);
 	waitpid(p_exe, &status, 0);
 	free(lst_cmd);
 }
@@ -33,8 +33,8 @@ char	*check_path(char **path, char *cmd)
 	char	*tab_path;
 	int		i;
 
-	i = 0;
-	while (path[i++] != NULL)
+	i = -1;
+	while (path[++i] != NULL)
 	{
 		tab_path = ft_strjoin(path[i], "/");
 		if (tab_path == NULL)
@@ -80,7 +80,7 @@ char	*find_path(char *cmd, char **envp)
 	return (check_path(paths, cmd));
 }
 
-void	execute(char *av, char **envp)
+void	execute(char *av, char **envp, t_data *data)
 {
 	char	**cmd;
 	char	*path;
@@ -91,7 +91,7 @@ void	execute(char *av, char **envp)
 	path = find_path(cmd[0], envp);
 	if (path == 0)
 	{
-		ft_free(cmd);
+		ft_free_exe_simple(data, cmd, av);
 		perror("Error");
 		exit(EXIT_FAILURE);
 	}
@@ -99,10 +99,10 @@ void	execute(char *av, char **envp)
 	{
 		ft_putstr_fd("Error: ", 2);
 		ft_putstr_fd(strerror(errno), 2);
-		ft_free(cmd);
+		ft_free_exe_simple(data, cmd, av);
 		perror("Error");
 		exit(EXIT_FAILURE);
 	}
+	ft_free_exe_simple(data, cmd, av);
 	free(path);
-	ft_free(cmd);
 }

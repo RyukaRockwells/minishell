@@ -6,7 +6,7 @@
 #    By: nicole <nicole@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/10/20 08:02:11 by nicole           ###   ########.fr        #
+#    Updated: 2022/10/25 18:25:51 by nicole           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ CFLAGS	=	-Wall -Werror -Wextra #-g3 -fsanitize=address
 NAME	=	minishell
 
 %.o:	%.c
-	@${CC} -g3 -c $< -o ${<:.c=.o}
+	@${CC} ${CFLAGS} -g3 -c $< -o ${<:.c=.o}
 
 all:	${OBJS} ${NAME}
 

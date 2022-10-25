@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:11:18 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/13 19:07:31 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 17:21:29 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ft_free_all(t_data *data)
 {
 	ft_free_token(data);
 	ft_free_tok_exe(data);
-	ft_free_data(data);
 	ft_free_exe(data);
 	ft_free_fd_heredoc(data);
+	ft_free_data(data);
 }
 
 void	ft_free_token(t_data *data)

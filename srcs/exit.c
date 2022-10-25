@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/04 18:47:46 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 17:47:22 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ ft_free_token_list par close(tmp->fd);
 ps: rajouter dans la structure token un :
 int fd;
 */
-void	ft_exit(t_data *data)
+void	ft_exit(void)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ void	ft_exit(t_data *data)
 	exit(0);
 }
 
-void	ft_exit_here(t_data *data)
+void	ft_exit_here(void)
 {
 	int	i;
 

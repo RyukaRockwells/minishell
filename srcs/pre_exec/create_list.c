@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:49:24 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/30 16:25:09 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/10/25 17:51:40 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_exe	*ft_create_list(t_data *data, int nb_pipe)
+t_exe	*ft_create_list(int nb_pipe)
 {
 	int		i;
 	t_exe	*new;
@@ -23,13 +23,13 @@ t_exe	*ft_create_list(t_data *data, int nb_pipe)
 	exe = NULL;
 	if (nb_pipe == 0)
 	{
-		new = ft_new_exelst(data);
+		new = ft_new_exelst();
 		ft_addexe(&exe, new);
 		return (new);
 	}
 	while (i < nb_pipe)
 	{
-		new = ft_new_exelst(data);
+		new = ft_new_exelst();
 		new->i = i;
 		ft_addexe(&exe, new);
 		i++;
@@ -37,16 +37,16 @@ t_exe	*ft_create_list(t_data *data, int nb_pipe)
 	return (exe);
 }
 
-t_exe	*ft_new_exelst(t_data *data)
+t_exe	*ft_new_exelst(void)
 {
 	t_exe	*new;
 
 	new = malloc(sizeof(t_exe));
 	if (new == NULL)
-		ft_exit(data);
+		ft_exit();
 	new->cmd = malloc(sizeof(char *));
 	if (new->cmd == NULL)
-		ft_exit(data);
+		ft_exit();
 	(new->cmd)[0] = NULL;
 	new->in = -1;
 	new->out = -1;
@@ -57,7 +57,7 @@ t_exe	*ft_new_exelst(t_data *data)
 	return (new);
 }
 
-int	*ft_create_pipe(t_data *data)
+int	*ft_create_pipe(void)
 {
 	int	*fd;
 	int	i;
@@ -65,7 +65,7 @@ int	*ft_create_pipe(t_data *data)
 	fd = malloc(sizeof(int) * 2);
 	i = 0;
 	if (fd == NULL)
-		ft_exit(data);
+		ft_exit();
 	if (pipe(fd) == -1)
 	{
 		while (i < 1024)
@@ -93,7 +93,7 @@ void	ft_fd_exec(t_data *data)
 	ft_get_idexe(data->exe, data->nb_pipe - 1)->out = 1;
 	while (i < data->nb_pipe - 1)
 	{
-		fd = ft_create_pipe(data);
+		fd = ft_create_pipe();
 		ft_get_idexe(data->exe, i)->out = fd[1];
 		ft_get_idexe(data->exe, i + 1)->in = fd[0];
 		i++;

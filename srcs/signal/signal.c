@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:12:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/14 22:12:21 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 17:47:06 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_catch_d(t_data *data)
 {
 	write(1, "exit\n", 6);
 	ft_free(data->envp);
-	ft_exit(data);
+	ft_exit();
 }
 
 void	ft_catch_int(int signal)
