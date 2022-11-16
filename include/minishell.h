@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/25 18:48:20 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/16 16:33:22 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "struct.h"
 # include "parsing.h"
 # include "execution.h"
+# include "builtins.h"
 # include "../srcs/libft/libft.h"
 # include "../srcs/get_next_line/get_next_line_bonus.h"
 

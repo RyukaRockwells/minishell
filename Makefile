@@ -6,51 +6,51 @@
 #    By: nicole <nicole@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/10/25 18:25:51 by nicole           ###   ########.fr        #
+#    Updated: 2022/11/16 17:15:02 by nicole           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	$(addprefix srcs/, main.c error.c ft_loop.c exit.c ft_init.c) \
 			${TOKEN} ${PARSER} ${EXEC} ${PRE_EXEC} ${LEXER} ${FREE} ${SHOW} \
-			${HEREDOC} ${EXPAND} ${UTILS} ${GNL} ${SIGNAL}
+			${HEREDOC} ${EXPAND} ${UTILS} ${GNL} ${SIGNAL} ${BUILTIN}
 SHOW	=	srcs/show/show.c
 SIGNAL	=	$(addprefix srcs/signal/, signal.c signal2.c)
 TOKEN	=	$(addprefix srcs/parsing/token/, token.c token_list.c)
 PARSER	=	$(addprefix srcs/parsing/parser/, parser.c parser_check.c)
 LEXER	=	$(addprefix srcs/parsing/lexer/, lexer.c lexer_utils.c lexer_check.c)
-PRE_EXEC=	$(addprefix srcs/pre_exec/, create_list.c exe_list.c check_exe.c add_exe.c \
-			rm_quotes.c)
+PRE_EXEC=	$(addprefix srcs/pre_exec/, create_list.c exe_list.c)
 FREE	=	$(addprefix srcs/free/, all_free.c all_free2.c)
-EXEC	=	$(addprefix srcs/exec/, exec.c exe_simple_cmd.c)
+EXEC	=	$(addprefix srcs/exec/, exe_utils.c exec.c exe_simple_cmd.c rm_quotes.c)
 HEREDOC	=	$(addprefix srcs/heredoc/, heredoc.c heredoc_utils.c)
 EXPAND	=	$(addprefix srcs/expand/, expand.c expand_utils.c)
 UTILS	=	$(addprefix srcs/utils/, utils.c deco.c)
 GNL		=	$(addprefix srcs/get_next_line/, get_next_line_bonus.c get_next_line_utils_bonus.c)
+BUILTIN	=	$(addprefix srcs/builtins/, builtin.c)
 
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra #-g3 -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra -g3 #-fsanitize=address
 NAME	=	minishell
 
 %.o:	%.c
-	@${CC} ${CFLAGS} -g3 -c $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 all:	${OBJS} ${NAME}
 
 ${NAME}:	${OBJS} ${LIBFT}
-	@${CC} ${CFLAGS} ${OBJS} ${LIBFT} -lreadline -L.local/lib -o ${NAME}
+	${CC} ${CFLAGS} ${OBJS} ${LIBFT} -lreadline -L.local/lib -o ${NAME}
 
 ${LIBFT}:
-	@make -C srcs/libft
+	make -C srcs/libft
 
 clean:
-	@rm -rf ${OBJS}
-	@make clean -C srcs/libft
+	rm -rf ${OBJS}
+	make clean -C srcs/libft
 
 fclean:    clean
-	@rm -rf ${NAME}
-	@make fclean -C srcs/libft
+	rm -rf ${NAME}
+	make fclean -C srcs/libft
 
 re:	fclean all
 

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:24:31 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/20 07:25:06 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 18:58:23 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_token
 	t_token	*next;
 }				t_token;
 
-//pb c'est pour pas exe quand il a pb de redirect
 typedef struct s_exe
 {
 	char	**cmd;

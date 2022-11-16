@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/25 18:27:44 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/25 21:54:55 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_get_cmd(t_data *data)
 	{
 		ft_tok(data);
 		ft_exe_lst(data);
-		//ft_check_cmd_redirect(data);
 	}
 	return (0);
 }

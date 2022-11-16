@@ -1,50 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_free2.c                                        :+:      :+:    :+:   */
+/*   exe_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:07:17 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/16 17:17:17 by nicole           ###   ########.fr       */
+/*   Created: 2022/09/27 19:21:49 by nchow-yu          #+#    #+#             */
+/*   Updated: 2022/10/25 22:02:14 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_free_tab(char **envp)
+int	ft_is_heredoc(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (envp[i] != NULL)
+	while (str[i] != '\0')
 	{
-		free(envp[i]);
-		envp[i] = NULL;
+		if (str[i] == '<' && str[i] == str[i + 1])
+			return (1);
 		i++;
 	}
-	free(envp);
-}
-
-void	ft_free_fd_heredoc(t_data *data)
-{
-	t_fd	*fd;
-
-	while (data->last_fd != NULL)
-	{
-		fd = data->last_fd;
-		data->last_fd = data->last_fd->next;
-		free(fd);
-	}
-}
-
-void	ft_free_exe_simple(t_data *data, char **cmd, char *av)
-{
-	ft_free_token(data);
-	ft_free_tok_exe(data);
-	ft_free_exe(data);
-	ft_free_fd_heredoc(data);
-	ft_free(data->envp);
-	ft_free(cmd);
-	free(av);
+	return (0);
 }

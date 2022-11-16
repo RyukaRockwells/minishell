@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:25:51 by sanauth           #+#    #+#             */
-/*   Updated: 2022/10/24 15:33:59 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/16 16:25:47 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_option(char *str)
 	return (0);
 }
 
-int	ft_print(char *str)
+int	ft_echo_empty(char *str)
 {
 	ft_putstr_fd(str, 1);
 	return (0);
@@ -59,7 +59,7 @@ int	ft_echo(int ac, char **args)
 		}
 		while (args[i] != NULL)
 		{
-			ft_print(args[i]);
+			ft_echo_empty(args[i]);
 			if (args[i + 1] != NULL)
 			{
 				ft_putchar_fd(' ', 1);

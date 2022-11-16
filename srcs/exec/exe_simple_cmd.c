@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/25 18:48:08 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/16 17:37:50 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@ void	ft_exe_cmd_simple(t_data *data)
 	int		status;
 	char	*lst_cmd;
 
-	lst_cmd = ft_rm_quotes(data);
-	//ft_rm_quotes_token(data);
+	if (ft_is_heredoc(data->readline) == 1)
+		lst_cmd = ft_rm_heredoc_in_str(data->readline);
+	else
+		lst_cmd = data->readline;
+	lst_cmd = ft_rm_quotes(lst_cmd);
 	p_exe = fork();
 	if (p_exe == 0)
 		execute(lst_cmd, data->envp, data);
 	waitpid(p_exe, &status, 0);
 	free(lst_cmd);
 }
-//a remplacer
+
 char	*check_path(char **path, char *cmd)
 {
 	char	*one_path;
@@ -99,6 +102,7 @@ void	execute(char *av, char **envp, t_data *data)
 	{
 		ft_putstr_fd("Error: ", 2);
 		ft_putstr_fd(strerror(errno), 2);
+		data->code_exit = errno;
 		ft_free_exe_simple(data, cmd, av);
 		perror("Error");
 		exit(EXIT_FAILURE);

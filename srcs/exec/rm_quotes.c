@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/25 17:58:03 by nicole           ###   ########.fr       */
+/*   Updated: 2022/10/29 05:20:41 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ int	ft_length_str_without_quotes(char *str)
 	return (length);
 }
 
-char	*ft_rm_quotes(t_data *data)
+char	*ft_rm_quotes(char	*str)
 {
 	char	*tmp;
-	char	*str;
 	int		i;
 	int		j;
 
-	str = data->readline;
 	tmp = malloc(sizeof(char) * ft_length_str_without_quotes(str) + 1);
 	i = 0;
 	j = 0;
@@ -55,67 +53,68 @@ char	*ft_rm_quotes(t_data *data)
 		}
 	}
 	tmp[j] = '\0';
+	free(str);
 	return (tmp);
 }
 
-int	ft_length_each_part(t_data *data)
+int	ft_strlen_before_hd(char *str)
 {
-	int		i;
-	t_token	*tmp;
-	
-	i = 1;
-	tmp = data->token;
-	while (tmp->next != NULL)
-	{
+	int	i;
+
+	i = 0;
+	while (str[i] != str[i + 1] && str[i] != '\0')
 		i++;
-		tmp = tmp->next;
+	return (i);
+}
+
+int	ft_strlen_after_hd(char *str)
+{
+	int	i;
+	int	length;
+
+	length = 0;
+	i = ft_strlen_before_hd(str);
+	while (str[i] == '<')
+	{
+		length++;
+		i++;
+	}
+	while (ft_is_space(str[i]) == 0)
+	{
+		length++;
+		i++;
+	}
+	while ((str[i] != ' ' || ft_isascii(str[i]) == 1) && str[i] != '\0')
+	{
+		length++;
+		i++;
 	}
 	return (i);
 }
-/*
-char	*ft_remove_quotes(char	*str)
+
+char	*ft_rm_heredoc_in_str(char *str)
 {
-	char	*tmp;
 	int		i;
 	int		j;
+	int		start;
+	int		end;
+	char	*new_str;
 
-	tmp = malloc(sizeof(char) * ft_length_str_without_quotes(str));
 	i = 0;
 	j = 0;
+	new_str = malloc(sizeof(char) * ft_strlen(str));
+	start = ft_strlen_before_hd(str);
+	end = ft_strlen_after_hd(str);
 	while (str[i] != '\0')
 	{
-		if (str[i] == '\'' || str[i] == '\"')
-			i++;
+		if (i >= start && i <= end)
+			new_str[j] = ' ';
 		else
 		{
-			tmp[j] = str[i];
-			j++;
-			i++;
+			new_str[j] = str[i];
 		}
-	}
-	tmp[j] = '\0';
-	return (tmp);
-}
-//demander jerem pour la condition de la boucle while
-
-void	ft_rm_quotes_token(t_data *data)
-{
-	char	**cmd;
-	t_token	*tok;
-	int		i;
-	int		j;
-	int		k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	cmd = malloc(sizeof(char *) * ft_length_each_part(data));
-	tok = data->token;
-	while (tok->value || tok->next != NULL)
-	{
-		cmd[j] = ft_remove_quotes(tok->value);
+		i++;
 		j++;
-		tok = tok->next;
 	}
+	return (new_str);
 }
-*/

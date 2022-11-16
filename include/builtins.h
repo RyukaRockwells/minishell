@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/16 16:54:35 by nicole           ###   ########.fr       */
+/*   Created: 2022/11/16 16:23:19 by nicole            #+#    #+#             */
+/*   Updated: 2022/11/16 16:38:26 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-void	ft_exe_cmd(t_data *data)
-{
-	if (data->nb_pipe == 0)
-	{
-		if (ft_is_builtin(data->readline) == 1)
-			ft_builtin(data->readline);
-		else
-			ft_exe_cmd_simple(data);
-	}
-	//else
-	//	ft_exe_cmd_pipe(data);
-	//ft_free_all(data);
-}
+
+//****-----------------****
+//****-----BUILT-IN----****
+//****-----------------****
+//builtins/echo.c
+int		ft_option(char *str);
+int		ft_echo_empty(char *str);
+int		ft_echo(int ac, char **args);
+
+//builtins/builtin.c
+int		ft_is_builtin(char *str);
+void	ft_builtin(char *str);
+
+#endif
