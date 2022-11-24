@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:26:24 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/25 22:17:11 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/24 17:41:55 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,11 @@ void	execute(char *av, char **envp,t_data *data);
 
 //exec/exe_utils.c
 int		ft_is_heredoc(char *str);
+
+//exec/exe_several_cmd.c
+void	ft_exe_several_cmd(t_data *data);
+void	first_pipe(t_data *data, int *fd_pipe, char *str);
+void	mid_pipe(t_data *data, int *fd_pipe, char *str);
+void	end_pipe(t_data *data, int *fd_pipe, char *str);
 
 #endif

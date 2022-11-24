@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/29 05:20:41 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/23 16:36:15 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	*ft_rm_quotes(char	*str)
 	int		j;
 
 	tmp = malloc(sizeof(char) * ft_length_str_without_quotes(str) + 1);
+	if (tmp == NULL)
+		ft_exit();
 	i = 0;
 	j = 0;
 	while (str[i] != '\0')
