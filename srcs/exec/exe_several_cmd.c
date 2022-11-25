@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/24 17:43:17 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/25 15:55:34 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,17 @@ void	ft_exe_several_cmd(t_data *data)
 	if (fd_pipe == NULL)
 		ft_exit();
 	cmd_pipe = ft_split(data->readline, '|');
-	while (data->nb_pipe > i)
+	while (data->nb_pipe >= i)
 	{
-		pipe(fd_pipe[i]);
+		if (pipe(fd_pipe[i]) == -1)
+		{
+			ft_putstr_fd("Ça foire\n", 2);
+			ft_exit();
+		}
 		i++;
 	}
+	ft_putnbr_fd(i, 2);
+	ft_putstr_fd(" fd_pipe\n", 2);
 	i = 0;
 	while (data->nb_pipe >= i)
 	{
@@ -127,13 +133,12 @@ void	first_pipe(t_data *data, int *fd_pipe, char *str)
 
 void	mid_pipe(t_data *data, int *fd_pipe, char *str)
 {
-	
 	//(void)data;
-	(void)fd_pipe;
 	pid_t	p_exe;
 	int		status;
 	char	*lst_cmd;
 
+	(void)fd_pipe;
 	ft_putstr_fd("mid_pipe\n", 2);
 	if (ft_is_heredoc(str) == 1)
 		lst_cmd = ft_rm_heredoc_in_str(str);
