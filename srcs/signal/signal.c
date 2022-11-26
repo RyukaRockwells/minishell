@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:12:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/25 17:47:06 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/26 14:50:40 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,3 @@ void	ft_catch_ctrld_h(t_data *data, char *eof)
 	}
 	exit(0);
 }
-//CRTL-C et D vont agir pareil dans le sujet c'est pas demander de gerer les signaux
-//du heredoc

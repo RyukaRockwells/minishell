@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/25 18:00:06 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:09:47 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_get_sep(t_data *data, int i)
 	if (str[i] == '<' || str[i] == '>')
 	{
 		ft_redirect(data, str, i);
-		if (/*str[i] == str[i] && */str[i + 1] == str[i])
+		if (str[i + 1] == str[i])
 			return (1);
 	}
 	if (str[i] == '|')

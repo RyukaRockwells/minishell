@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/23 16:13:56 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:08:31 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,9 @@ char	*check_path(char **path, char *cmd)
 	while (path[++i] != NULL)
 	{
 		tab_path = ft_strjoin(path[i], "/");
-		if (tab_path == NULL)
-		{
-			free(cmd);
-			ft_free(path);
-			exit(EXIT_FAILURE);
-		}
+		check_path_null(tab_path, cmd, path);
 		one_path = ft_strjoin(tab_path, cmd);
-		if (one_path == NULL)
-		{
-			free(tab_path);
-			free(cmd);
-			ft_free(path);
-			exit(EXIT_FAILURE);
-		}
+		check_opath_null(tab_path, one_path, cmd, path)
 		free(tab_path);
 		if (access(one_path, F_OK) == 0)
 			return (one_path);

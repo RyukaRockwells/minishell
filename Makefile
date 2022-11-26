@@ -6,7 +6,7 @@
 #    By: nicole <nicole@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/11/24 16:12:32 by nicole           ###   ########.fr        #
+#    Updated: 2022/11/26 13:38:44 by nicole           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ BUILTIN	=	$(addprefix srcs/builtins/, builtin.c)
 
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
-CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra -g3 #-fsanitize=address
+CC		=	clang
+CFLAGS	=	-Wall -Werror -Wextra -g3 -fsanitize=address
 NAME	=	minishell
 
 %.o:	%.c

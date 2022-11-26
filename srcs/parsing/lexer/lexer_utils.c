@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:53:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/25 18:01:28 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:10:01 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_redirect(t_data *data, char *str, int i)
 {
 	char	*sep;
 
-	if (/*str[i] == str[i] && */str[i + 1] == str[i])
+	if (str[i + 1] == str[i])
 	{
 		sep = ft_substr(str, i, 2);
 		if (sep == NULL)
