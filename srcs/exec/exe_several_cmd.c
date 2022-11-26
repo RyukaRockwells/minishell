@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/25 15:55:34 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/26 11:55:29 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 //------
 void	ft_exe_several_cmd(t_data *data)
 {
-	int		**fd_pipe;
+	int		*fd_pipe;
 	char	**cmd_pipe;
 	int		status;
 	int		i;
