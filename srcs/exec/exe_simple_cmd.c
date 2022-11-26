@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/26 15:08:31 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/26 17:25:01 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,26 @@ void	ft_exe_cmd_simple(t_data *data)
 	pid_t	p_exe;
 	int		status;
 	char	*lst_cmd;
+	int		is_hd;
 
-	if (ft_is_heredoc(data->readline) == 1)
+	is_hd = ft_is_heredoc(data->readline);
+	if (is_hd == 1)
 		lst_cmd = ft_rm_heredoc_in_str(data->readline);
 	else
 		lst_cmd = data->readline;
 	lst_cmd = ft_rm_quotes(lst_cmd);
-	p_exe = fork();
-	if (p_exe == 0)
-		execute(lst_cmd, data->envp, data);
-	waitpid(p_exe, &status, 0);
+	if (ft_cmd_is_empty(lst_cmd) == 0)
+	{
+		p_exe = fork();
+		if (p_exe == 0)
+		{
+			if (is_hd == 1)
+				dup2(data->last_fd, 0);
+			close(data->last_fd);
+			execute(lst_cmd, data->envp, data);
+		}
+		waitpid(p_exe, &status, 0);
+	}
 	free(lst_cmd);
 }
 
@@ -42,7 +52,7 @@ char	*check_path(char **path, char *cmd)
 		tab_path = ft_strjoin(path[i], "/");
 		check_path_null(tab_path, cmd, path);
 		one_path = ft_strjoin(tab_path, cmd);
-		check_opath_null(tab_path, one_path, cmd, path)
+		check_opath_null(tab_path, one_path, cmd, path);
 		free(tab_path);
 		if (access(one_path, F_OK) == 0)
 			return (one_path);

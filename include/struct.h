@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:24:31 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/25 18:58:23 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/26 16:23:40 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_data
 	t_exe		*exe;
 	int			fd_stdout;
 	int			fd_stdin;
-	t_fd		*last_fd;
+	int			last_fd;
 }				t_data;
 
 #endif

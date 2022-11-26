@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/23 16:36:15 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/26 16:56:28 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	*ft_rm_heredoc_in_str(char *str)
 
 	i = 0;
 	j = 0;
-	new_str = malloc(sizeof(char) * ft_strlen(str));
+	new_str = malloc(sizeof(char) * ft_strlen(str) + 1);
 	start = ft_strlen_before_hd(str);
 	end = ft_strlen_after_hd(str);
 	while (str[i] != '\0')
@@ -118,5 +118,6 @@ char	*ft_rm_heredoc_in_str(char *str)
 		i++;
 		j++;
 	}
+	new_str[j] = '\0';
 	return (new_str);
 }

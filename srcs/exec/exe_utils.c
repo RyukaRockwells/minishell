@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:21:49 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/26 15:08:28 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/26 17:09:03 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,29 @@ void	check_path_null(char *tab_path, char *cmd, char **path)
 	}
 }
 
-void	check_opath_null(char *tab_path, char *one_path, char *cmd, char **path)
+void	check_opath_null(char *tab_path, char *o_path, char *cmd, char **path)
 {
-	if (one_path == NULL)
+	if (o_path == NULL)
 	{
 		free(tab_path);
 		free(cmd);
 		ft_free(path);
 		exit(EXIT_FAILURE);
 	}
+}
+
+int	ft_cmd_is_empty(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return (1);
+	while (str[i] != '\0')
+	{
+		if (str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
 }
