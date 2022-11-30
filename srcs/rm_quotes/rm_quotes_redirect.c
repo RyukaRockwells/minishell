@@ -1,86 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rm_quotes.c                                        :+:      :+:    :+:   */
+/*   rm_quotes_redirect.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/26 16:56:28 by nicole           ###   ########.fr       */
+/*   Created: 2022/11/29 20:40:10 by nicole            #+#    #+#             */
+/*   Updated: 2022/11/29 20:52:48 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_length_str_without_quotes(char *str)
-{
-	int		i;
-	int		length;
 
-	i = 0;
-	length = 0;
-	while (str[i] != '\0')
+char	*ft_rm_str_tok_value(t_token *tok)
+{
+	t_token	*tmp;
+	char	*new_str;
+
+	tmp = tok;
+	while (tmp->next != NULL)
 	{
-		if (str[i] == '\'' || str[i] == '\"')
-			i++;
+		if (tmp->type == REDIRECT_IN || tmp->type == REDIRECT_OUT
+			|| tmp->type == D_REDIRECT_OUT)
+			break ;
 		else
-		{
-			length++;
-			i++;
-		}
+			tmp = tmp->next;
 	}
-	return (length);
+	new_str = ft_substr(tmp->next->value, 0, ft_strlen(tmp->next->value));
+	return (ft_rm_quotes(new_str));
 }
 
-char	*ft_rm_quotes(char	*str)
-{
-	char	*tmp;
-	int		i;
-	int		j;
-
-	tmp = malloc(sizeof(char) * ft_length_str_without_quotes(str) + 1);
-	if (tmp == NULL)
-		ft_exit();
-	i = 0;
-	j = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '\'' || str[i] == '\"')
-			i++;
-		else
-		{
-			tmp[j] = str[i];
-			j++;
-			i++;
-		}
-	}
-	tmp[j] = '\0';
-	free(str);
-	return (tmp);
-}
-
-int	ft_strlen_before_hd(char *str)
+int	ft_before_redirect(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != str[i + 1] && str[i] != '\0')
+	while (str[i] != '\0')
+	{
+		if (str[i] == '<' && str[i + 1] != '<')
+			break ;
+		else if (str[i] == '>' && str[i + 1] != '>')
+			break ;
+		else if (str[i] == '>' && str[i + 1] == '>')
+			break ;
 		i++;
+	}
 	return (i);
 }
 
-int	ft_strlen_after_hd(char *str)
+int	ft_after_redirect(char *str)
 {
 	int	i;
 	int	length;
 
 	length = 0;
-	i = ft_strlen_before_hd(str);
-	while (str[i] == '<')
-	{
-		length++;
-		i++;
-	}
+	i = ft_before_redirect(str);
 	while (ft_is_space(str[i]) == 0)
 	{
 		length++;
@@ -94,22 +69,20 @@ int	ft_strlen_after_hd(char *str)
 	return (i);
 }
 
-char	*ft_rm_heredoc_in_str(char *str)
+char	*ft_rm_redirect_in_str(char *str)
 {
 	int		i;
 	int		j;
-	int		start;
-	int		end;
 	char	*new_str;
 
 	i = 0;
 	j = 0;
 	new_str = malloc(sizeof(char) * ft_strlen(str) + 1);
-	start = ft_strlen_before_hd(str);
-	end = ft_strlen_after_hd(str);
+	if (new_str == NULL)
+		ft_exit();
 	while (str[i] != '\0')
 	{
-		if (i >= start && i <= end)
+		if (i >= ft_before_redirect(str) && i <= ft_after_redirect(str))
 			new_str[j] = ' ';
 		else
 		{

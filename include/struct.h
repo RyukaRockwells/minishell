@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:24:31 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/26 16:23:40 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/27 14:52:04 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 typedef struct s_token		t_token;
 typedef struct s_data		t_data;
-typedef struct s_exe		t_exe;
 typedef struct s_fd			t_fd;
 
 typedef struct s_fd
@@ -33,17 +32,6 @@ typedef struct s_token
 	t_token	*next;
 }				t_token;
 
-typedef struct s_exe
-{
-	char	**cmd;
-	int		in;
-	int		out;
-	int		i;
-	int		pb;
-	pid_t	pid;
-	t_exe	*next;
-}			t_exe;
-
 typedef struct s_data
 {
 	int			code_exit;
@@ -53,7 +41,6 @@ typedef struct s_data
 	int			nb_pipe;
 	t_token		*token;
 	t_token		*tok_exe;
-	t_exe		*exe;
 	int			fd_stdout;
 	int			fd_stdin;
 	int			last_fd;

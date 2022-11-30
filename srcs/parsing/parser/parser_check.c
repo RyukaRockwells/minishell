@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:09:10 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/09/27 19:22:28 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:18:03 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,3 @@ int	ft_check_next_tok(int type)
 		return (HEREDOC_ERROR);
 	return (0);
 }
-
-/*
-static void	ft_create_pipe_between_process(t_data *data)
-{
-	int	i;
-	int	*fd_pipe;
-
-	i = 0;
-	ft_get_exec_elm(data->exec_list, 0)->fd_in = 0;
-	ft_get_exec_elm(data->exec_list, data->nb_of_process - 1)->fd_out = 1;
-	while (i < data->nb_of_process - 1)
-	{
-		fd_pipe = ft_create_pipe(data);
-		ft_get_exec_elm(data->exec_list, i)->fd_out = fd_pipe[1];
-		ft_get_exec_elm(data->exec_list, i + 1)->fd_in = fd_pipe[0];
-		i++;
-	}
-}
-*/

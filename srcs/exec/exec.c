@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/26 16:40:22 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/30 14:28:00 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_exe_cmd(t_data *data)
 	i = 0;
 	while (data->readline[i] != '\0')
 	{
-		if (data->readline[i] == '<' && data->readline[i] == data->readline[i + 1])
+		if (data->readline[i] == '<'
+			&& data->readline[i] == data->readline[i + 1])
 			return ;
 		if (data->readline[i] != ' ')
 			break ;
@@ -32,7 +33,97 @@ void	ft_exe_cmd(t_data *data)
 		else
 			ft_exe_cmd_simple(data);
 	}
-	else if (data->nb_pipe > 0)
+	else if (data->nb_pipe != 0)
 		ft_exe_several_cmd(data);
 }
-//ft_free_all(data);
+
+void	ft_choose_fd(int is_hd, t_data *data, char *str)
+{
+	if ((is_hd == 1 || ft_is_rd_in(str) == 0) && data->last_fd != -1)
+	{
+		dup2(data->last_fd, 0);
+		close(data->last_fd);
+	}
+	else if (ft_is_rd_out(str) != 0 && data->last_fd != -1)
+	{
+		dup2(data->last_fd, 1);
+		close(data->last_fd);
+	}
+}
+
+char	*check_path(char **path, char *cmd)
+{
+	char	*one_path;
+	char	*tab_path;
+	int		i;
+
+	i = -1;
+	while (path[++i] != NULL)
+	{
+		tab_path = ft_strjoin(path[i], "/");
+		check_path_null(tab_path, cmd, path);
+		one_path = ft_strjoin(tab_path, cmd);
+		check_opath_null(tab_path, one_path, cmd, path);
+		free(tab_path);
+		if (access(one_path, F_OK) == 0)
+		{
+			ft_free(path);
+			return (one_path);
+		}
+		free(one_path);
+	}
+	ft_free(path);
+	return (0);
+}
+
+char	*find_path(char *cmd, char **envp)
+{
+	char	**paths;
+	int		i;
+
+	i = 0;
+	if (ft_strnstr(cmd, "/", ft_strlen(cmd)) != 0)
+		if (access(cmd, F_OK) == 0)
+			return (cmd);
+	while (ft_strnstr(envp[i], "PATH=", 5) == 0)
+		i++;
+	paths = ft_split(envp[i] + 5, ':');
+	if (paths == NULL)
+	{
+		free(cmd);
+		ft_error();
+	}
+	return (check_path(paths, cmd));
+}
+
+void	execute(char *av, char **envp, t_data *data)
+{
+	char	**cmd;
+	char	*path;
+
+	cmd = ft_split(av, ' ');
+	if (cmd == NULL)
+		ft_error();
+	path = find_path(cmd[0], envp);
+	if (path == 0)
+	{
+		ft_free_exe_simple(data, cmd, av);
+		perror("Error");
+		exit(EXIT_FAILURE);
+	}
+	if (data->code_exit == 0)
+	{
+		if (execve(path, cmd, envp) == -1)
+		{
+			data->code_exit = errno;
+			ft_free_exe_simple(data, cmd, av);
+			perror("Error");
+			exit(EXIT_FAILURE);
+		}
+	}
+	ft_free_exe_simple(data, cmd, av);
+	free(path);
+	ft_free(data->envp);
+	ft_free_all(data);
+	ft_exit();
+}

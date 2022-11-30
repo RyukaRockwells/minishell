@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/25 21:54:55 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/30 14:43:03 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_loop(t_data *data)
 
 	code_error = 0;
 	ft_deco();
-	while (data->code_exit == 0)
+	while (1)
 	{
 		ft_catch_signal();
 		data->readline = readline("Minichouille> ");
@@ -106,66 +106,3 @@ void	ft_loop(t_data *data)
 		ft_reinit(data);
 	}
 }
-
-/*
-void	ft_group_tokens(t_data *data)
-{
-	t_token	*list;
-
-	list = data->tokens_list;
-	while (list)
-	{
-		if (!list->next && list->type != T_WORD)
-			return ;
-		if (list->type == T_SPACE)
-			list = list->next;
-		if (ft_is_redirect(list))
-			list = ft_fill_redir_tkn(data, list);
-		else if (list->type == T_WORD)
-			ft_fill_new_token_2(list->value, data, T_CMD);
-		else if (list->type == T_PIPE)
-			ft_fill_new_token_2(list->value, data, T_PIPE);
-		list = list->next;
-	}
-}
-
-void	ft_fill_new_token_2(char *content, t_data *data, int type)
-{
-	t_token	*new_token;
-
-	new_token = ft_new_token(data, content, type);
-	ft_lstadd_back_token(&data->gp_tokens_list, new_token);
-}
-
-int	ft_get_redir_tkn(t_data *data, char *content, int type)
-{
-	if (!content || !data)
-		ft_exit();
-	if (type == T_REDIRECT_OUT)
-		ft_fill_new_token_2(content, data, T_REDIRECT_OUT);
-	if (type == T_REDIRECT_IN)
-		ft_fill_new_token_2(content, data, T_REDIRECT_IN);
-	if (type == T_HEREDOC)
-		ft_fill_new_token_2(content, data, T_HEREDOC);
-	if (type == D_REDIRECT_OUT)
-		ft_fill_new_token_2(content, data, D_REDIRECT_OUT);
-	return (0);
-}
-
-t_token	*ft_fill_redir_tkn(t_data *data, t_token *list)
-{
-	if (list->next->type != T_SPACE)
-	{
-		ft_get_redir_tkn(data, list->next->value, list->type);
-		list = list->next;
-	}
-	else if (list->next->type == T_SPACE)
-	{
-		ft_get_redir_tkn(data, list->next->next->value, list->type);
-		list = list->next->next;
-	}
-	return (list);
-}
-
-
-*/

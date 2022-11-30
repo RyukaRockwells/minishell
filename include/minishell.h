@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/26 16:24:54 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/30 11:41:57 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <signal.h>
 # include <errno.h>
 # include <string.h>
+# include <fcntl.h>
 # include "struct.h"
 # include "parsing.h"
 # include "execution.h"
@@ -55,6 +56,7 @@
 void	ft_deco(void);
 
 //ft_error.c
+void	fd_error(char *file);
 void	ft_error(void);
 void	ft_error_env(void);
 void	show_error(int code_error);
@@ -74,7 +76,7 @@ t_token	*ft_sep_redtok(t_data *data, t_token *tmp);
 int		ft_chose_tok(t_data *data, char *value, int type);
 
 //exit.c
-char	**ft_free(char **tab);
+void	ft_free(char **tab);
 void	ft_exit(void);
 void	ft_exit_here(void);
 

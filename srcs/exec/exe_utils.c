@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:21:49 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/26 17:09:03 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/30 09:35:36 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	close_and_wait_process(t_data *data, int *fd_pipe, char **cmd_pipe)
 		close(fd_pipe[i]);
 		i++;
 	}
+	free(fd_pipe);
 	i = 0;
 	while (cmd_pipe[i] != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:26:57 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/16 16:52:40 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/29 20:24:27 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_is_builtin(char *str)
 {
-	if (ft_strnstr(str, "echo", ft_strlen(str)))
+	/*if (ft_strnstr(str, "echo", ft_strlen(str)))
 		return (1);
-	else if (ft_strnstr(str, "cd", ft_strlen(str)))
+	else */if (ft_strnstr(str, "cd", ft_strlen(str)))
 		return (1);
 	else if (ft_strnstr(str, "pwd", ft_strlen(str)))
 		return (1);

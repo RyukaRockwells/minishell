@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:11:18 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/26 16:25:22 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/27 14:56:18 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_free_all(t_data *data)
 {
 	ft_free_token(data);
 	ft_free_tok_exe(data);
-	ft_free_exe(data);
 	ft_free_data(data);
 }
 
@@ -50,26 +49,4 @@ void	ft_free_tok_exe(t_data *data)
 void	ft_free_data(t_data *data)
 {
 	free(data->readline);
-}
-
-void	ft_free_exe(t_data *data)
-{
-	t_exe	*exe;
-	int		i;
-
-	i = 0;
-	while (data->exe != NULL)
-	{
-		exe = data->exe;
-		data->exe = data->exe->next;
-		free(exe->cmd);
-		exe->cmd = NULL;
-		while (i < data->nb_pipe - 1)
-		{
-			close(exe->in);
-			close(exe->out);
-		}
-		free(exe);
-	}
-	free(data->exe);
 }

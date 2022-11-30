@@ -6,11 +6,20 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:26:20 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/13 19:11:25 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/30 11:07:58 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	fd_error(char *file)
+{
+	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd(strerror(errno), 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putstr_fd("\n", 2);
+}
 
 void	ft_error(void)
 {

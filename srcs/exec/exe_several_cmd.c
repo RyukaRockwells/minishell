@@ -6,48 +6,12 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/26 14:45:47 by nicole           ###   ########.fr       */
+/*   Updated: 2022/11/30 10:21:41 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-//------ var necessaire pour exe multi pipe
-//pid_t	proccess_start;
-//pid_T	proccess_mid;
-//pid_t	proccess_end;
-//------
-//------parti avec les 3 proccess
-/*
-
-	process_start = fork();
-	if (process_start == 0)
-	{
-		first_pipe(data, fd_pipe[i]);
-		i++;
-	}
-	while (data->nb_pipe > i)
-	{
-		process_mid = fork();
-		if (process_mid == 0)
-		{
-			mid_pipe(data, fd_pipe[i])
-			i++;
-		}
-	}
-	process_end = fork();
-	if (process_end == 0)
-	{
-		if (data->nb_pipe == i)
-		{
-			end_pipe(data, fd_pipe[i]);
-			i++;
-		}
-	}
-	waitpid(process_start, &status, 0);
-	waitpid(process_mid, &status, 0);
-	waitpid(process_end, &status, 0);*/
-//------
 void	ft_exe_several_cmd(t_data *data)
 {
 	int		*fd_pipe;
@@ -78,8 +42,6 @@ void	redirect_process(t_data *data, char **cmd_pipe, int *fd_pipe)
 	i = 0;
 	while (cmd_pipe[i] != NULL)
 	{
-		ft_putnbr_fd(i, 2);
-		ft_putstr_fd(" process\n", 2);
 		process = fork();
 		if (process == 0)
 		{
@@ -99,21 +61,28 @@ void	first_process(t_data *data, int out, int *fd_pipe, char *str)
 {
 	char	*lst_cmd;
 	int		i;
+	int		is_hd;
 
 	i = 0;
+	is_hd = ft_is_heredoc(str);
 	dup2(out, 1);
 	while (data->nb_pipe * 2 > i)
 	{
 		close(fd_pipe[i]);
 		i++;
 	}
-	if (ft_is_heredoc(str) == 1)
+	if (is_hd == 1)
 		lst_cmd = ft_rm_heredoc_in_str(str);
+	else if (ft_is_rd(str) == 0)
+		lst_cmd = ft_is_redirect(str, data);
 	else
 		lst_cmd = str;
 	lst_cmd = ft_rm_quotes(lst_cmd);
-	execute(lst_cmd, data->envp, data);
-	free(lst_cmd);
+	if (ft_cmd_is_empty(lst_cmd) == 0)
+	{
+		ft_choose_fd(is_hd, data, str);
+		execute(lst_cmd, data->envp, data);
+	}
 }
 
 void	mid_process(t_data *data, int i, int *fd_pipe, char *str)
@@ -121,9 +90,11 @@ void	mid_process(t_data *data, int i, int *fd_pipe, char *str)
 	char	*lst_cmd;
 	int		in;
 	int		out;
+	int		is_hd;
 
 	in = fd_pipe[2 * i - 2];
 	out = fd_pipe[2 * i + 1];
+	is_hd = ft_is_heredoc(str);
 	dup2(in, 0);
 	dup2(out, 1);
 	i = 0;
@@ -132,32 +103,44 @@ void	mid_process(t_data *data, int i, int *fd_pipe, char *str)
 		close(fd_pipe[i]);
 		i++;
 	}
-	if (ft_is_heredoc(str) == 1)
+	if (is_hd == 1)
 		lst_cmd = ft_rm_heredoc_in_str(str);
+	else if (ft_is_rd(str) == 0)
+		lst_cmd = ft_is_redirect(str, data);
 	else
 		lst_cmd = str;
 	lst_cmd = ft_rm_quotes(lst_cmd);
-	execute(lst_cmd, data->envp, data);
-	free(lst_cmd);
+	if (ft_cmd_is_empty(lst_cmd) == 0)
+	{
+		ft_choose_fd(is_hd, data, str);
+		execute(lst_cmd, data->envp, data);
+	}
 }
 
 void	end_process(t_data *data, int in, int *fd_pipe, char *str)
 {
 	char	*lst_cmd;
 	int		i;
+	int		is_hd;
 
-	dup2(in, 0);
 	i = 0;
+	is_hd = ft_is_heredoc(str);
+	dup2(in, 0);
 	while (data->nb_pipe * 2 > i)
 	{
 		close(fd_pipe[i]);
 		i++;
 	}
-	if (ft_is_heredoc(str) == 1)
+	if (is_hd == 1)
 		lst_cmd = ft_rm_heredoc_in_str(str);
+	else if (ft_is_rd(str) == 0)
+		lst_cmd = ft_is_redirect(str, data);
 	else
 		lst_cmd = str;
 	lst_cmd = ft_rm_quotes(lst_cmd);
-	execute(lst_cmd, data->envp, data);
-	free(lst_cmd);
+	if (ft_cmd_is_empty(lst_cmd) == 0)
+	{
+		ft_choose_fd(is_hd, data, str);
+		execute(lst_cmd, data->envp, data);
+	}
 }
