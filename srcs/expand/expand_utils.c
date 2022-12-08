@@ -6,13 +6,13 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:08:32 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/23 16:36:32 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/07 18:32:22 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_length_var(int i, char *str)
+int	ft_length_name_var(int i, char *str)
 {
 	int		length;
 

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:36:27 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/30 11:08:30 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/07 11:24:24 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_is_rd(char *str)
 			return (0);
 		else if (str[i] == '>' && str[i + 1] == '>')
 			return (0);
+		else if (str[i] == '<' && str[i + 1] == '<')
+			return (1);
 		i++;
 	}
 	return (1);
@@ -79,6 +81,7 @@ char	*ft_is_redirect(char *str, t_data *data)
 {
 	int		fd;
 	char	*file;
+	char	*new_str;
 
 	file = ft_rm_str_tok_value(data->token);
 	if (ft_type_of_redirect(data->token) == REDIRECT_IN)
@@ -95,5 +98,7 @@ char	*ft_is_redirect(char *str, t_data *data)
 	else
 		data->last_fd = fd;
 	free(file);
-	return (ft_rm_redirect_in_str(str));
+	new_str = ft_rm_redirect_in_str(str);
+	free(str);
+	return (new_str);
 }

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/30 11:41:57 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/08 13:10:40 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 void	ft_deco(void);
 
 //ft_error.c
+void	ft_error_exe(t_data *data, char **cmd, char *av);
 void	fd_error(char *file);
 void	ft_error(void);
 void	ft_error_env(void);
@@ -146,14 +147,13 @@ char	*ft_strcpy(char *dest, char *str);
 //****------EXPAND-----****
 //****-----------------****
 //expand/expand.c
-/*void	ft_expand_token(t_data *data, t_token *token);
-void	ft_expand_pipe(t_data *data, char **str, int *i);*/
 char	*ft_replace_var(char *str, int *i);
-int		ft_exp_is_exist(char **str);
+int		ft_exp_is_exist(char *str);
 void	ft_expand_h(int fd, char **str);
+char	*ft_expand(char *str);
 
 //expand/expand_utils.c
-int		ft_length_var(int i, char *str);
+int		ft_length_name_var(int i, char *str);
 int		ft_length_end_var(int length, char *str);
 int		ft_get_last_id_var(char *str);
 char	*ft_get_var(char *str, int i, int length);

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/30 12:11:32 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/08 13:14:37 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char	*ft_rm_quotes(char	*str)
 		}
 	}
 	tmp[j] = '\0';
+	tmp = ft_expand(tmp);
 	return (tmp);
 }
 

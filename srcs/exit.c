@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/30 14:40:58 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/01 07:54:44 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_exit(void)
 	int	i;
 
 	i = 0;
-	ft_free(data->envp);
 	while (i < 1024)
 	{
 		close(i);

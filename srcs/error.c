@@ -6,11 +6,18 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:26:20 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/30 11:07:58 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/01 08:26:59 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	ft_error_exe(t_data *data, char **cmd, char *av)
+{
+	ft_free_exe_simple(data, cmd, av);
+	perror("Error");
+	exit(EXIT_FAILURE);
+}
 
 void	fd_error(char *file)
 {

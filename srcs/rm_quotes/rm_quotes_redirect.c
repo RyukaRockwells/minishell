@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:40:10 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/29 20:52:48 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/08 13:23:19 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*ft_rm_str_tok_value(t_token *tok)
 {
 	t_token	*tmp;
 	char	*new_str;
+	char	*str_without_quotes;
 
 	tmp = tok;
 	while (tmp->next != NULL)
@@ -28,7 +29,9 @@ char	*ft_rm_str_tok_value(t_token *tok)
 			tmp = tmp->next;
 	}
 	new_str = ft_substr(tmp->next->value, 0, ft_strlen(tmp->next->value));
-	return (ft_rm_quotes(new_str));
+	str_without_quotes = ft_rm_quotes(new_str);
+	free(new_str);
+	return (str_without_quotes);
 }
 
 int	ft_before_redirect(char *str)

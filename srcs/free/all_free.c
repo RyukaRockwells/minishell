@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:11:18 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/27 14:56:18 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/05 12:04:19 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void	ft_free_tok_exe(t_data *data)
 void	ft_free_data(t_data *data)
 {
 	free(data->readline);
+	data->readline = NULL;
 }

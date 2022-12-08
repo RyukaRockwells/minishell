@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/27 14:51:10 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/05 12:04:14 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_init(char **envp, t_data *data)
 
 void	ft_reinit(t_data *data)
 {
-	data->readline = NULL;
 	data->nb_pipe = 0;
 	ft_free_all(data);
 }
