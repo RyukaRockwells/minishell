@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:36:27 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/07 11:24:24 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/11 17:02:18 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,5 @@ char	*ft_is_redirect(char *str, t_data *data)
 		data->last_fd = fd;
 	free(file);
 	new_str = ft_rm_redirect_in_str(str);
-	free(str);
 	return (new_str);
 }

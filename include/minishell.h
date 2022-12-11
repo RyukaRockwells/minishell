@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/08 13:10:40 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/11 16:33:15 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ char	*ft_strcpy(char *dest, char *str);
 //expand/expand.c
 char	*ft_replace_var(char *str, int *i);
 int		ft_exp_is_exist(char *str);
-void	ft_expand_h(int fd, char **str);
+char	*ft_expand_h(int fd, char *str);
 char	*ft_expand(char *str);
 
 //expand/expand_utils.c

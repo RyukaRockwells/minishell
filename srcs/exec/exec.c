@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/01 08:27:34 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/11 17:13:42 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,5 @@ void	execute(char *av, char **envp, t_data *data)
 	}
 	ft_free_exe_simple(data, cmd, av);
 	free(path);
-	ft_free(data->envp);
-	ft_free_all(data);
 	ft_exit();
 }

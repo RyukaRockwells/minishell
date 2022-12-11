@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:16:34 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/01 07:53:29 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/11 16:32:17 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_read_heredoc(int fd, t_data *data, char *str_here)
 		if (ft_strcmp(tmp, str_here) == 0)
 			delimiter_found = 1;
 		if (ft_strchr(tmp, '$') != NULL)
-			ft_expand_h(fd, &tmp);
+			tmp = ft_expand_h(fd, tmp);
 		write(fd, tmp, ft_strlen(tmp));
 		write(fd, "\n", 1);
 		free(tmp);

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:28:10 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/08 13:31:07 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/11 17:44:00 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,11 +177,15 @@ int	ft_exp_is_exist(char *str)
 		ft_exit();
 	ft_strlcpy(tmp, str + 1, i);
 	if (getenv(tmp) == NULL)
+	{
+		free(tmp);
 		return (0);
+	}
+	free(tmp);
 	return (1);
 }
 
-int	ft_is_expand(char *str)
+int	ft_is_expand(int fd, char *str)
 {
 	int	i;
 
@@ -191,9 +195,11 @@ int	ft_is_expand(char *str)
 		if (str[i] == '$')
 		{
 			if (str[i + 1] == '?')
-				write(2, "error_code\n", 11);
+				write(fd, "error_code\n", 11);
 			else if (ft_exp_is_exist(str + i) == 1)
+			{
 				return (1);
+			}
 			else
 				return (0);
 		}
@@ -202,33 +208,22 @@ int	ft_is_expand(char *str)
 	return (0);
 }
 
-void	ft_expand_h(int fd, char **str)
+char	*ft_expand_h(int fd, char *str)
 {
-	int		i;
-	char	*tmp;
+	int		length_all_content;
+	int		length_without_var;
+	char	*strexp;
 
-	i = 0;
-	while ((*str)[i] != '\0')
-	{
-		if ((*str)[i] == '$')
-		{
-			if ((*str)[i + 1] == '?')
-				write(fd, "error_code\n", 11);
-			else if (ft_exp_is_exist(*str + i) == 0)
-			{
-				//ft_replace_to_empty(*str, &i);
-				i++;
-			}
-			else
-			{
-				tmp = ft_replace_var(*str, &i);
-				free(*str);
-				*str = tmp;
-				//return ;
-			}
-		}
-		i++;
-	}
+	if (ft_is_expand(fd, str) == 0)
+		return (str);
+	length_all_content = ft_length_all_content_var(str);
+	length_without_var = ft_length_str_without_var(str);
+	strexp = malloc(sizeof(char) * length_all_content + length_without_var + 1);
+	if (strexp == NULL)
+		ft_exit();
+	ft_replace_expand(str, strexp);
+	free(str);
+	return (strexp);
 }
 
 char	*ft_expand(char *str)
@@ -237,7 +232,7 @@ char	*ft_expand(char *str)
 	int		length_without_var;
 	char	*strexp;
 
-	if (ft_is_expand(str) == 0)
+	if (ft_is_expand(2, str) == 0)
 		return (str);
 	length_all_content = ft_length_all_content_var(str);
 	length_without_var = ft_length_str_without_var(str);
@@ -247,32 +242,3 @@ char	*ft_expand(char *str)
 	ft_replace_expand(str, strexp);
 	return (strexp);
 }
-	/*int		i;
-	char	*tmp;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '$')
-		{
-			if (str[i + 1] == '?')
-				write(2, "error_code\n", 11);
-			else if (ft_exp_is_exist(str + i) == 0)
-			{
-				//ft_replace_to_empty(*str, &i);
-				i++;
-			}
-			else
-			{
-				tmp = ft_replace_var(str, &i);
-				fprintf(stderr, "tmp = %s\n", tmp);
-				//free(str);
-				//str = tmp;
-				fprintf(stderr, "remplace le null de replace_var\n");
-				//while (str[i] != ' ')
-				i++;
-				return ;
-			}
-		}
-		i++;
-	}*/
