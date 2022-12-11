@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:26:57 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/11 17:52:35 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/11 18:02:34 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void	ft_builtin(char *str)
 	if (ft_strncmp(str, "pwd", ft_strlen(str)) == 0)
 		ft_pwd();
 	else
-		printf("pas pwd");
+		printf("pas pwd\n");
 }

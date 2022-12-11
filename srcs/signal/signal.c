@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:12:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/01 07:55:52 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/11 18:27:54 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_catch_signal(void)
 void	ft_catch_d(t_data *data)
 {
 	write(1, "exit\n", 6);
+	free(data->readline);
 	ft_free(data->envp);
 	ft_exit();
 }

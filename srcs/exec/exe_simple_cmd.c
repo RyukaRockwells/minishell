@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/11 17:47:17 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/11 18:31:18 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_exe_cmd_simple(t_data *data)
 		lst_cmd = data->readline;
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
-		lst_cmd = ft_rm_quotes(lst_cmd);
+		//lst_cmd = ft_rm_quotes(lst_cmd);
 		p_exe = fork();
 		if (p_exe == 0)
 		{
@@ -39,6 +39,5 @@ void	ft_exe_cmd_simple(t_data *data)
 		}
 		waitpid(p_exe, &status, 0);
 	}
-	else
-		free(lst_cmd);
+	free(lst_cmd);
 }
