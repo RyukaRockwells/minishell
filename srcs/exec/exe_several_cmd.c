@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/30 10:21:41 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/17 17:14:28 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	first_process(t_data *data, int out, int *fd_pipe, char *str)
 	else if (ft_is_rd(str) == 0)
 		lst_cmd = ft_is_redirect(str, data);
 	else
-		lst_cmd = str;
+		lst_cmd = ft_strdup(str);
 	lst_cmd = ft_rm_quotes(lst_cmd);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
@@ -108,7 +108,7 @@ void	mid_process(t_data *data, int i, int *fd_pipe, char *str)
 	else if (ft_is_rd(str) == 0)
 		lst_cmd = ft_is_redirect(str, data);
 	else
-		lst_cmd = str;
+		lst_cmd = ft_strdup(str);
 	lst_cmd = ft_rm_quotes(lst_cmd);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
@@ -136,7 +136,7 @@ void	end_process(t_data *data, int in, int *fd_pipe, char *str)
 	else if (ft_is_rd(str) == 0)
 		lst_cmd = ft_is_redirect(str, data);
 	else
-		lst_cmd = str;
+		lst_cmd = ft_strdup(str);
 	lst_cmd = ft_rm_quotes(lst_cmd);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{

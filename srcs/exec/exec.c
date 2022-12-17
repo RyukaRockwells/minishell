@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/11 17:13:42 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:15:03 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	ft_exe_cmd(t_data *data)
 	}
 	if (data->nb_pipe == 0)
 	{
-		if (ft_is_builtin(data->readline) == 1)
-			ft_builtin(data->readline);
+		if (ft_is_builtin(data->readline, data) != 0)
+			return ;
 		else
 			ft_exe_cmd_simple(data);
 	}

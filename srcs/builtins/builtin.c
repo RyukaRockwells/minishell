@@ -6,29 +6,35 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:26:57 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/11 18:02:34 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:16:24 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_is_builtin(char *str)
+int	ft_is_builtin(char *str, t_data *data)
 {
 	/*if (ft_strnstr(str, "echo", ft_strlen(str)))
 		return (1);
-	else */if (ft_strnstr(str, "cd", ft_strlen(str)))
+	else*/if (ft_strnstr(str, "cd", ft_strlen(str)))
 		return (1);
 	else if (ft_strnstr(str, "pwd", ft_strlen(str)))
-		return (1);
+		return (ft_pwd());
 	else if (ft_strnstr(str, "export", ft_strlen(str)))
 		return (1);
 	else if (ft_strnstr(str, "unset", ft_strlen(str)))
 		return (1);
 	else if (ft_strnstr(str, "env", ft_strlen(str)))
-		return (1);
+		return (ft_benv(data));
 	else if (ft_strnstr(str, "exit", ft_strlen(str)))
-		return (1);
+		return (ft_builtin_exit(data->readline, data));
 	return (0);
+}
+
+int ft_benv(t_data *data)
+{
+	ft_print_env(data);
+	return (1);
 }
 
 int	ft_pwd(void)
@@ -41,7 +47,7 @@ int	ft_pwd(void)
 		return (1);
 	printf("%s\n", pwd);
 	free(pwd);
-	return (0);
+	return (1);
 }
 
 void	ft_builtin(char *str)
@@ -52,4 +58,45 @@ void	ft_builtin(char *str)
 		ft_pwd();
 	else
 		printf("pas pwd\n");
+}
+
+int	ft_builtin_exit(char *str, t_data *data)
+{
+	int	i;
+	int	exit_code;
+
+	i = 0;
+	exit_code = ft_atoi(str);
+	if (ft_strncmp(str, "exit", ft_strlen(str)) == 0)
+	{
+		ft_free_all(data);
+		ft_free(data->envp);
+		exit(0);
+	}
+	else if (str != NULL)
+	{
+		if (str[0] == '-' || str[0] == '+')
+			i++;
+		while (str[i] != '\0')
+		{
+			if (ft_isdigit(str[i]) == 0)
+			{
+				ft_putstr_fd("exit\n", 2);
+				ft_putstr_fd("minishell: exit: ", 2);
+				ft_putstr_fd(str, 2);
+				ft_putstr_fd(": numeric argument required\n", 2);
+				ft_free_all(data);
+				ft_free(data->envp);
+				exit(2);
+			}
+			i++;
+		}
+	}
+	else
+	{
+		ft_free_all(data);
+		ft_free(data->envp);
+	}
+	exit(exit_code);
+	return (1);
 }

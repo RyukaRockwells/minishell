@@ -6,12 +6,11 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:40:10 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/08 13:23:19 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/11 18:33:37 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
 
 char	*ft_rm_str_tok_value(t_token *tok)
 {

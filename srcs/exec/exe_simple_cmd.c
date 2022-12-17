@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/11 18:31:18 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/17 17:13:59 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_exe_cmd_simple(t_data *data)
 	else if (ft_is_rd(data->readline) == 0)
 		lst_cmd = ft_is_redirect(data->readline, data);
 	else
-		lst_cmd = data->readline;
+		lst_cmd = ft_strdup(data->readline);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
 		//lst_cmd = ft_rm_quotes(lst_cmd);

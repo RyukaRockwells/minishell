@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/01 07:53:36 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/11 18:34:10 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	ft_lexer(t_data *data)
 	}
 	return (0);
 }
-
-//!!!revoir le fonctionnement de ft_wdlen!!!
 
 int	ft_get_word(t_data *data, int i)
 {
