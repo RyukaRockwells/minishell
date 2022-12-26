@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:26:35 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/17 18:04:50 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/26 16:52:44 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,8 @@ static int	ft_nextmots(char *s, int pos, char c)
 	i = pos;
 	if (s == NULL)
 		return (0);
-	while (s[i] != '\0')
-	{
-		if (s[i] == '\'')
-		{
-			i++;
-			while (s[i] != '\'')
-				i++;
-			break ;
-		}
-		else if (s[i] == '\"')
-		{
-			i++;
-			while (s[i] != '\"')
-				i++;
-			break ;
-		}
-		else if (s[i] == c)
-			break ;
+	while (s[i] == c && s[i] != '\0')
 		i++;
-	}
 	return (i);
 }
 
@@ -67,48 +49,11 @@ static int	ft_nbmots(char *s, char c)
 	nbmots = 0;
 	while (i < ft_strlen(s))
 	{
-		while (s[i] != '\0')
-		{
-			if (s[i] == '\'')
-			{
-				i++;
-				while (s[i] != '\'')
-					i++;
-				break ;
-			}
-			else if (s[i] == '\"')
-			{
-				i++;
-				while (s[i] != '\"')
-					i++;
-				break ;
-			}
-			else if (s[i] == c)
-				break ;
+		while (s[i] == c && s[i] != '\0')
 			i++;
-		}
 		if (s[i])
 			nbmots++;
-		while (s[i] != '\0')
-		{
-			if (s[i] == '\'')
-			{
-				i++;
-				while (s[i] != '\'')
-					i++;
-				break ;
-			}
-			else if (s[i] == '\"')
-			{
-				i++;
-				while (s[i] != '\"')
-					i++;
-				break ;
-			}
-			else if (s[i] == c)
-				break ;
-			i++;
-		}
+		i = ft_pass_word(s, c, i);
 		i++;
 	}
 	return (nbmots);
@@ -124,9 +69,7 @@ static char	**ft_assign(char const *s, char **res, int i, char c)
 	while (s[i] != '\0')
 	{
 		b = 0;
-		len_m = i;
-		while (s[len_m] != c && s[len_m] != '\0')
-			len_m++;
+		len_m = ft_pass_word((char *)s, c, i);
 		len_m = len_m - i;
 		res[a] = malloc(sizeof(char) * len_m + 1);
 		if (res[a] == NULL)
@@ -152,22 +95,4 @@ char	**ft_split(char const *s, char c)
 	if (res == NULL)
 		return (NULL);
 	return (ft_assign(s, res, i, c));
-}
-
-int	main(void)
-{
-	char	**str;
-	int		i;
-
-	//fprintf(stderr, "nextmots = %d\n", ft_nextmots("bonjour    \'\"\'", 0, ' '));
-	//fprintf(stderr, "nextmots = %d\n", ft_nextmots("bonjour    \'\"\'", 11, ' '));
-	fprintf(stderr, "bonjour \"Un peu beauuu  coup\"");
-	str = ft_split("bonjour \"Un peu beauuu  coup\"", ' ');
-	write(2, "\n", 1);
-	i = 0;
-	while (str[i] != NULL)
-	{
-		fprintf(stderr, "str after split: %s\n", str[i]);
-		i++;
-	}
 }

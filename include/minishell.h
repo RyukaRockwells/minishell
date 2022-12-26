@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/11 16:33:15 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/26 16:52:27 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void	ft_waitpid_h(t_data *data, int i);
 //utils/utils.c
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strcpy(char *dest, char *str);
+int		ft_pass_word(char *s, char c, int i);
 
 //****-----------------****
 //****------EXPAND-----****

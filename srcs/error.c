@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:26:20 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/11 16:17:40 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:52:56 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_error_exe(t_data *data, char **cmd, char *av)
 {
 	ft_free_exe_simple(data, cmd, av);
-	perror("Error ");
+	perror("Error exe");
 	exit(EXIT_FAILURE);
 }
 
