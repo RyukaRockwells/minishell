@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/11 17:29:20 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/31 13:24:15 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ char	*ft_rm_heredoc_in_str(char *str)
 		j++;
 	}
 	new_str[j] = '\0';
+	new_str = ft_expand(new_str);
 	return (new_str);
 }

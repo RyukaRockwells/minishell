@@ -1,62 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   display_expand.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 16:19:52 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/02 11:15:41 by nicole           ###   ########.fr       */
+/*   Created: 2022/12/29 13:34:29 by nicole            #+#    #+#             */
+/*   Updated: 2022/12/31 13:04:52 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+/*
+int	display_expand(char *str)
 {
 	int	i;
+	int	show;
 
 	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (s1[i] - s2[i]);
-}
-
-char	*ft_strcpy(char *dest, char *str)
-{
-	int	i;
-
-	i = 0;
+	show = 0;
 	while (str[i] != '\0')
 	{
-		dest[i] = str[i];
+		if (str[i] == '\'')
+		{
+			i++;
+			while (str[i] != '\'')
+			{
+				if (str[i] == '$')
+					show = 1;
+				i++;
+			}
+		}
+		else if (str[i] == '\"')
+		{
+			i++;
+			while (str[i] != '\"')
+			{
+				if (str[i] == '$')
+					show = 2;
+				i++;
+			}
+		}
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	return (show);
 }
 
-int	ft_pass_word(char *s, char c, int i)
+int	main(void)
 {
-	while (s[i] != '\0' && s[i] != c)
-	{
-		if (s[i] == '\'')
-		{
-			i++;
-			while (s[i] != '\'')
-				i++;
-		}
-		else if (s[i] == '\"')
-		{
-			i++;
-			while (s[i] != '\"')
-				i++;
-		}
-		i++;
-	}
-	return (i);
+	int	show;
+
+	show = display_expand("bonjour \"un peu beau  coup\" \'$pas du tout\'");
+	if (show == 1)
+		fprintf(stderr, "Single quote!\n");
+	else if (show == 2)
+		fprintf(stderr, "Double quote!\n");
+	else
+		fprintf(stderr, "No expand!\n");
 }
+*/

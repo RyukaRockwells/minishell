@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/26 16:52:27 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/02 20:43:11 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,14 +126,12 @@ void	show_token(t_data *data);
 //****-----------------****
 
 //heredoc/heredoc.c
-t_fd	*ft_start_fd(int fd);
 void	ft_close_here(t_data *data);
 int		ft_check_heredoc(t_data *data, t_token *here_tok);
 void	ft_read_heredoc(int fd, t_data *data, char *str_here);
 
 //heredoc/heredoc_utils.c
-void	ft_fdadd_back(t_fd **alst, t_fd *new);
-t_fd	*ft_fdlast(t_fd *here_fd);
+int		ft_is_heredoc(char *str);
 void	ft_waitpid_h(t_data *data, int i);
 
 //****-----------------****
@@ -142,13 +140,13 @@ void	ft_waitpid_h(t_data *data, int i);
 //utils/utils.c
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strcpy(char *dest, char *str);
+char	**ft_split_quote(char const *s, char c);
 int		ft_pass_word(char *s, char c, int i);
 
 //****-----------------****
 //****------EXPAND-----****
 //****-----------------****
 //expand/expand.c
-char	*ft_replace_var(char *str, int *i);
 int		ft_exp_is_exist(char *str);
 char	*ft_expand_h(int fd, char *str);
 char	*ft_expand(char *str);
@@ -158,5 +156,6 @@ int		ft_length_name_var(int i, char *str);
 int		ft_length_end_var(int length, char *str);
 int		ft_get_last_id_var(char *str);
 char	*ft_get_var(char *str, int i, int length);
+int		ft_skip_name_var(char *str, int i);
 
 #endif

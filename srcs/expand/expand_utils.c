@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:08:32 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/07 18:32:22 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/02 20:42:23 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,15 @@ char	*ft_get_var(char *str, int i, int length)
 	}
 	var[j] = '\0';
 	return (var);
+}
+
+int	ft_skip_name_var(char *str, int i)
+{
+	while (str[i] != '\0')
+	{
+		if (ft_isalnum(str[i]) == 0 && str[i] != '_')
+			break ;
+		i++;
+	}
+	return (i);
 }

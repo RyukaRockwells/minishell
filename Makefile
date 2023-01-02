@@ -6,7 +6,7 @@
 #    By: nicole <nicole@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2022/12/08 13:15:44 by nicole           ###   ########.fr        #
+#    Updated: 2023/01/02 13:43:40 by nicole           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,14 @@ EXEC	=	$(addprefix srcs/exec/, exe_utils.c exec.c exe_simple_cmd.c \
 			exe_several_cmd.c)
 HEREDOC	=	$(addprefix srcs/heredoc/, heredoc.c heredoc_utils.c)
 EXPAND	=	$(addprefix srcs/expand/, expand.c expand_utils.c)
-UTILS	=	$(addprefix srcs/utils/, utils.c deco.c)
+UTILS	=	$(addprefix srcs/utils/, utils.c deco.c ft_split_quotes.c )
 GNL		=	$(addprefix srcs/get_next_line/, get_next_line_bonus.c get_next_line_utils_bonus.c)
 BUILTIN	=	$(addprefix srcs/builtins/, builtin.c)
 
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 CC		=	cc
-CFLAGS	=	-Wall -Werror -Wextra -g3# -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra -g3 -O0 -fsanitize=address
 NAME	=	minishell
 
 %.o:	%.c

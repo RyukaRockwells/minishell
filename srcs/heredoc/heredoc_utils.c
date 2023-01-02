@@ -6,36 +6,24 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:43:30 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/20 07:30:26 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/28 18:10:02 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_fdadd_back(t_fd **alst, t_fd *new)
+int	ft_is_heredoc(char *str)
 {
-	t_fd	*last_elmt;
+	int	i;
 
-	if (alst != NULL)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (*alst == NULL)
-			*alst = new;
-		else
-		{
-			last_elmt = ft_fdlast(*(alst));
-			last_elmt->next = new;
-		}
+		if (str[i] == '<' && str[i] == str[i + 1])
+			return (1);
+		i++;
 	}
-}
-
-t_fd	*ft_fdlast(t_fd *here_fd)
-{
-	if (here_fd != NULL)
-	{
-		while (here_fd->next != NULL)
-			here_fd = here_fd->next;
-	}
-	return (here_fd);
+	return (0);
 }
 
 void	ft_waitpid_h(t_data *data, int i)

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:26:35 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/26 16:52:44 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/02 20:28:53 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,24 @@ static char	**ft_assign(char const *s, char **res, int i, char c)
 		if (res[a] == NULL)
 			return (ft_free_split(res));
 		while (b < len_m && s[i] != 0)
-			res[a][b++] = s[i++];
+		{
+			if (s[i] == '\'')
+			{
+				i++;
+				while (s[i] != '\'')
+					res[a][b++] = s[i++];
+				i++;
+			}
+			else if (s[i] == '\"')
+			{
+				i++;
+				while (s[i] != '\"')
+					res[a][b++] = s[i++];
+				i++;
+			}
+			else
+				res[a][b++] = s[i++];
+		}
 		res[a++][b] = 0;
 		i = ft_nextmots((char *)s, i, c);
 	}
@@ -83,7 +100,7 @@ static char	**ft_assign(char const *s, char **res, int i, char c)
 	return (res);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_quote(char const *s, char c)
 {
 	int		i;
 	char	**res;

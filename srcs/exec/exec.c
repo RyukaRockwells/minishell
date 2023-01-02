@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/17 18:15:03 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/02 10:23:54 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	execute(char *av, char **envp, t_data *data)
 	char	**cmd;
 	char	*path;
 
-	cmd = ft_split(av, ' ');
+	cmd = ft_split_quote(av, ' ');
 	if (cmd == NULL)
 		ft_error();
 	path = find_path(cmd[0], envp);

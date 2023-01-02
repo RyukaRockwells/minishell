@@ -6,37 +6,50 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:28:10 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/11 17:44:00 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/02 21:00:00 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-/*replace_var = remplacer les noms de var env par sa valeur
-*/
-
 int	ft_length_str_without_var(char *str)
 {
 	int	i;
 	int	length;
-	int	ignore;
+	int	in_dquote;
 
 	i = 0;
-	ignore = 0;
+	in_dquote = 0;
 	length = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '$')
+		if (str[i] == '\"' && in_dquote == 0)
+			in_dquote = 1;
+		else if (str[i] == '\"' && in_dquote == 1)
+			in_dquote = 0;
+		if (str[i] == '\'' && in_dquote == 0)
 		{
-			ignore = 1;
-		}
-		else if (str[i] == ' ')
-			ignore = 0;
-		if (ignore == 0)
-		{
+			i++;
+			length++;
+			while (str[i] != '\'')
+			{
+				i++;
+				length++;
+			}
+			i++;
 			length++;
 		}
-		i++;
+		else if (str[i] == '$')
+		{
+			i++;
+			while (ft_isalnum(str[i]) == 1 || str[i] == '_')
+				i++;
+		}
+		else
+		{
+			i++;
+			length++;
+		}
 	}
 	return (length);
 }
@@ -51,13 +64,15 @@ int	ft_strlen_var(char *str)
 	env = "";
 	while (str[i] != '\0')
 	{
-		if (str[i] == '$' || ft_is_space(str[i]) == 0)
+		if (ft_isalnum(str[i]) == 0 && str[i] != '_')
 			break ;
 		i++;
 	}
 	char_save = str[i];
 	str[i] = '\0';
 	env = getenv(str);
+	if (env == NULL)
+		env = str;
 	str[i] = char_save;
 	return (ft_strlen(env));
 }
@@ -72,8 +87,12 @@ int	ft_length_all_content_var(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '$')
+		{
 			length += ft_strlen_var(str + i + 1);
-		i++;
+			i = ft_skip_name_var(str, i + 1);
+		}
+		else
+			i++;
 	}
 	return (length);
 }
@@ -90,12 +109,10 @@ void	ft_replace_var_to_content(char *str, char *strexp, int	*next_i, int *next_j
 	start_env = (*next_i);
 	while (str[(*next_i)] != '\0')
 	{
-		while ((str[(*next_i)] != '$' && ft_is_space(str[(*next_i)]) != 0) && str[(*next_i + 1)] != '\0')
+		while (ft_isalnum(str[(*next_i)]) == 1 || str[(*next_i)] == '_')
 			(*next_i)++;
 		break ;
 	}
-	if (str[(*next_i + 1)] == '\0')
-		(*next_i)++;
 	char_save = str[(*next_i)];
 	str[(*next_i)] = '\0';
 	env = getenv(str + start_env);
@@ -108,7 +125,7 @@ void	ft_replace_var_to_content(char *str, char *strexp, int	*next_i, int *next_j
 	}
 }
 
-void	ft_replace_expand(char *str, char *strexp)
+void	ft_replace_expand(int fd, char *str, char *strexp)
 {
 	int	i;
 	int	j;
@@ -117,47 +134,53 @@ void	ft_replace_expand(char *str, char *strexp)
 	j = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '$')
+		if (str[i] == '\'')
+		{
+			strexp[j++] = str[i++];
+			while (str[i] != '\'')
+				strexp[j++] = str[i++];
+			strexp[j++] = str[i++];
+		}
+		else if (str[i] == '\"')
+		{
+			strexp[j++] = str[i++];
+			while (str[i] != '\"')
+			{
+				if (str[i] == '$')
+				{
+					i++;
+					if (str[i] == '?')
+						write(fd, "error_code\n", 11);
+					else if (ft_exp_is_exist(str + i) != 0)
+					{
+						while (ft_isalnum(str[i]) == 1 || str[i] == '_')
+							i++;
+					}
+					else
+						ft_replace_var_to_content(str, strexp, &i, &j);
+				}
+				else
+					strexp[j++] = str[i++];
+			}
+			strexp[j++] = str[i++];
+		}
+		else if (str[i] == '$')
 		{
 			i++;
-			ft_replace_var_to_content(str, strexp, &i, &j);
+			if (str[i] == '?')
+				write(fd, "error_code\n", 11);
+			else if (ft_exp_is_exist(str + i) != 0)
+			{
+				while (ft_isalnum(str[i]) == 1 || str[i] == '_')
+					i++;
+			}
+			else
+				ft_replace_var_to_content(str, strexp, &i, &j);
 		}
 		else
-		{
-			strexp[j] = str[i];
-			i++;
-			j++;
-		}
+			strexp[j++] = str[i++];
 	}
 	strexp[j] = '\0';
-}
-
-char	*ft_replace_var(char *str, int *i)
-{
-	char	*env;
-	int		length;
-	int		length_end;
-	char	*tmp;
-	int		j;
-
-	env = "";
-	(*i) += 1;
-	length = ft_length_name_var(*i, str);
-	length_end = ft_length_end_var(length, str);
-	if (env == NULL)
-		ft_exit();
-	env = ft_get_var(str, *i, length);
-	tmp = malloc(sizeof(char) * ft_strlen(getenv(env)) + length_end + 1);
-	if (tmp == NULL)
-		ft_exit();
-	tmp = ft_strcpy(tmp, getenv(env));
-	j = ft_strlen(getenv(env));
-	length += 1;
-	while (str[length] != '\0')
-		tmp[j++] = str[length++];
-	tmp[j] = '\0';
-	free(env);
-	return (tmp);
 }
 
 int	ft_exp_is_exist(char *str)
@@ -165,46 +188,23 @@ int	ft_exp_is_exist(char *str)
 	char	*tmp;
 	int		i;
 
-	i = 1;
+	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == ' ' || str[i] == '$')
+		if (ft_isalnum(str[i]) == 0 && str[i] != '_')
 			break ;
 		i++;
 	}
 	tmp = malloc(sizeof(char) * i + 1);
 	if (tmp == NULL)
 		ft_exit();
-	ft_strlcpy(tmp, str + 1, i);
+	ft_strlcpy(tmp, str, i + 1);
 	if (getenv(tmp) == NULL)
 	{
 		free(tmp);
-		return (0);
+		return (1);
 	}
 	free(tmp);
-	return (1);
-}
-
-int	ft_is_expand(int fd, char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '$')
-		{
-			if (str[i + 1] == '?')
-				write(fd, "error_code\n", 11);
-			else if (ft_exp_is_exist(str + i) == 1)
-			{
-				return (1);
-			}
-			else
-				return (0);
-		}
-		i++;
-	}
 	return (0);
 }
 
@@ -214,14 +214,12 @@ char	*ft_expand_h(int fd, char *str)
 	int		length_without_var;
 	char	*strexp;
 
-	if (ft_is_expand(fd, str) == 0)
-		return (str);
 	length_all_content = ft_length_all_content_var(str);
 	length_without_var = ft_length_str_without_var(str);
 	strexp = malloc(sizeof(char) * length_all_content + length_without_var + 1);
 	if (strexp == NULL)
 		ft_exit();
-	ft_replace_expand(str, strexp);
+	ft_replace_expand(fd, str, strexp);
 	free(str);
 	return (strexp);
 }
@@ -232,13 +230,11 @@ char	*ft_expand(char *str)
 	int		length_without_var;
 	char	*strexp;
 
-	if (ft_is_expand(2, str) == 0)
-		return (str);
 	length_all_content = ft_length_all_content_var(str);
 	length_without_var = ft_length_str_without_var(str);
 	strexp = malloc(sizeof(char) * length_all_content + length_without_var + 1);
 	if (strexp == NULL)
 		ft_exit();
-	ft_replace_expand(str, strexp);
+	ft_replace_expand(2, str, strexp);
 	return (strexp);
 }

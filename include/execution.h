@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:26:24 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/29 21:22:48 by nicole           ###   ########.fr       */
+/*   Updated: 2022/12/28 18:10:17 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	execute(char *av, char **envp, t_data *data);
 void	ft_exe_cmd_simple(t_data *data);
 
 //exec/exe_utils.c
-int		ft_is_heredoc(char *str);
 void	close_and_wait_process(t_data *data, int *fd_pipe, char **cmd_pipe);
 void	check_path_null(char *tab_path, char *cmd, char **path);
 void	check_opath_null(char *tab_path, char *o_path, char *cmd, char **path);
