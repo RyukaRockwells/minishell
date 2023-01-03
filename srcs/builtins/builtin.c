@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:26:57 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 23:50:17 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 00:18:12 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,31 +106,26 @@ int	ft_cd(char **path_tab)
 	int	i;
 
 	i = 1;
-	printf("JESUISCDCDCDCD\n");
 	while (path_tab[i] != NULL)
-	{
-		printf("HELLOO path_tab[i] = %s\n", path_tab[i]); //printf de controle de pathtab
 		i++;
-	}
-	if (!path_tab)
+	if (!path_tab[1])
 	{
 		ft_putstr_fd("Minishell: ", 2);
-		ft_putstr_fd("Missing path", 2);
+		ft_putstr_fd("Missing path\n", 2);
 		return (1);
 	}
-	if (i > 1)
+	if (i != 2)
 	{
 		ft_putstr_fd("Minishell: ", 2);
-		ft_putstr_fd("Too many arguments", 2);
+		ft_putstr_fd("Too many arguments\n", 2);
 		return (1);
 	}
-	printf("path_tab[i] = %s\n", path_tab[i]);
-	if (chdir(path_tab[i]) == -1)
+	if (chdir(path_tab[1]) == -1)
 	{
 		ft_putstr_fd("Minishell: ", 2);
-		ft_putstr_fd(path_tab[i], 2);
+		ft_putstr_fd(path_tab[1], 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
 		return (1);
 	}
-	return (0);
+	return (1);
 }
