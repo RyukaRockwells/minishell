@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/01 07:53:54 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:16:16 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_token	*ft_sep_redtok(t_data *data, t_token *tmp)
 int	ft_chose_tok(t_data *data, char *value, int type)
 {
 	if (value == NULL || data == NULL)
-		ft_exit();
+		ft_exit(data->code_exit);
 	if (type == REDIRECT_IN)
 		ft_addtok(value, data, REDIRECT_IN);
 	else if (type == REDIRECT_OUT)

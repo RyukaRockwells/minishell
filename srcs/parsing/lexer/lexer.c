@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/11 18:34:10 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:17:45 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_get_word(t_data *data, int i)
 	{
 		word = ft_substr(str, i, ft_wdlen(str, i));
 		if (word == NULL)
-			ft_exit();
+			ft_exit(1);
 		ft_add_token(word, data, LITERAL);
 		return (ft_wdlen(str, i));
 	}
@@ -73,7 +73,7 @@ int	ft_get_sep(t_data *data, int i)
 	{
 		sep = ft_substr(str, i, 1);
 		if (sep == NULL)
-			ft_exit();
+			ft_exit(1);
 		ft_add_token(sep, data, PIPE);
 	}
 	return (0);

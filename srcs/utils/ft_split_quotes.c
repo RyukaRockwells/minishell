@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:26:35 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/02 20:28:53 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 23:38:17 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static char	**ft_assign(char const *s, char **res, int i, char c)
 	while (s[i] != '\0')
 	{
 		b = 0;
-		len_m = ft_pass_word((char *)s, c, i);
+		len_m = ft_len_word((char *)s, c, i);
 		len_m = len_m - i;
 		res[a] = malloc(sizeof(char) * len_m + 1);
 		if (res[a] == NULL)

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:08:32 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/02 20:42:23 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:17:09 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_get_var(char *str, int i, int length)
 
 	var = malloc(sizeof(char) * length + 1);
 	if (var == NULL)
-		ft_exit();
+		ft_exit(1);
 	j = 0;
 	while (str[i] != '\0' && str[i] != ' ')
 	{

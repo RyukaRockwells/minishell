@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/05 12:04:14 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:24:23 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_init(char **envp, t_data *data)
 {
 	data->code_exit = 0;
+	data->file_exit = 0;
 	data->readline = NULL;
 	data->envp = NULL;
 	data->nb_pipe = 0;

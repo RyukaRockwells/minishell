@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:24:31 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 14:28:19 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 18:50:53 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_token
 typedef struct s_data
 {
 	int			code_exit;
+	int			file_exit;
 	char		*readline;
 	char		**envp;
 	int			last_pipe;

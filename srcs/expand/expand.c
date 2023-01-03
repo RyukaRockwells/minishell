@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:28:10 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 15:52:20 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 18:27:36 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	ft_replace_expand(t_data *data, char *str, char *strexp)
 			{
 				if (str[i] == '$')
 				{
-					if (str[i++] == '?')
+					i++;
+					if (str[i] == '?')
 						ft_expand_exit(data, strexp, &i, &j);
 					else if (ft_exp_is_exist(str + i) != 0)
 						while (ft_isalnum(str[i]) == 1 || str[i] == '_')
@@ -107,7 +108,7 @@ int	ft_exp_is_exist(char *str)
 	}
 	tmp = malloc(sizeof(char) * i + 1);
 	if (tmp == NULL)
-		ft_exit();
+		ft_exit(1);
 	ft_strlcpy(tmp, str, i + 1);
 	if (getenv(tmp) == NULL)
 	{

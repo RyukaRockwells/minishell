@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:53:35 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/01 07:53:33 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:17:36 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_add_space(t_data *data, char *str, int i)
 	{
 		tok_space = ft_substr(str, i, 1);
 		if (tok_space == NULL)
-			ft_exit();
+			ft_exit(1);
 		ft_add_token(tok_space, data, ESPACE);
 		return (0);
 	}
@@ -65,7 +65,7 @@ int	ft_add_space(t_data *data, char *str, int i)
 	{
 		tok_space = ft_substr(str, i, 1);
 		if (tok_space == NULL)
-			ft_exit();
+			ft_exit(1);
 		ft_add_token(tok_space, data, ESPACE);
 		return (0);
 	}
@@ -80,7 +80,7 @@ void	ft_redirect(t_data *data, char *str, int i)
 	{
 		sep = ft_substr(str, i, 2);
 		if (sep == NULL)
-			ft_exit();
+			ft_exit(1);
 		if (str[i] == '>')
 			ft_add_token(sep, data, D_REDIRECT_OUT);
 		else if (str[i] == '<')
@@ -90,7 +90,7 @@ void	ft_redirect(t_data *data, char *str, int i)
 	{
 		sep = ft_substr(str, i, 1);
 		if (sep == NULL)
-			ft_exit();
+			ft_exit(1);
 		if (str[i] == '<')
 			ft_add_token(sep, data, REDIRECT_IN);
 		else if (str[i] == '>')

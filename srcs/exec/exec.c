@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/03 15:05:37 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 18:25:05 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_exe_cmd(t_data *data)
 	}
 	else if (data->nb_pipe != 0)
 		ft_exe_several_cmd(data);
+	data->file_exit = 0;
 }
 
 void	ft_choose_fd(int is_hd, t_data *data, char *str)
@@ -107,12 +108,10 @@ void	execute(char *av, char **envp, t_data *data)
 	path = find_path(cmd[0], envp);
 	if (path == 0)
 		ft_error_exe(data, cmd, av);
-	if (data->code_exit == 0)
-	{
+	if (data->file_exit == 0)
 		if (execve(path, cmd, envp) == -1)
 			ft_error_exe(data, cmd, av);
-	}
 	ft_free_exe_simple(data, cmd, av);
 	free(path);
-	ft_exit();
+	ft_exit(data->code_exit);
 }

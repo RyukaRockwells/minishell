@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:36:27 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 14:47:29 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 18:24:18 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,13 @@ char	*ft_is_redirect(char *str, t_data *data)
 		fd = open(file, O_RDWR | O_CREAT | O_APPEND);
 	if (fd == -1)
 	{
-		data->code_exit = errno;
+		data->file_exit = 1;
+		data->code_exit = 1;
 		fd_error(file);
 	}
 	else
 		data->last_fd = fd;
 	free(file);
-	new_str = ft_rm_redirect_in_str(str);
+	new_str = ft_rm_redirect_in_str(data, str);
 	return (new_str);
 }

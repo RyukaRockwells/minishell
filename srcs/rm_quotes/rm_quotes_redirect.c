@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:40:10 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 14:47:42 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:17:57 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,18 @@ int	ft_after_redirect(char *str)
 	return (i);
 }
 
-char	*ft_rm_redirect_in_str(char *str)
+char	*ft_rm_redirect_in_str(t_data *data, char *str)
 {
 	int		i;
 	int		j;
 	char	*new_str;
+	char	*str_exp;
 
 	i = 0;
 	j = 0;
 	new_str = malloc(sizeof(char) * ft_strlen(str) + 1);
 	if (new_str == NULL)
-		ft_exit();
+		ft_exit(1);
 	while (str[i] != '\0')
 	{
 		if (i >= ft_before_redirect(str) && i <= ft_after_redirect(str))
@@ -100,5 +101,7 @@ char	*ft_rm_redirect_in_str(char *str)
 		j++;
 	}
 	new_str[j] = '\0';
-	return (new_str);
+	str_exp = ft_expand(data, new_str);
+	free(new_str);
+	return (str_exp);
 }

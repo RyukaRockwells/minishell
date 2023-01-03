@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/03 15:53:27 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 23:38:37 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		ft_chose_tok(t_data *data, char *value, int type);
 
 //exit.c
 void	ft_free(char **tab);
-void	ft_exit(void);
+void	ft_exit(int code_exit);
 void	ft_exit_here(void);
 
 //main.c
@@ -142,6 +142,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strcpy(char *dest, char *str);
 char	**ft_split_quote(char const *s, char c);
 int		ft_pass_word(char *s, char c, int i);
+int		ft_len_word(char *s, char c, int i);
 
 //****-----------------****
 //****------EXPAND-----****

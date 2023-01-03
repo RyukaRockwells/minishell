@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:16:34 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/03 15:22:49 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:17:23 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	ft_check_heredoc(t_data *data, t_token *here_tok)
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	if (pipe(fd) == -1)
-		ft_exit();
+		ft_exit(1);
 	id = fork();
 	if (id == -1)
-		ft_exit();
+		ft_exit(1);
 	if (id == 0)
 	{
 		signal(SIGINT, SIG_DFL);

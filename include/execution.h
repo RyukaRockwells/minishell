@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:26:24 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 14:48:19 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:03:09 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ char	*ft_rm_heredoc_in_str(t_data *data, char *str);
 char	*ft_get_file(t_data *data, char *str);
 int		ft_before_redirect(char *str);
 int		ft_after_redirect(char *str);
-char	*ft_rm_redirect_in_str(char *str);
+char	*ft_rm_redirect_in_str(t_data *data, char *str);
 
 #endif

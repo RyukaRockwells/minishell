@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:19:52 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 15:11:57 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 23:38:23 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,33 @@ int	ft_pass_word(char *s, char c, int i)
 		}
 		i++;
 	}
+	return (i);
+}
+
+int	ft_len_word(char *s, char c, int i)
+{
+	int	quote;
+
+	quote = 0;
+	while (s[i] != '\0' && s[i] != c)
+	{
+		if (s[i] == '\'')
+		{
+			quote = 1;
+			i++;
+			while (s[i] != '\'')
+				i++;
+		}
+		else if (s[i] == '\"')
+		{
+			quote = 1;
+			i++;
+			while (s[i] != '\"')
+				i++;
+		}
+		i++;
+	}
+	if (quote == 1)
+		i -= 2;
 	return (i);
 }

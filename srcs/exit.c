@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/01 07:54:44 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:16:08 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_free(char **tab)
 	free(tab);
 }
 
-void	ft_exit(void)
+void	ft_exit(int code_exit)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ void	ft_exit(void)
 		close(i);
 		i++;
 	}
-	exit(0);
+	exit(code_exit);
 }
 
 void	ft_exit_here(void)

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 14:48:40 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:16:39 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	ft_exe_several_cmd(t_data *data)
 	i = 0;
 	fd_pipe = malloc(sizeof(int) * 2 * data->nb_pipe);
 	if (fd_pipe == NULL)
-		ft_exit();
+		ft_exit(1);
 	cmd_pipe = ft_split(data->readline, '|');
 	while (data->nb_pipe > i)
 	{
 		if (pipe(fd_pipe + 2 * i) == -1)
-			ft_exit();
+			ft_exit(1);
 		i++;
 	}
 	redirect_process(data, cmd_pipe, fd_pipe);
