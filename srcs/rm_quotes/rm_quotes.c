@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/31 13:24:15 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:48:08 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,6 @@ int	ft_length_str_without_quotes(char *str)
 		}
 	}
 	return (length);
-}
-
-char	*ft_rm_quotes(char	*str)
-{
-	char	*tmp;
-	int		i;
-	int		j;
-
-	tmp = malloc(sizeof(char) * ft_length_str_without_quotes(str) + 1);
-	if (tmp == NULL)
-		ft_exit();
-	i = 0;
-	j = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '\'' || str[i] == '\"')
-			i++;
-		else
-		{
-			tmp[j] = str[i];
-			j++;
-			i++;
-		}
-	}
-	tmp[j] = '\0';
-	tmp = ft_expand(tmp);
-	return (tmp);
 }
 
 int	ft_strlen_before_hd(char *str)
@@ -94,7 +67,7 @@ int	ft_strlen_after_hd(char *str)
 	return (i);
 }
 
-char	*ft_rm_heredoc_in_str(char *str)
+char	*ft_rm_heredoc_in_str(t_data *data, char *str)
 {
 	int		i;
 	int		j;
@@ -119,6 +92,6 @@ char	*ft_rm_heredoc_in_str(char *str)
 		j++;
 	}
 	new_str[j] = '\0';
-	new_str = ft_expand(new_str);
+	new_str = ft_expand(data, new_str);
 	return (new_str);
 }

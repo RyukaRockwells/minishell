@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:07:17 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/17 18:57:04 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:57:56 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ void	ft_free_exe_simple(t_data *data, char **cmd, char *av)
 	ft_free(cmd);
 	ft_free(data->envp);
 	free(data->readline);
-	fprintf(stderr, "Je vais free av\n");
 	free(av);
 }

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/17 17:14:28 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:48:40 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,11 @@ void	first_process(t_data *data, int out, int *fd_pipe, char *str)
 		i++;
 	}
 	if (is_hd == 1)
-		lst_cmd = ft_rm_heredoc_in_str(str);
+		lst_cmd = ft_rm_heredoc_in_str(data, str);
 	else if (ft_is_rd(str) == 0)
 		lst_cmd = ft_is_redirect(str, data);
 	else
-		lst_cmd = ft_strdup(str);
-	lst_cmd = ft_rm_quotes(lst_cmd);
+		lst_cmd = ft_expand(data, str);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
 		ft_choose_fd(is_hd, data, str);
@@ -104,12 +103,11 @@ void	mid_process(t_data *data, int i, int *fd_pipe, char *str)
 		i++;
 	}
 	if (is_hd == 1)
-		lst_cmd = ft_rm_heredoc_in_str(str);
+		lst_cmd = ft_rm_heredoc_in_str(data, str);
 	else if (ft_is_rd(str) == 0)
 		lst_cmd = ft_is_redirect(str, data);
 	else
-		lst_cmd = ft_strdup(str);
-	lst_cmd = ft_rm_quotes(lst_cmd);
+		lst_cmd = ft_expand(data, str);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
 		ft_choose_fd(is_hd, data, str);
@@ -132,12 +130,11 @@ void	end_process(t_data *data, int in, int *fd_pipe, char *str)
 		i++;
 	}
 	if (is_hd == 1)
-		lst_cmd = ft_rm_heredoc_in_str(str);
+		lst_cmd = ft_rm_heredoc_in_str(data, str);
 	else if (ft_is_rd(str) == 0)
 		lst_cmd = ft_is_redirect(str, data);
 	else
-		lst_cmd = ft_strdup(str);
-	lst_cmd = ft_rm_quotes(lst_cmd);
+		lst_cmd = ft_expand(data, str);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
 		ft_choose_fd(is_hd, data, str);

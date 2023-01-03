@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:24:31 by nicole            #+#    #+#             */
-/*   Updated: 2022/11/27 14:52:04 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:28:19 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,6 @@
 
 typedef struct s_token		t_token;
 typedef struct s_data		t_data;
-typedef struct s_fd			t_fd;
-
-typedef struct s_fd
-{
-	int			fd;
-	t_fd		*next;
-}			t_fd;
 
 typedef struct s_token
 {

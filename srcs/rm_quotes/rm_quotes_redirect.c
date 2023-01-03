@@ -6,31 +6,37 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:40:10 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/11 18:33:37 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:47:42 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*ft_rm_str_tok_value(t_token *tok)
+char	*ft_get_file(t_data *data, char *str)
 {
-	t_token	*tmp;
-	char	*new_str;
-	char	*str_without_quotes;
+	int		i;
+	char	*file;
 
-	tmp = tok;
-	while (tmp->next != NULL)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (tmp->type == REDIRECT_IN || tmp->type == REDIRECT_OUT
-			|| tmp->type == D_REDIRECT_OUT)
-			break ;
-		else
-			tmp = tmp->next;
+		if (str[i] == '>' || str[i] == '<'
+			|| (str[i] == '>' && str[i + 1] == '>'))
+		{
+			i++;
+			if (str[i] == '>')
+				i++;
+			while (ft_is_space(str[i]) == 0)
+				i++;
+			file = ft_expand(data, str + i);
+		}
+		i++;
 	}
-	new_str = ft_substr(tmp->next->value, 0, ft_strlen(tmp->next->value));
-	str_without_quotes = ft_rm_quotes(new_str);
-	free(new_str);
-	return (str_without_quotes);
+	i = 0;
+	i = ft_skip_name_var(file, i);
+	if (file[i] != '\0')
+		file[i] = '\0';
+	return (file);
 }
 
 int	ft_before_redirect(char *str)

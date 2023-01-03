@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:36:27 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/11 17:02:18 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:47:29 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,20 @@ int	ft_is_rd_out(char *str)
 	return (0);
 }
 
-int	ft_type_of_redirect(t_token *tok)
+int	ft_type_of_redirect(char *str)
 {
-	t_token	*tmp;
+	int		i;
 
-	tmp = tok;
-	while (tmp->next != NULL)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (tmp->type == REDIRECT_IN || tmp->type == REDIRECT_OUT
-			|| tmp->type == D_REDIRECT_OUT)
-			return (tmp->type);
-		tmp = tmp->next;
+		if (str[i] == '>' && str[i + 1] == '>')
+			return (1);
+		else if (str[i] == '>')
+			return (2);
+		else if (str[i] == '<')
+			return (3);
+		i++;
 	}
 	return (0);
 }
@@ -83,12 +86,12 @@ char	*ft_is_redirect(char *str, t_data *data)
 	char	*file;
 	char	*new_str;
 
-	file = ft_rm_str_tok_value(data->token);
-	if (ft_type_of_redirect(data->token) == REDIRECT_IN)
+	file = ft_get_file(data, str);
+	if (ft_type_of_redirect(str) == 3)
 		fd = open(file, O_RDONLY);
-	else if (ft_type_of_redirect(data->token) == REDIRECT_OUT)
-		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC);
-	else if (ft_type_of_redirect(data->token) == D_REDIRECT_OUT)
+	else if (ft_type_of_redirect(str) == 2)
+		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	else if (ft_type_of_redirect(str) == 1)
 		fd = open(file, O_RDWR | O_CREAT | O_APPEND);
 	if (fd == -1)
 	{

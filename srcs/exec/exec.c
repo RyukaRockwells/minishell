@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/02 10:23:54 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 15:05:37 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,7 @@ void	execute(char *av, char **envp, t_data *data)
 	if (data->code_exit == 0)
 	{
 		if (execve(path, cmd, envp) == -1)
-		{
-			data->code_exit = errno;
 			ft_error_exe(data, cmd, av);
-		}
 	}
 	ft_free_exe_simple(data, cmd, av);
 	free(path);
