@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 23:44:16 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 23:45:46 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,4 @@ void	ft_exe_cmd_simple(t_data *data)
 	}
 	free(lst_cmd);
 }
+//touch de 'r  i  e  n' 'mr s'

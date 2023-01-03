@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:23:19 by nicole            #+#    #+#             */
-/*   Updated: 2022/12/17 18:15:59 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/03 23:49:03 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		ft_pwd(void);
 int		ft_benv(t_data *data);
 void	ft_print_env(t_data *data);
 int		ft_builtin_exit(char *str, t_data *data);
+int		ft_cd(char **path_tab);
 
 #endif
