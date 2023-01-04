@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/03 17:24:23 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 01:45:54 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_init(char **envp, t_data *data)
 	data->fd_stdout = -1;
 	data->fd_stdin = -1;
 	data->last_fd = -1;
-	ft_env(data, envp);
+	ft_env_init(data, envp);
 }
 
 void	ft_reinit(t_data *data)
@@ -43,7 +43,7 @@ int	ft_env_nbline(char **envp)
 	return (i);
 }
 
-void	ft_env(t_data *data, char **envp)
+void	ft_env_init(t_data *data, char **envp)
 {
 	int		i;
 
@@ -60,20 +60,6 @@ void	ft_env(t_data *data, char **envp)
 	while (envp[i] != NULL)
 	{
 		data->envp[i] = ft_strdup((const char *)envp[i]);
-		i++;
-	}
-}
-
-void	ft_print_env(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	printf("ENVPPPPPPPPPPPPPPPPPPPPPP:\n");
-	while (data->envp[i] != NULL)
-	{
-		ft_putstr_fd(data->envp[i], 1);
-		ft_putstr_fd("\n", 1);
 		i++;
 	}
 }

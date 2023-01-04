@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:21:49 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/28 18:10:04 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 17:30:25 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,14 @@ int	ft_cmd_is_empty(char *str)
 		i++;
 	}
 	return (1);
+}
+
+void	ft_set_code_exit(t_data *data, int status)
+{
+	if (WIFEXITED(status) == 1)
+		data->code_exit = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status) == 1)
+		data->code_exit = WTERMSIG(status);
+	else
+		data->code_exit = 0;
 }

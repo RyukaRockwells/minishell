@@ -6,11 +6,34 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:13:51 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 15:55:48 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 17:17:46 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	ft_length_in_single_quote(char *str, int *i, int in_dquote, int *length)
+{
+	if (str[(*i)] == '\'' && in_dquote == 0)
+	{
+		(*i)++;
+		(*length)++;
+		while (str[(*i)] != '\'')
+		{
+			(*i)++;
+			(*length)++;
+		}
+		(*i)++;
+		(*length)++;
+	}
+}
+
+void	ft_length_of_expand(char *str, int *i)
+{
+	(*i)++;
+	while (ft_isalnum(str[(*i)]) == 1 || str[(*i)] == '_')
+		(*i)++;
+}
 
 int	ft_length_str_without_var(char *str)
 {
@@ -27,24 +50,9 @@ int	ft_length_str_without_var(char *str)
 			in_dquote = 1;
 		else if (str[i] == '\"' && in_dquote == 1)
 			in_dquote = 0;
-		if (str[i] == '\'' && in_dquote == 0)
-		{
-			i++;
-			length++;
-			while (str[i] != '\'')
-			{
-				i++;
-				length++;
-			}
-			i++;
-			length++;
-		}
-		else if (str[i] == '$')
-		{
-			i++;
-			while (ft_isalnum(str[i]) == 1 || str[i] == '_')
-				i++;
-		}
+		ft_length_in_single_quote(str, &i, in_dquote, &length);
+		if (str[i] == '$')
+			ft_length_of_expand(str, &i);
 		else
 		{
 			i++;
@@ -96,4 +104,3 @@ int	ft_length_all_content_var(char *str)
 	}
 	return (length);
 }
-

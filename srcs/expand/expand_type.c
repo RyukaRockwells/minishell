@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 14:39:03 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 17:17:02 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 20:40:35 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_expand_exit(t_data *data, char *strexp, int *i, int *j)
 	(*i)++;
 	while (code_error[k] != '\0')
 			strexp[(*j)++] = code_error[k++];
+	free(code_error);
 }
 
 char	*ft_expand_h(t_data *data, char *str)
@@ -35,7 +36,7 @@ char	*ft_expand_h(t_data *data, char *str)
 	strexp = malloc(sizeof(char) * length_all_content + length_without_var + 1);
 	if (strexp == NULL)
 		ft_exit(1);
-	ft_replace_expand(data, str, strexp);
+	ft_translate_expand(data, str, strexp);
 	free(str);
 	return (strexp);
 }
@@ -51,6 +52,6 @@ char	*ft_expand(t_data *data, char *str)
 	strexp = malloc(sizeof(char) * length_all_content + length_without_var + 1);
 	if (strexp == NULL)
 		ft_exit(1);
-	ft_replace_expand(data, str, strexp);
+	ft_translate_expand(data, str, strexp);
 	return (strexp);
 }

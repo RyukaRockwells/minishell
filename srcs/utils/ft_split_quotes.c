@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:26:35 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 23:38:17 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 19:45:30 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,42 +61,27 @@ static int	ft_nbmots(char *s, char c)
 
 static char	**ft_assign(char const *s, char **res, int i, char c)
 {
-	int		a;
-	int		b;
+	int		i_res;
+	int		j_res;
 	int		len_m;
 
-	a = 0;
+	i_res = 0;
 	while (s[i] != '\0')
 	{
-		b = 0;
+		j_res = 0;
 		len_m = ft_len_word((char *)s, c, i);
 		len_m = len_m - i;
-		res[a] = malloc(sizeof(char) * len_m + 1);
-		if (res[a] == NULL)
+		res[i_res] = malloc(sizeof(char) * len_m + 1);
+		if (res[i_res] == NULL)
 			return (ft_free_split(res));
-		while (b < len_m && s[i] != 0)
+		while (j_res < len_m && s[i] != 0)
 		{
-			if (s[i] == '\'')
-			{
-				i++;
-				while (s[i] != '\'')
-					res[a][b++] = s[i++];
-				i++;
-			}
-			else if (s[i] == '\"')
-			{
-				i++;
-				while (s[i] != '\"')
-					res[a][b++] = s[i++];
-				i++;
-			}
-			else
-				res[a][b++] = s[i++];
+			res[i_res] = ft_copy_in_tab(res[i_res], (char *)s, &j_res, &i);
 		}
-		res[a++][b] = 0;
+		res[i_res++][j_res] = 0;
 		i = ft_nextmots((char *)s, i, c);
 	}
-	res[a] = NULL;
+	res[i_res] = NULL;
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:40:10 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 17:17:57 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 00:48:09 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ char	*ft_get_file(t_data *data, char *str)
 		}
 		i++;
 	}
-	i = 0;
-	i = ft_skip_name_var(file, i);
-	if (file[i] != '\0')
-		file[i] = '\0';
+	if (file[ft_strlen(file)] != '\0')
+		file[ft_strlen(file)] = '\0';
 	return (file);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:23:19 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 23:49:03 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 18:58:57 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,27 @@
 //****-----------------****
 //****-----BUILT-IN----****
 //****-----------------****
-//builtins/echo.c
-int		ft_option(char *str);
-int		ft_echo_empty(char *str);
-int		ft_echo(int ac, char **args);
 
-//builtins/builtin.c'
+//builtins/builtin.c
 int		ft_is_builtin(char *str, t_data *data);
+int		ft_builtin_exit(char **str, t_data *data);
+
+//builtins/pwd.c
 int		ft_pwd(void);
-int		ft_benv(t_data *data);
-void	ft_print_env(t_data *data);
-int		ft_builtin_exit(char *str, t_data *data);
+
+//builtins/cd.c
 int		ft_cd(char **path_tab);
+
+//builtins/env.c
+int		ft_env(t_data *data);
+
+//builtins/echo.c
+int		ft_echo(char **tab_arg);
+
+//builtins/exit.c
+int		ft_builtin_exit(char **str, t_data *data);
+
+//builtins/unset.c
+int		ft_unset(t_data *data, char **var, int size);
 
 #endif

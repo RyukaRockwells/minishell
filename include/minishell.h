@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/03 23:38:37 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 20:40:18 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	show_error(int code_error);
 void	ft_init(char **envp, t_data *data);
 void	ft_reinit(t_data *data);
 int		ft_env_nbline(char **envp);
-void	ft_env(t_data *data, char **envp);
+void	ft_env_init(t_data *data, char **envp);
 //void	ft_print_env(t_data *data);
 
 //ft_loop.c
@@ -140,15 +140,19 @@ void	ft_waitpid_h(t_data *data, int i);
 //utils/utils.c
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strcpy(char *dest, char *str);
-char	**ft_split_quote(char const *s, char c);
 int		ft_pass_word(char *s, char c, int i);
 int		ft_len_word(char *s, char c, int i);
+char	*ft_copy_in_tab(char *res, char *s, int *j_res, int *i);
+
+//utls/ft_split_quotes..c
+char	**ft_split_quote(char const *s, char c);
 
 //****-----------------****
 //****------EXPAND-----****
 //****-----------------****
 //expand/expand.c
-void	ft_replace_expand(t_data *data, char *str, char *strexp);
+void	ft_replace_var_to_content(char *str, char *strexp, int	*i, int *j);
+void	ft_copy_single_quote(char *strexp, char *str, int *i, int *j);
 int		ft_exp_is_exist(char *str);
 
 //expand/expand_utils.c
@@ -167,5 +171,8 @@ char	*ft_expand(t_data *data, char *str);
 int		ft_length_str_without_var(char *str);
 int		ft_strlen_var(char *str);
 int		ft_length_all_content_var(char *str);
+
+//expand/translate_expand.c
+void	ft_translate_expand(t_data *data, char *str, char *strexp);
 
 #endif
