@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:19:52 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 19:45:37 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 23:33:33 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,22 +109,3 @@ char	*ft_copy_in_tab(char *res, char *s, int *j_res, int *i)
 		res[(*j_res)++] = s[(*i)++];
 	return (res);
 }
-
-/*
-			if (s[i] == '\'')
-			{
-				i++;
-				while (s[i] != '\'')
-					res[i_res][j_res++] = s[i++];
-				i++;
-			}
-			else if (s[i] == '\"')
-			{
-				i++;
-				while (s[i] != '\"')
-					res[i_res][j_res++] = s[i++];
-				i++;
-			}
-			else
-				res[i_res][j_res++] = s[i++];
-*/

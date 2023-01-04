@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 02:10:19 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 20:50:22 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 22:20:42 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_builtin_exit(char **str, t_data *data)
 
 	i = 0;
 	exit_code = ft_atoi(str[1]);
-	if (str[1] != NULL)
+	if (str != NULL)
 	{
 		if (str[1][0] == '-' || str[1][0] == '+')
 			i++;

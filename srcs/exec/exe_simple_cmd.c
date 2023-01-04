@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 20:57:20 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 23:12:14 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_exe_cmd_simple(t_data *data)
 	lst_cmd = ft_rdline_choose(is_hd, data, data->readline);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
-		if (ft_is_builtin(lst_cmd, data) != 0)
+		if (ft_is_builtin(ft_split_quote(lst_cmd, ' '), data) != 0)
 		{
 			free(lst_cmd);
 			return ;

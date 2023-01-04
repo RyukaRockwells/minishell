@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:23:19 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 18:58:57 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 23:11:41 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //****-----------------****
 
 //builtins/builtin.c
-int		ft_is_builtin(char *str, t_data *data);
+int		ft_is_builtin(char **str, t_data *data);
 int		ft_builtin_exit(char **str, t_data *data);
 
 //builtins/pwd.c

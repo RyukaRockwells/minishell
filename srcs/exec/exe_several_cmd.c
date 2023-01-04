@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 17:40:00 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 23:14:15 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ void	first_process(t_data *data, int out, int *fd_pipe, char *str)
 	lst_cmd = ft_rdline_choose(is_hd, data, str);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
-		if (ft_is_builtin(lst_cmd, data) != 0)
-			return ;
 		ft_choose_fd(is_hd, data, str);
+		if (ft_is_builtin(ft_split_quote(lst_cmd, ' '), data) != 0)
+			return ;
 		execute(lst_cmd, data->envp, data);
 	}
 }
@@ -102,9 +102,9 @@ void	mid_process(t_data *data, int i, int *fd_pipe, char *str)
 	lst_cmd = ft_rdline_choose(is_hd, data, str);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
-		if (ft_is_builtin(lst_cmd, data) != 0)
-			return ;
 		ft_choose_fd(is_hd, data, str);
+		if (ft_is_builtin(ft_split_quote(lst_cmd, ' '), data) != 0)
+			return ;
 		execute(lst_cmd, data->envp, data);
 	}
 }
@@ -126,9 +126,9 @@ void	end_process(t_data *data, int in, int *fd_pipe, char *str)
 	lst_cmd = ft_rdline_choose(is_hd, data, str);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
-		if (ft_is_builtin(lst_cmd, data) != 0)
-			return ;
 		ft_choose_fd(is_hd, data, str);
+		if (ft_is_builtin(ft_split_quote(lst_cmd, ' '), data) != 0)
+			return ;
 		execute(lst_cmd, data->envp, data);
 	}
 }

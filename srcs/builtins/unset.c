@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:44:17 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 20:47:54 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 22:57:40 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_tablen(char **tab)
 
 void	ft_replace_tab(t_data *data, int *i, int size)
 {
-	printf("JE REPLACE\n");
 	if ((*i) < size - 1)
 	{
 		while (data->envp[(*i) + 1] != NULL)
@@ -55,7 +54,6 @@ int	ft_unset(t_data *data, char **var, int size)
 		{
 			free(data->envp[i]);
 			data->envp[i] = NULL;
-			data->envp[i] = malloc(ft_strlen(data->envp[i + 1]) + 1);
 			ft_replace_tab(data, &i, size);
 			ft_free(var);
 			return (1);
