@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:26:57 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 23:35:41 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/04 23:53:03 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_is_builtin(char **str, t_data *data)
 	else if (ft_strcmp(str[0], "pwd") == 0)
 		return (ft_pwd());
 	else if (ft_strcmp(str[0], "export") == 0)
-		return (1);
+		return (ft_export(str, data->envp));
 	else if (ft_strcmp(str[0], "unset") == 0)
 		return (ft_unset(data, str, 1));
 	else if (ft_strcmp(str[0], "env") == 0)
