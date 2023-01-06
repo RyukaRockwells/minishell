@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:23:19 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/05 01:34:23 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 19:09:42 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 //****-----------------****
 
 //builtins/builtin.c
-void	ft_builtin_no_fork(char **str, t_data *data, int is_hd);
+void	ft_builtin_no_fork(char **str, t_data *data, int is_hd, char *lst_cmd);
 int		ft_is_builtin(char **str);
-int		ft_builtin(char **str, t_data *data);
+int		ft_builtin(char **str, t_data *data, char *lst_cmd);
 
 //builtins/pwd.c
 int		ft_pwd(void);
@@ -35,7 +35,7 @@ int		ft_env(t_data *data);
 int		ft_echo(char **tab_arg);
 
 //builtins/exit.c
-int		ft_builtin_exit(char **str, t_data *data);
+int		ft_builtin_exit(char **str, t_data *data, char *lst_cmd);
 
 //builtins/unset.c
 int		ft_tablen(char **tab);

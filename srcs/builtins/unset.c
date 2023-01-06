@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:44:17 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 16:57:53 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 18:51:12 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	ft_unset(t_data *data, char **var, int size)
 	if (ft_tablen(var) < 2)
 	{
 		ft_putstr_fd("unset: not enough arguments\n", 2);
-		ft_free_tab(var);
 		return (1);
 	}
 	var[1] = ft_strjoin(var[1], "=");
@@ -55,7 +54,6 @@ int	ft_unset(t_data *data, char **var, int size)
 			free(data->envp[i]);
 			data->envp[i] = NULL;
 			ft_replace_tab(data, &i, size);
-			ft_free_tab(var);
 			return (0);
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/06 16:42:10 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 18:35:36 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	ft_free_exe(t_data *data);
 //free/all_free2.c
 void	ft_free_tab(char **envp);
 void	ft_free_exe_simple(t_data *data, char **cmd, char *av);
+void	ft_free_builtin(char *lst_cmd, char **tab_cmd);
 
 //****-----------------****
 //****------SHOW-------****

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 02:06:44 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 16:56:13 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 18:50:10 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	ft_echo(char **tab_arg)
 	if (tab_arg[1] == NULL)
 	{
 		ft_putchar_fd('\n', 1);
-		ft_free_tab(tab_arg);
 		return (0);
 	}
 	ft_skip_option(tab_arg, &i);

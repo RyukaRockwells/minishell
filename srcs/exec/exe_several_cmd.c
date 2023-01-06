@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/05 16:39:01 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 19:09:10 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,8 @@ void	first_process(t_data *data, char **tab_cmd, int *fd_pipe, char *str)
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
 		ft_choose_fd(is_hd, data, str);
-		if (ft_builtin(ft_split_quote(lst_cmd, ' '), data) != 2)
-		{
-			free(lst_cmd);
-			ft_free_tab(tab_cmd);
-			ft_exit(1);
-		}
+		if (ft_builtin(ft_split_quote(lst_cmd, ' '), data, lst_cmd) != 2)
+			ft_free_builtin(lst_cmd, tab_cmd);
 		ft_free_tab(tab_cmd);
 		execute(lst_cmd, data->envp, data);
 	}
@@ -100,21 +96,14 @@ void	mid_process(t_data *data, int i, int *fd_pipe, char **tab_cmd)
 	dup2(fd_pipe[2 * i + 1], 1);
 	i = 0;
 	while (data->nb_pipe * 2 > i)
-	{
-		close(fd_pipe[i]);
-		i++;
-	}
+		close(fd_pipe[i++]);
 	free(fd_pipe);
 	lst_cmd = ft_rdline_choose(is_hd, data, tab_cmd[i_cmd_active]);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
 		ft_choose_fd(is_hd, data, tab_cmd[i_cmd_active]);
-		if (ft_builtin(ft_split_quote(lst_cmd, ' '), data) != 2)
-		{
-			free(lst_cmd);
-			ft_free_tab(tab_cmd);
-			ft_exit(1);
-		}
+		if (ft_builtin(ft_split_quote(lst_cmd, ' '), data, lst_cmd) != 2)
+			ft_free_builtin(lst_cmd, tab_cmd);
 		ft_free_tab(tab_cmd);
 		execute(lst_cmd, data->envp, data);
 	}
@@ -141,12 +130,8 @@ void	end_process(t_data *data, char **tab_cmd, int *fd_pipe, char *str)
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
 		ft_choose_fd(is_hd, data, str);
-		if (ft_builtin(ft_split_quote(lst_cmd, ' '), data) != 2)
-		{
-			free(lst_cmd);
-			ft_free_tab(tab_cmd);
-			ft_exit(1);
-		}
+		if (ft_builtin(ft_split_quote(lst_cmd, ' '), data, lst_cmd) != 2)
+			ft_free_builtin(lst_cmd, tab_cmd);
 		ft_free_tab(tab_cmd);
 		execute(lst_cmd, data->envp, data);
 	}

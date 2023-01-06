@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:55:58 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 13:13:42 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 18:12:41 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	ft_translate_expand(t_data *data, char *str, char *strexp)
 			ft_expand_exit(data, strexp, &i, &j);
 		else if (str[i] == '$')
 		{
-			i++;
-			if (str[i] == '?')
+			if (str[++i] == '?')
 				ft_expand_exit(data, strexp, &i, &j);
 			else if (ft_exp_is_exist(str + i) != 0)
 				while (ft_isalnum(str[i]) == 1 || str[i] == '_')
@@ -62,9 +61,7 @@ void	ft_translate_expand(t_data *data, char *str, char *strexp)
 			else
 				ft_replace_var_to_content(str, strexp, &i, &j);
 		}
-		else if (str[i] == '\0')
-			break ;
-		else
+		else if (str[i] != '\0')
 			strexp[j++] = str[i++];
 	}
 	strexp[j] = '\0';
