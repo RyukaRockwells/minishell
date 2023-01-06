@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 14:39:03 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 20:40:35 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/07 00:07:08 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ char	*ft_expand(t_data *data, char *str)
 	strexp = malloc(sizeof(char) * length_all_content + length_without_var + 1);
 	if (strexp == NULL)
 		ft_exit(1);
+	if (ft_strcmp(str, "\"\"\'\'") == 0)
+	{
+		ft_strcpy(strexp, str);
+		return (strexp);
+	}
 	ft_translate_expand(data, str, strexp);
 	return (strexp);
 }

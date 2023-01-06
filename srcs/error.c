@@ -6,15 +6,15 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:26:20 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/06 18:35:26 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 19:36:43 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_error_exe(t_data *data, char **cmd, char *av)
+void	ft_error_exe(t_data *data, char **cmd, char *lst_cmd)
 {
-	ft_free_exe_simple(data, cmd, av);
+	ft_free_exe_simple(data, cmd, lst_cmd);
 	perror("Error exe");
 	exit(EXIT_FAILURE);
 }

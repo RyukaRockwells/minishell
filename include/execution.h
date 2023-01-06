@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:26:24 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 18:47:00 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 19:52:38 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_exe_lst(t_data *data);
 //exec/exec.c
 void	ft_exe_cmd(t_data *data);
 void	ft_choose_fd(int is_hd, t_data *data, char *str);
-void	execute(char *av, char **envp, t_data *data);
+void	execute(char *lst_cmd, char **envp, t_data *data);
 
 //exec/exe_simple_cmd.c
 void	ft_exe_simple_cmd(t_data *data);
@@ -67,7 +67,7 @@ char	*ft_is_redirect(char *str, t_data *data);
 int		ft_length_str_without_quotes(char *str);
 int		ft_strlen_after_hd(char *str);
 int		ft_strlen_before_hd(char *str);
-char	*ft_rm_heredoc_in_str(t_data *data, char *str);
+char	*ft_rm_heredoc_in_str(char *str);
 
 char	*ft_get_file(t_data *data, char *str);
 int		ft_before_redirect(char *str);

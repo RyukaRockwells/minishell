@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:55:58 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 18:12:41 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/07 00:01:28 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ void	ft_translate_expand(t_data *data, char *str, char *strexp)
 	j = 0;
 	while (str[i] != '\0')
 	{
-		ft_copy_single_quote(strexp, str, &i, &j);
-		if (ft_copy_double_quotes(strexp, str, &i, &j) == 0)
+		if (str[i] == '\'')
+			ft_copy_single_quote(strexp, str, &i, &j);
+		else if (ft_copy_double_quotes(strexp, str, &i, &j) == 0)
 			ft_expand_exit(data, strexp, &i, &j);
 		else if (str[i] == '$')
 		{

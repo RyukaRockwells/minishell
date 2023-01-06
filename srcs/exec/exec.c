@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/06 18:47:15 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 19:37:04 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,26 +92,26 @@ char	*find_path(char *cmd, char **envp)
 	return (check_path(paths, cmd));
 }
 
-void	execute(char *av, char **envp, t_data *data)
+void	execute(char *lst_cmd, char **envp, t_data *data)
 {
 	char	**cmd;
 	char	*path;
 
-	cmd = ft_split_quote(av, ' ');
+	cmd = ft_split_quote(lst_cmd, ' ');
 	if (cmd == NULL)
 		ft_error();
 	path = find_path(cmd[0], envp);
 	if (path == 0)
-		ft_error_exe(data, cmd, av);
+		ft_error_exe(data, cmd, lst_cmd);
 	if (data->file_exit == 0)
 	{
 		if (execve(path, cmd, envp) == -1)
 		{
 			free(path);
-			ft_error_exe(data, cmd, av);
+			ft_error_exe(data, cmd, lst_cmd);
 		}
 	}
-	ft_free_exe_simple(data, cmd, av);
+	ft_free_exe_simple(data, cmd, lst_cmd);
 	free(path);
 	ft_exit(data->code_exit);
 }

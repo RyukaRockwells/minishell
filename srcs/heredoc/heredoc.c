@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:16:34 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/05 14:25:06 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 20:10:34 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ void	ft_close_here(t_data *data)
 		i++;
 	}
 	exit(0);
+}
+
+void	ft_write_in_fd(int delimiter_found, char *tmp, int fd)
+{
+	if (delimiter_found == 0)
+	{
+		write(fd, tmp, ft_strlen(tmp));
+		write(fd, "\n", 1);
+	}
 }
 
 void	ft_read_heredoc(int fd, t_data *data, char *str_here)
@@ -47,8 +56,7 @@ void	ft_read_heredoc(int fd, t_data *data, char *str_here)
 			delimiter_found = 1;
 		if (ft_strchr(tmp, '$') != NULL)
 			tmp = ft_expand_h(data, tmp);
-		write(fd, tmp, ft_strlen(tmp));
-		write(fd, "\n", 1);
+		ft_write_in_fd(delimiter_found, tmp, fd);
 		free(tmp);
 	}
 	get_next_line(-1);

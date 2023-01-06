@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:49:02 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/05 00:31:56 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 22:20:34 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	ft_nb_equals(char *arg)
 		ft_putstr_fd("minishell: export: must be one equal\n", 2);
 		return (2);
 	}
+	else if (equals < 1)
+		return (0);
 	return (0);
 }
 
@@ -79,12 +81,13 @@ int	ft_key_is_upper(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '=')
+	if (str[0] >= '0' && str[0] <= '9')
+		return (1);
+	while (str[i] != '\0')
 	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
+		printf("JE SUIS DANS LA VOUCLE %c\n", str[i]);
+		if (ft_isalnum(str[i]) == 1 || str[i] == '_' || str[i] == '=')
 			i++;
-		else if (str[0] == '_')
-			return (0);
 		else
 			return (1);
 	}
@@ -98,23 +101,22 @@ int	ft_export(char **args, char **envp)
 	int		i;
 
 	i = ft_tablen(args);
-	printf("I ===== %d\n", i);
-	printf("ARGS[1] ==== %s\n", args[1]);
 	if (i < 2)
 		return (1);
 	equals = ft_nb_equals(args[1]);
-	key = ft_get_key(args[1]);
 	if (equals == 0)
-		args[1] = key;
-	printf("key: %s\n", key);
+		return (1);
+	key = ft_get_key(args[1]);
+	printf("key1: %s\n", key);
 	if (ft_key_is_upper(key) == 0)
 		printf("key2: %s\n", key);
 	else
 	{
 		ft_putstr_fd("minishell: export: not an identifier\n", 2);
+		free(key);
 		return (1);
 	}
 	ft_export2(key, args[1], envp);
 	free(key);
-	return (0);
+	return (1);
 }

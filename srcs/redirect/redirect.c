@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:36:27 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 17:40:56 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 21:10:23 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ char	*ft_is_redirect(char *str, t_data *data)
 	char	*new_str;
 
 	file = ft_get_file(data, str);
-	fprintf(stderr, "file = %s\n", file);
 	if (ft_type_of_redirect(str) == 3)
 		fd = open(file, O_RDONLY);
 	else if (ft_type_of_redirect(str) == 2)

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/03 14:48:08 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 19:51:56 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_strlen_after_hd(char *str)
 	return (i);
 }
 
-char	*ft_rm_heredoc_in_str(t_data *data, char *str)
+char	*ft_rm_heredoc_in_str(char *str)
 {
 	int		i;
 	int		j;
@@ -92,6 +92,5 @@ char	*ft_rm_heredoc_in_str(t_data *data, char *str)
 		j++;
 	}
 	new_str[j] = '\0';
-	new_str = ft_expand(data, new_str);
 	return (new_str);
 }

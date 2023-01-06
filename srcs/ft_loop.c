@@ -6,17 +6,21 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/05 12:15:26 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 22:19:02 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-//pour show_token comment free(word) dans lexer.c ligne 59
 
 int	ft_get_cmd(t_data *data)
 {
 	int	error_status;
+	int	i;
 
+	i = ft_strlen(data->readline) - 1;
+	while (data->readline[i] == ' ')
+		i--;
+	data->readline[i + 1] = '\0';
 	error_status = ft_lexer(data);
 	if (error_status != 0)
 		return (error_status);
@@ -30,7 +34,6 @@ int	ft_get_cmd(t_data *data)
 	}
 	return (0);
 }
-//crtl-d = agit que quand rdline est vide
 
 void	ft_tok(t_data *data)
 {
@@ -41,9 +44,9 @@ void	ft_tok(t_data *data)
 	{
 		if (tmp->next != NULL && tmp->next->type == ESPACE)
 			tmp = tmp->next;
-		if (tmp->type == ESPACE)
+		else if (tmp->type == ESPACE)
 			tmp = tmp->next;
-		if (tmp->type == REDIRECT_IN || tmp->type == REDIRECT_OUT
+		else if (tmp->type == REDIRECT_IN || tmp->type == REDIRECT_OUT
 			|| tmp->type == D_REDIRECT_OUT)
 			tmp = ft_sep_redtok(data, tmp);
 		else if (tmp->type == LITERAL)

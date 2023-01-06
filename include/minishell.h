@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/06 18:35:36 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 19:37:12 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 void	ft_deco(void);
 
 //ft_error.c
-void	ft_error_exe(t_data *data, char **cmd, char *av);
+void	ft_error_exe(t_data *data, char **cmd, char *lst_cmd);
 void	fd_error(char *file);
 void	ft_error(void);
 void	ft_error_env(void);
@@ -115,7 +115,7 @@ void	ft_free_exe(t_data *data);
 
 //free/all_free2.c
 void	ft_free_tab(char **envp);
-void	ft_free_exe_simple(t_data *data, char **cmd, char *av);
+void	ft_free_exe_simple(t_data *data, char **cmd, char *lst_cmd);
 void	ft_free_builtin(char *lst_cmd, char **tab_cmd);
 
 //****-----------------****

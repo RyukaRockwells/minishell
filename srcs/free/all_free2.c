@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:07:17 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 18:35:32 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 19:36:54 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	ft_free_tab(char **tab)
 	free(tab);
 }
 
-void	ft_free_exe_simple(t_data *data, char **cmd, char *av)
+void	ft_free_exe_simple(t_data *data, char **cmd, char *lst_cmd)
 {
 	ft_free_token(data);
 	ft_free_tok_exe(data);
 	ft_free_tab(cmd);
 	ft_free_tab(data->envp);
 	free(data->readline);
-	free(av);
+	free(lst_cmd);
 }
 
 void	ft_free_builtin(char *lst_cmd, char **tab_cmd)

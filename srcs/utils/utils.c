@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:19:52 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 16:40:11 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 23:09:00 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,21 @@ int	ft_strlen_word(char *s, char sep, int i_s)
 	{
 		if (s[i_s] == '\'')
 		{
-			quote = 1;
+			quote++;
 			i_s++;
 			while (s[i_s] != '\'')
 				i_s++;
 		}
-		else if (s[i_s] == '\"')
+		if (s[i_s] == '\"')
 		{
-			quote = 1;
+			quote++;
 			i_s++;
 			while (s[i_s] != '\"')
 				i_s++;
 		}
 		i_s++;
 	}
-	if (quote == 1)
-		i_s -= 2;
+	if (quote != 0)
+		i_s -= (quote * 2);
 	return (i_s);
 }

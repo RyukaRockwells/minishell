@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 16:06:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/05 14:46:16 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 20:06:19 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char	*get_save(int fd, char *str)
 {
 	char	*save;
 	int		size;
+	int		error_size;
 
 	save = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!save)
@@ -74,9 +75,10 @@ char	*get_save(int fd, char *str)
 	while (ft_strchr_gnl(str) == 0 && size != 0)
 	{
 		size = read(fd, save, BUFFER_SIZE);
-		if (check_size(size, save, str) == 0)
+		error_size = check_size(size, save, str);
+		if (error_size == 0)
 			return (NULL);
-		else if (check_size(size, save, str) == 1)
+		else if (error_size == 1)
 			return ((char *)-1);
 		save[size] = '\0';
 		str = ft_strjoin_gnl(str, save);
