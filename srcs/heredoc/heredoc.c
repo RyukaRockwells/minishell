@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:16:34 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/03 17:17:23 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/05 14:25:06 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_close_here(t_data *data)
 	int		i;
 
 	i = 0;
-	ft_free(data->envp);
+	ft_free_tab(data->envp);
 	ft_free_all(data);
 	while (i < 1024)
 	{

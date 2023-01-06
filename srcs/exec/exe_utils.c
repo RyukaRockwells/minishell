@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:21:49 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/04 17:30:25 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 16:46:10 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ void	close_and_wait_process(t_data *data, int *fd_pipe, char **cmd_pipe)
 		i++;
 	}
 	free(fd_pipe);
+	ft_signore();
 	i = 0;
 	while (cmd_pipe[i] != NULL)
 	{
 		waitpid(0, &status, 0);
 		i++;
 	}
+	ft_sigreset();
 }
 
 void	check_path_null(char *tab_path, char *cmd, char **path)
@@ -37,7 +39,7 @@ void	check_path_null(char *tab_path, char *cmd, char **path)
 	if (tab_path == NULL)
 	{
 		free(cmd);
-		ft_free(path);
+		ft_free_tab(path);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -48,25 +50,9 @@ void	check_opath_null(char *tab_path, char *o_path, char *cmd, char **path)
 	{
 		free(tab_path);
 		free(cmd);
-		ft_free(path);
+		ft_free_tab(path);
 		exit(EXIT_FAILURE);
 	}
-}
-
-int	ft_cmd_is_empty(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str == NULL)
-		return (1);
-	while (str[i] != '\0')
-	{
-		if (str[i] != ' ')
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 void	ft_set_code_exit(t_data *data, int status)

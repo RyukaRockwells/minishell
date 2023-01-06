@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/04 20:40:18 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 16:42:10 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "parsing.h"
 # include "execution.h"
 # include "builtins.h"
+# include "expand.h"
 # include "../srcs/libft/libft.h"
 # include "../srcs/get_next_line/get_next_line_bonus.h"
 
@@ -77,7 +78,7 @@ t_token	*ft_sep_redtok(t_data *data, t_token *tmp);
 int		ft_chose_tok(t_data *data, char *value, int type);
 
 //exit.c
-void	ft_free(char **tab);
+void	ft_free_tab(char **tab);
 void	ft_exit(int code_exit);
 void	ft_exit_here(void);
 
@@ -97,6 +98,9 @@ void	ft_catch_ctrld_h(t_data *data, char *eof);
 
 //signal2.c
 void	ft_catch_c_heredoc(void);
+void	nothing(int signal);
+void	ft_signore(void);
+void	ft_sigreset(void);
 
 //****-----------------****
 //****-------FREE------****
@@ -137,42 +141,19 @@ void	ft_waitpid_h(t_data *data, int i);
 //****-----------------****
 //****------UTILS------****
 //****-----------------****
+
 //utils/utils.c
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strcpy(char *dest, char *str);
-int		ft_pass_word(char *s, char c, int i);
-int		ft_len_word(char *s, char c, int i);
-char	*ft_copy_in_tab(char *res, char *s, int *j_res, int *i);
+int		ft_nbword(char *s, char sep);
+int		ft_strlen_word(char *s, char sep, int i_s);
 
-//utls/ft_split_quotes..c
-char	**ft_split_quote(char const *s, char c);
+//utils/ft_split_quotes..c
+char	**ft_split_quote(char *s, char c);
 
-//****-----------------****
-//****------EXPAND-----****
-//****-----------------****
-//expand/expand.c
-void	ft_replace_var_to_content(char *str, char *strexp, int	*i, int *j);
-void	ft_copy_single_quote(char *strexp, char *str, int *i, int *j);
-int		ft_exp_is_exist(char *str);
-
-//expand/expand_utils.c
-int		ft_length_name_var(int i, char *str);
-int		ft_length_end_var(int length, char *str);
-int		ft_get_last_id_var(char *str);
-char	*ft_get_var(char *str, int i, int length);
-int		ft_skip_name_var(char *str, int i);
-
-//expand/expand_type.c
-void	ft_expand_exit(t_data *data, char *strexp, int *i, int *j);
-char	*ft_expand_h(t_data *data, char *str);
-char	*ft_expand(t_data *data, char *str);
-
-//expand/expand_length.c
-int		ft_length_str_without_var(char *str);
-int		ft_strlen_var(char *str);
-int		ft_length_all_content_var(char *str);
-
-//expand/translate_expand.c
-void	ft_translate_expand(t_data *data, char *str, char *strexp);
+//utils/empty_ft.c
+char	*ft_check_for_empty(char *str, int i);
+int		ft_cmd_is_empty(char *str);
+int		ft_empty_tok(t_token *tok);
 
 #endif

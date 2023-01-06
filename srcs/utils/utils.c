@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:19:52 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 23:33:33 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 16:40:11 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,72 +40,59 @@ char	*ft_strcpy(char *dest, char *str)
 	return (dest);
 }
 
-int	ft_pass_word(char *s, char c, int i)
+int	ft_nbword(char *s, char sep)
 {
-	while (s[i] != '\0' && s[i] != c)
+	char	quote;
+	int		nbword;
+	int		i;
+	int		meet_space;
+
+	quote = 0;
+	nbword = 0;
+	i = 0;
+	meet_space = 1;
+	while (s[i] != '\0')
 	{
-		if (s[i] == '\'')
+		if (s[i] == quote)
+			quote = 0;
+		else if (s[i] == '\'' || s[i] == '\"')
+			quote = s[i];
+		else if (s[i] == sep && quote == 0)
+			meet_space = 1;
+		if (s[i] != sep && meet_space == 1)
 		{
-			i++;
-			while (s[i] != '\'')
-				i++;
-		}
-		else if (s[i] == '\"')
-		{
-			i++;
-			while (s[i] != '\"')
-				i++;
+			meet_space = 0;
+			nbword++;
 		}
 		i++;
 	}
-	return (i);
+	return (nbword);
 }
 
-int	ft_len_word(char *s, char c, int i)
+int	ft_strlen_word(char *s, char sep, int i_s)
 {
 	int	quote;
 
 	quote = 0;
-	while (s[i] != '\0' && s[i] != c)
+	while (s[i_s] != '\0' && s[i_s] != sep)
 	{
-		if (s[i] == '\'')
+		if (s[i_s] == '\'')
 		{
 			quote = 1;
-			i++;
-			while (s[i] != '\'')
-				i++;
+			i_s++;
+			while (s[i_s] != '\'')
+				i_s++;
 		}
-		else if (s[i] == '\"')
+		else if (s[i_s] == '\"')
 		{
 			quote = 1;
-			i++;
-			while (s[i] != '\"')
-				i++;
+			i_s++;
+			while (s[i_s] != '\"')
+				i_s++;
 		}
-		i++;
+		i_s++;
 	}
 	if (quote == 1)
-		i -= 2;
-	return (i);
-}
-
-char	*ft_copy_in_tab(char *res, char *s, int *j_res, int *i)
-{
-	if (s[(*i)] == '\'')
-	{
-		(*i)++;
-		while (s[(*i)] != '\'')
-			res[(*j_res)++] = s[(*i)++];
-		(*i)++;
-	}
-	else if (s[(*i)] == '\"')
-	{
-		(*i)++;
-		while (s[(*i)] != '\"')
-			res[(*j_res)++] = s[(*i)++];
-		(*i)++;
-	}
-	else
-		res[(*j_res)++] = s[(*i)++];
-	return (res);
+		i_s -= 2;
+	return (i_s);
 }

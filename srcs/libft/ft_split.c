@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 17:21:07 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/08/19 22:00:04 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/06 14:14:59 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	ft_nbmots(char *s, char c)
 	nbmots = 0;
 	while (i < ft_strlen(s))
 	{
-		while (s[i] == c && s[i] != '\0' )
+		while (s[i] == c && s[i] != '\0')
 		{
 			i++;
 		}

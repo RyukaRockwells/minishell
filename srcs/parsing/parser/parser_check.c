@@ -6,22 +6,11 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:09:10 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/11/29 13:18:03 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/05 17:15:50 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
-
-int	ft_empty_tok(t_token *tok)
-{
-	while (tok != NULL)
-	{
-		if (tok->type != ESPACE)
-			return (1);
-		tok = tok->next;
-	}
-	return (0);
-}
 
 int	ft_check_redirect(t_token *tmp)
 {

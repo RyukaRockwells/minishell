@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:26:20 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/04 00:25:11 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/05 13:45:36 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	show_error(int code_error)
 	if (code_error == QUOTES_NO_CLOSE)
 		ft_putstr_fd("minishell: quotes no close\n", 2);
 	if (code_error == EMPTY_TOK)
-		ft_putstr_fd("\n", 2);
+		return ;
 	if (code_error == PIPE_ERROR)
 		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
 	if (code_error == REDIR_IN_ERROR)

@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:26:24 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 17:38:55 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/05 17:25:47 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,19 @@ void	ft_choose_fd(int is_hd, t_data *data, char *str);
 void	execute(char *av, char **envp, t_data *data);
 
 //exec/exe_simple_cmd.c
-void	ft_exe_cmd_simple(t_data *data);
+void	ft_exe_simple_cmd(t_data *data);
 
 //exec/exe_utils.c
 void	close_and_wait_process(t_data *data, int *fd_pipe, char **cmd_pipe);
 void	check_path_null(char *tab_path, char *cmd, char **path);
 void	check_opath_null(char *tab_path, char *o_path, char *cmd, char **path);
-int		ft_cmd_is_empty(char *str);
 void	ft_set_code_exit(t_data *data, int status);
 
 //exec/exe_several_cmd.c
 void	ft_exe_several_cmd(t_data *data);
-void	first_process(t_data *data, int out, int *fd_pipe, char *str);
-void	mid_process(t_data *data, int i, int *fd_pipe, char *str);
-void	end_process(t_data *data, int in, int *fd_pipe, char *str);
+void	first_process(t_data *data, char **tab_cmd, int *fd_pipe, char *str);
+void	mid_process(t_data *data, int i, int *fd_pipe, char **tab_cmd);
+void	end_process(t_data *data, char **tab_cmd, int *fd_pipe, char *str);
 void	redirect_process(t_data *data, char **cmd_pipe, int *fd_pipe);
 
 //exec/rdline_mode_choice.c

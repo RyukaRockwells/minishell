@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:22:14 by nicole            #+#    #+#             */
-/*   Updated: 2022/10/25 18:01:59 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/05 17:26:03 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int		ft_pipe(t_token *tok);
 int		ft_parser(t_data *data);
 
 //parser/parser_check2.c
-int		ft_empty_tok(t_token *tok);
 int		ft_pre_check(t_token *tok);
 int		ft_check_redirect(t_token *tmp);
 int		ft_check_next_tok(int type);

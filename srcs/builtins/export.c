@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:49:02 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 23:57:36 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/05 00:31:56 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,5 @@ int	ft_export(char **args, char **envp)
 	}
 	ft_export2(key, args[1], envp);
 	free(key);
-	return (1);
+	return (0);
 }

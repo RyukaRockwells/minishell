@@ -6,7 +6,7 @@
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 02:10:19 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 22:20:42 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/06 16:57:33 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_msg_error_arg(char **str, t_data *data)
 	ft_putstr_fd(str[1], 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
 	ft_free_all(data);
-	ft_free(data->envp);
-	ft_free(str);
+	ft_free_tab(data->envp);
+	ft_free_tab(str);
 	exit(2);
 }
 
@@ -45,8 +45,7 @@ int	ft_builtin_exit(char **str, t_data *data)
 	else
 	{
 		ft_free_all(data);
-		ft_free(data->envp);
+		ft_free_tab(data->envp);
 	}
-	ft_free(str);
 	exit(exit_code);
 }

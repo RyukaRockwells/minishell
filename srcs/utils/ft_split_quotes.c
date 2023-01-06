@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_quotes.c                                  :+:      :+:    :+:   */
+/*   ft_split_quotes2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 14:26:35 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/04 19:45:30 by nicole           ###   ########.fr       */
+/*   Created: 2023/01/06 13:35:45 by nicole            #+#    #+#             */
+/*   Updated: 2023/01/06 16:40:05 by nicole           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,73 +28,82 @@ static char	**ft_free_split(char **tab)
 	return (NULL);
 }
 
-static int	ft_nextmots(char *s, int pos, char c)
+char	*ft_copy_in_str_split(char *str_split, char *s, int len_word, int i_s)
 {
-	int	i;
+	char	quote;
+	int		j;
 
-	i = pos;
-	if (s == NULL)
-		return (0);
-	while (s[i] == c && s[i] != '\0')
-		i++;
-	return (i);
-}
-
-static int	ft_nbmots(char *s, char c)
-{
-	size_t	i;
-	int		nbmots;
-
-	i = 0;
-	nbmots = 0;
-	while (i < ft_strlen(s))
+	quote = 0;
+	j = 0;
+	while (j < len_word)
 	{
-		while (s[i] == c && s[i] != '\0')
-			i++;
-		if (s[i])
-			nbmots++;
-		i = ft_pass_word(s, c, i);
-		i++;
+		if (s[i_s] == quote)
+			quote = 0;
+		else if ((s[i_s] == '\'' || s[i_s] == '\"') && quote == 0)
+			quote = s[i_s];
+		else
+			str_split[j++] = s[i_s];
+		i_s++;
 	}
-	return (nbmots);
+	str_split[j] = '\0';
+	return (str_split);
 }
 
-static char	**ft_assign(char const *s, char **res, int i, char c)
+int	ft_nextword(char *s, char sep, int i_s)
 {
-	int		i_res;
-	int		j_res;
-	int		len_m;
+	char	quote;
+	int		meet_space;
 
-	i_res = 0;
-	while (s[i] != '\0')
+	quote = 0;
+	meet_space = 0;
+	while (s[i_s] != '\0')
 	{
-		j_res = 0;
-		len_m = ft_len_word((char *)s, c, i);
-		len_m = len_m - i;
-		res[i_res] = malloc(sizeof(char) * len_m + 1);
-		if (res[i_res] == NULL)
-			return (ft_free_split(res));
-		while (j_res < len_m && s[i] != 0)
-		{
-			res[i_res] = ft_copy_in_tab(res[i_res], (char *)s, &j_res, &i);
-		}
-		res[i_res++][j_res] = 0;
-		i = ft_nextmots((char *)s, i, c);
+		if (s[i_s] == quote)
+			quote = 0;
+		else if (s[i_s] == '\'' || s[i_s] == '\"')
+			quote = s[i_s];
+		else if (s[i_s] == sep && quote == 0)
+			meet_space = 1;
+		if (s[i_s] != sep && meet_space == 1)
+			return (i_s);
+		i_s++;
 	}
-	res[i_res] = NULL;
-	return (res);
+	return (i_s);
 }
 
-char	**ft_split_quote(char const *s, char c)
+char	**ft_assign_for_split(char *s, char **str_split, int i_s, char sep)
 {
 	int		i;
-	char	**res;
+	int		len_word;
 
-	if (s == NULL)
+	i = 0;
+	while (s[i_s] != '\0')
+	{
+		len_word = ft_strlen_word(s, sep, i_s) - i_s;
+		str_split[i] = malloc(sizeof(char) * len_word + 1);
+		if (str_split[i] == NULL)
+			return (ft_free_split(str_split));
+		str_split[i] = ft_copy_in_str_split(str_split[i], s, len_word, i_s);
+		i++;
+		i_s = ft_nextword(s, sep, i_s);
+	}
+	str_split[i] = NULL;
+	return (str_split);
+}
+
+char	**ft_split_quote(char *s, char sep)
+{
+	int		i_s;
+	char	**str_split;
+
+	i_s = 0;
+	if (s == NULL || ft_nbword(s, sep) == 0)
 		return (NULL);
-	i = ft_nextmots((char *)s, 0, c);
-	res = malloc(sizeof(char *) * (ft_nbmots((char *)s, c) + 1));
-	if (res == NULL)
+	while (s[i_s] == sep && s[i_s] != '\0')
+		i_s++;
+	str_split = malloc(sizeof(char *) * (ft_nbword(s, sep) + 1));
+	if (str_split == NULL)
 		return (NULL);
-	return (ft_assign(s, res, i, c));
+	str_split = ft_assign_for_split(s, str_split, i_s, sep);
+	return (str_split);
 }
