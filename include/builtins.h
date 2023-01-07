@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:23:19 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 19:31:37 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/07 18:35:07 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,8 @@ int		ft_nb_equals(char *arg);
 char	*ft_get_key(char *arg);
 int		ft_key_is_upper(char *str);
 int		ft_export(char **args, char **envp);
+
+//builtins/my_export.c
+int		my_export(char **split_cmd, char **envp);
 
 #endif

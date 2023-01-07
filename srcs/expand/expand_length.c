@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_length.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:13:51 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 22:40:01 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/07 17:48:28 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,24 @@ void	ft_length_of_expand(char *str, int *i)
 		(*i)++;
 }
 
-void	ft_length_in_single_quote(char *str, int *i, int in_dquote, int *length)
+int	ft_strlen_contents_var(char *str)
 {
-	if (str[(*i)] == '\"' && in_dquote == 0)
-		in_dquote = 1;
-	else if (str[(*i)] == '\"' && in_dquote == 1)
-		in_dquote = 0;
-	if (str[(*i)] == '\'' && in_dquote == 0)
+	int	i;
+	int	length;
+
+	i = 0;
+	length = 0;
+	while (str[i] != '\0')
 	{
-		(*i)++;
-		(*length)++;
-		while (str[(*i)] != '\'')
+		if (str[i] == '=')
 		{
-			(*i)++;
-			(*length)++;
+			i++;
+			length = ft_strlen(str + i);
+			break ;
 		}
-		(*i)++;
-		(*length)++;
+		i++;
 	}
-	else if (str[(*i)] == '$')
-		ft_length_of_expand(str, &(*i));
+	return (length);
 }
 
 int	ft_length_str_without_var(char *str)
@@ -56,15 +54,19 @@ int	ft_length_str_without_var(char *str)
 			while (ft_isalnum(str[i]) == 1 || str[i] == '_')
 				i++;
 		}
-		i++;
-		length++;
+		else
+		{
+			i++;
+			length++;
+		}
 	}
 	return (length);
 }
 
-int	ft_strlen_var(char *str)
+int	ft_strlen_var(t_data *data, char *str)
 {
 	int		i;
+	int		length;
 	char	*env;
 	char	char_save;
 
@@ -78,14 +80,17 @@ int	ft_strlen_var(char *str)
 	}
 	char_save = str[i];
 	str[i] = '\0';
-	env = getenv(str);
+	env = ft_getenv(data, str);
 	if (env == NULL)
 		env = str;
 	str[i] = char_save;
-	return (ft_strlen(env));
+	length = ft_strlen(env);
+	if (str != env)
+		free(env);
+	return (length);
 }
 
-int	ft_length_all_content_var(char *str)
+int	ft_length_all_content_var(t_data *data, char *str)
 {
 	int		i;
 	int		length;
@@ -96,7 +101,7 @@ int	ft_length_all_content_var(char *str)
 	{
 		if (str[i] == '$')
 		{
-			length += ft_strlen_var(str + i + 1);
+			length += ft_strlen_var(data, str + i + 1);
 			i = ft_skip_name_var(str, i + 1);
 		}
 		else

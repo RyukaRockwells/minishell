@@ -3,40 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   translate_expand.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:55:58 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/07 00:01:28 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/07 15:48:34 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_copy_double_quotes(char *strexp, char *str, int *i, int *j)
+char	*ft_copy_env(char *content_env, char *envp)
 {
-	if (str[(*i)] == '\"')
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (envp[i] != '=')
+		i++;
+	i++;
+	while (envp[i] != '\0')
+		content_env[j++] = envp[i++];
+	content_env[j] = '\0';
+	return (content_env);
+}
+
+char	*ft_getenv(t_data *data, char *str)
+{
+	int		i;
+	int		j;
+	char	*envp;
+
+	i = 0;
+	j = 0;
+	while (data->envp[i] != NULL)
 	{
-		strexp[(*j)++] = str[(*i)++];
-		while (str[(*i)] != '\"')
-		{
-			if (str[(*i)] == '$')
-			{
-				if (str[(*i)++] == '?')
-					return (0);
-				else if (ft_exp_is_exist(str + (*i)) != 0)
-					while (ft_isalnum(str[(*i)]) == 1 || str[(*i)] == '_')
-						(*i)++;
-				else
-					ft_replace_var_to_content(str, strexp, &(*i), &(*j));
-			}
-			else if (str[(*i)] == '\0')
-				break ;
-			else
-				strexp[(*j)++] = str[(*i)++];
-		}
-		strexp[(*j)++] = str[(*i)++];
+		if (ft_strncmp(str, data->envp[i], ft_strlen(str)) != 0)
+			i++;
+		else
+			break ;
 	}
-	return (1);
+	if (data->envp[i] == NULL)
+		return (NULL);
+	envp = malloc(sizeof(char) * ft_strlen_contents_var(data->envp[i]) + 1);
+	if (envp == NULL)
+		ft_exit(1);
+	envp = ft_copy_env(envp, data->envp[i]);
+	return (envp);
 }
 
 void	ft_translate_expand(t_data *data, char *str, char *strexp)
@@ -49,20 +62,25 @@ void	ft_translate_expand(t_data *data, char *str, char *strexp)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\'')
-			ft_copy_single_quote(strexp, str, &i, &j);
-		else if (ft_copy_double_quotes(strexp, str, &i, &j) == 0)
-			ft_expand_exit(data, strexp, &i, &j);
+		{
+			strexp[j++] = str[i++];
+			while (str[i] != '\'')
+				strexp[j++] = str[i++];
+			strexp[j++] = str[i++];
+		}
 		else if (str[i] == '$')
 		{
 			if (str[++i] == '?')
 				ft_expand_exit(data, strexp, &i, &j);
-			else if (ft_exp_is_exist(str + i) != 0)
-				while (ft_isalnum(str[i]) == 1 || str[i] == '_')
-					i++;
+			else if (ft_exp_is_exist(data, str + i) != 0)
+				i = ft_skip_name_var(str, i);
 			else
-				ft_replace_var_to_content(str, strexp, &i, &j);
+			{
+				ft_replace_var_to_content(data, str + i, strexp, &j);
+				i = ft_skip_name_var(str, i);
+			}
 		}
-		else if (str[i] != '\0')
+		else
 			strexp[j++] = str[i++];
 	}
 	strexp[j] = '\0';

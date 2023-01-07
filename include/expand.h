@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:22:57 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/05 17:23:46 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/07 15:48:36 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 //****------EXPAND-----****
 //****-----------------****
 //expand/expand.c
-void	ft_replace_var_to_content(char *str, char *strexp, int	*i, int *j);
-void	ft_copy_single_quote(char *strexp, char *str, int *i, int *j);
-int		ft_exp_is_exist(char *str);
+void	ft_replace_var_to_content(t_data *data, char *str, char *exp, int *j);
+int		ft_exp_is_exist(t_data *data, char *str);
 
 //expand/expand_utils.c
 int		ft_length_name_var(int i, char *str);
@@ -34,11 +33,14 @@ char	*ft_expand_h(t_data *data, char *str);
 char	*ft_expand(t_data *data, char *str);
 
 //expand/expand_length.c
+void	ft_length_of_expand(char *str, int *i);
+int		ft_strlen_contents_var(char *str);
 int		ft_length_str_without_var(char *str);
-int		ft_strlen_var(char *str);
-int		ft_length_all_content_var(char *str);
+int		ft_strlen_var(t_data *data, char *str);
+int		ft_length_all_content_var(t_data *data, char *str);
 
 //expand/translate_expand.c
+char	*ft_getenv(t_data *data, char *str);
 void	ft_translate_expand(t_data *data, char *str, char *strexp);
 
 #endif

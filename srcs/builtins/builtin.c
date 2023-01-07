@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:26:57 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 19:33:45 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/07 17:58:58 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_builtin(t_data *data, char *lst_cmd)
 	else if (ft_strcmp(split_cmd[0], "pwd") == 0)
 		return_ft = ft_pwd();
 	else if (ft_strcmp(split_cmd[0], "export") == 0)
-		return_ft = ft_export(split_cmd, data->envp);
+		return_ft = my_export(split_cmd, data->envp);
 	else if (ft_strcmp(split_cmd[0], "unset") == 0)
 		return_ft = ft_unset(data, split_cmd, 1);
 	else if (ft_strcmp(split_cmd[0], "env") == 0)

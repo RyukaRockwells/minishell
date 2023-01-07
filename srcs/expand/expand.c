@@ -3,41 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:28:10 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 23:42:08 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/07 15:41:29 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_replace_var_to_content(char *str, char *strexp, int	*i, int *j)
+void	ft_replace_var_to_content(t_data *data, char *str, char *exp, int *j)
 {
+	int		i;
 	int		k;
-	int		start_env;
 	char	*env;
 	char	char_save;
 
 	k = 0;
-	env = "";
-	start_env = (*i);
-	while (str[(*i)] != '\0')
+	i = ft_skip_name_var(str, 0);
+	while (str[i] != '\0')
 	{
-		while (ft_isalnum(str[(*i)]) == 1 || str[(*i)] == '_')
-			(*i)++;
+		while (ft_isalnum(str[i]) == 1 || str[i] == '_')
+			i++;
 		break ;
 	}
-	char_save = str[(*i)];
-	str[(*i)] = '\0';
-	env = getenv(str + start_env);
-	str[(*i)] = char_save;
+	char_save = str[i];
+	str[i] = '\0';
+	env = ft_getenv(data, str);
+	str[i] = char_save;
 	while (env[k] != '\0')
 	{
-		strexp[(*j)] = env[k];
+		exp[(*j)] = env[k];
 		(*j)++;
 		k++;
 	}
+	free(env);
 }
 
 void	ft_copy_single_quote(char *strexp, char *str, int *i, int *j)
@@ -51,9 +51,10 @@ void	ft_copy_single_quote(char *strexp, char *str, int *i, int *j)
 	}
 }
 
-int	ft_exp_is_exist(char *str)
+int	ft_exp_is_exist(t_data *data, char *str)
 {
 	char	*tmp;
+	char	*env;
 	int		i;
 
 	i = 0;
@@ -67,11 +68,13 @@ int	ft_exp_is_exist(char *str)
 	if (tmp == NULL)
 		ft_exit(1);
 	ft_strlcpy(tmp, str, i + 1);
-	if (getenv(tmp) == NULL)
+	env = ft_getenv(data, tmp);
+	if (env == NULL)
 	{
 		free(tmp);
 		return (1);
 	}
+	free(env);
 	free(tmp);
 	return (0);
 }

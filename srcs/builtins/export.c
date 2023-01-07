@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 23:49:02 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 22:20:34 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/07 17:53:50 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_get_key(char *arg)
 	return (key);
 }
 
-int	ft_key_is_upper(char *str)
+int	ft_key_is_valid(char *str)
 {
 	int	i;
 
@@ -85,7 +85,6 @@ int	ft_key_is_upper(char *str)
 		return (1);
 	while (str[i] != '\0')
 	{
-		printf("JE SUIS DANS LA VOUCLE %c\n", str[i]);
 		if (ft_isalnum(str[i]) == 1 || str[i] == '_' || str[i] == '=')
 			i++;
 		else
@@ -107,10 +106,7 @@ int	ft_export(char **args, char **envp)
 	if (equals == 0)
 		return (1);
 	key = ft_get_key(args[1]);
-	printf("key1: %s\n", key);
-	if (ft_key_is_upper(key) == 0)
-		printf("key2: %s\n", key);
-	else
+	if (ft_key_is_valid(key) != 0)
 	{
 		ft_putstr_fd("minishell: export: not an identifier\n", 2);
 		free(key);
