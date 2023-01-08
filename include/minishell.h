@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/08 16:03:13 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/08 21:48:12 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ t_token	*ft_sep_redtok(t_data *data, t_token *tmp);
 int		ft_chose_tok(t_data *data, char *value, int type);
 
 //exit.c
-void	ft_free_tab(char **tab);
 void	ft_exit(int code_exit);
 void	ft_exit_here(void);
+int		ft_exit_no_path(t_data *data, char **cmd, char *lst_cmd);
 
 //main.c
 void	minishell(char **arg, char **envp);

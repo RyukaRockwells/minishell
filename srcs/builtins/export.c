@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 17:54:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/08 19:16:37 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/08 21:56:09 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ char	*ft_get_var_up_to_equals(char *str)
 
 	i = 0;
 	j = 0;
-	str_up_to_equals = malloc(sizeof(char) * ft_strlen_equal_var(str) + 1);
+	str_up_to_equals = malloc(sizeof(char) * ft_strlen_equal_var(str) + 2);
 	if (str_up_to_equals == NULL)
 		ft_exit(1);
 	while (str[i] != '\0' && str[i] != '=')
 		str_up_to_equals[j++] = str[i++];
+	str_up_to_equals[j++] = str[i++];
 	str_up_to_equals[j] = '\0';
 	return (str_up_to_equals);
 }
@@ -37,11 +38,12 @@ char	*ft_get_name_var(char *str)
 
 	i = 0;
 	j = 0;
-	name_var = malloc(sizeof(char) * ft_strlen_equal_var(str) + 1);
+	name_var = malloc(sizeof(char) * ft_strlen_equal_var(str) + 2);
 	if (name_var == NULL)
 		ft_exit(1);
 	while ((ft_isalnum(str[i]) == 1 || str[i] == '_') && str[i] != '\0')
 		name_var[j++] = str[i++];
+	name_var[j++] = str[i++];
 	name_var[j] = '\0';
 	return (name_var);
 }

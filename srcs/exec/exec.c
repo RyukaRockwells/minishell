@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/06 19:37:04 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/08 22:05:54 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_exe_cmd(t_data *data)
 {
-	int	i;
+	int		i;
+	char	**split_pipe;
 
 	i = 0;
 	while (data->readline[i] != '\0')
@@ -26,9 +27,14 @@ void	ft_exe_cmd(t_data *data)
 			break ;
 		i++;
 	}
-	if (data->nb_pipe == 0)
+	i = 0;
+	split_pipe = ft_split_quote(data->readline, '|');
+	while (split_pipe[i] != NULL)
+		i++;
+	ft_free_tab(split_pipe);
+	if (i == 1)
 		ft_exe_simple_cmd(data);
-	else if (data->nb_pipe != 0)
+	else if (i > 1)
 		ft_exe_several_cmd(data);
 	data->file_exit = 0;
 }
@@ -72,24 +78,31 @@ char	*check_path(char **path, char *cmd)
 	return (0);
 }
 
-char	*find_path(char *cmd, char **envp)
+char	*find_path(char **cmd, char **envp, t_data *data, char *lst_cmd)
 {
 	char	**paths;
 	int		i;
 
 	i = 0;
-	if (ft_strnstr(cmd, "/", ft_strlen(cmd)) != 0)
-		if (access(cmd, F_OK) == 0)
-			return (cmd);
-	while (ft_strnstr(envp[i], "PATH=", 5) == 0)
-		i++;
+	if (ft_strnstr(cmd[0], "/", ft_strlen(cmd[0])) != 0)
+		if (access(cmd[0], F_OK) == 0)
+			return (cmd[0]);
+	while (envp[i] != NULL)
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) != 0)
+			i++;
+		else
+			break ;
+	}
+	if (envp[i] == NULL)
+		ft_exit_no_path(data, cmd, lst_cmd);
 	paths = ft_split(envp[i] + 5, ':');
 	if (paths == NULL)
 	{
-		free(cmd);
+		free(cmd[0]);
 		ft_error();
 	}
-	return (check_path(paths, cmd));
+	return (check_path(paths, cmd[0]));
 }
 
 void	execute(char *lst_cmd, char **envp, t_data *data)
@@ -100,7 +113,7 @@ void	execute(char *lst_cmd, char **envp, t_data *data)
 	cmd = ft_split_quote(lst_cmd, ' ');
 	if (cmd == NULL)
 		ft_error();
-	path = find_path(cmd[0], envp);
+	path = find_path(cmd, envp, data, lst_cmd);
 	if (path == 0)
 		ft_error_exe(data, cmd, lst_cmd);
 	if (data->file_exit == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:19:26 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/10/12 19:06:19 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/08 21:41:50 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	main(int nb, char **arg, char **envp)
 
 	(void)arg;
 	if (nb != 1)
-		ft_error();
+	{
+		ft_putstr_fd("Launch minishell with \n./minishell\n", 2);
+	}
 	ft_init(envp, &data);
 	ft_loop(&data);
 	return (0);

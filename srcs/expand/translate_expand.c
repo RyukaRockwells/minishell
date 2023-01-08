@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:55:58 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/08 19:22:09 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/08 23:28:51 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,42 @@ char	*ft_copy_env(char *content_env, char *envp)
 	return (content_env);
 }
 
+int	ft_exp_is_exist(t_data *data, char *str)
+{
+	char	*tmp;
+	char	*env;
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_isalnum(str[i]) == 0 && str[i] != '_')
+			break ;
+		i++;
+	}
+	tmp = malloc(sizeof(char) * i + 1);
+	if (tmp == NULL)
+		ft_exit(1);
+	ft_strlcpy(tmp, str, i + 1);
+	env = ft_getenv(data, tmp);
+	if (env == NULL)
+	{
+		free(tmp);
+		return (1);
+	}
+	free(env);
+	free(tmp);
+	return (0);
+}
+
 char	*ft_getenv(t_data *data, char *str)
 {
 	int		i;
-	int		j;
 	char	*envp;
 
 	i = 0;
-	j = 0;
+	if (str[i] == '\0')
+		return (NULL);
 	while (data->envp[i] != NULL)
 	{
 		if (ft_strncmp(str, data->envp[i], ft_strlen(str)) != 0)
@@ -64,17 +92,18 @@ void	ft_translate_expand(t_data *data, char *str, char *strexp)
 		ft_copy_single_quote(strexp, str, &i, &j);
 		if (str[i] == '$')
 		{
-			if (str[++i] == '?')
+			i++;
+			if (str[i] == '?')
 				ft_expand_exit(data, strexp, &i, &j);
-			else if (ft_exp_is_exist(data, str + i) != 0)
+			else if (ft_exp_is_exist(data, str + i) != 0 && str[i] != '\0')
 				i = ft_skip_name_var(str, i);
-			else
+			else if (str[i] != '\0')
 			{
 				ft_replace_var_to_content(data, str + i, strexp, &j);
 				i = ft_skip_name_var(str, i);
 			}
 		}
-		else
+		else if (str[i] != '\0')
 			strexp[j++] = str[i++];
 	}
 	strexp[j] = '\0';
