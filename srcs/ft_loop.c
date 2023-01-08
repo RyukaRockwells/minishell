@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_loop.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/06 22:19:02 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/08 23:50:59 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,14 @@ void	ft_loop(t_data *data)
 			ft_catch_d(data);
 		if (data->readline[0] != 0)
 			add_history(data->readline);
-		code_error = ft_get_cmd(data);
-		if (code_error != 0)
-			show_error(code_error);
-		else
-			ft_exe_cmd(data);
+		if (ft_strlen(data->readline) > 0)
+		{
+			code_error = ft_get_cmd(data);
+			if (code_error != 0)
+				show_error(code_error);
+			else
+				ft_exe_cmd(data);
+		}
 		ft_reinit(data);
 	}
 }

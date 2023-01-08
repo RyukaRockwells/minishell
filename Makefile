@@ -6,7 +6,7 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2023/01/08 19:16:18 by nchow-yu         ###   ########.fr        #
+#    Updated: 2023/01/08 23:45:35 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ BUILTIN	=	$(addprefix srcs/builtins/, builtin.c cd.c env.c pwd.c exit.c echo.c u
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 CC		=	cc
-CFLAGS	=	-Wall -Werror -Wextra -g3# -O0 -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra -g3 -O0 -fsanitize=address
 NAME	=	minishell
 
 %.o:	%.c
