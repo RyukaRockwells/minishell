@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:22:57 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/07 15:48:36 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:09:14 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 //expand/expand.c
 void	ft_replace_var_to_content(t_data *data, char *str, char *exp, int *j);
 int		ft_exp_is_exist(t_data *data, char *str);
+void	ft_copy_single_quote(char *strexp, char *str, int *i, int *j);
+int		ft_nb_single_quote(char *str);
 
 //expand/expand_utils.c
 int		ft_length_name_var(int i, char *str);

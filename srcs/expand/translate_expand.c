@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:55:58 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/07 15:48:34 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:22:09 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,8 @@ void	ft_translate_expand(t_data *data, char *str, char *strexp)
 	j = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '\'')
-		{
-			strexp[j++] = str[i++];
-			while (str[i] != '\'')
-				strexp[j++] = str[i++];
-			strexp[j++] = str[i++];
-		}
-		else if (str[i] == '$')
+		ft_copy_single_quote(strexp, str, &i, &j);
+		if (str[i] == '$')
 		{
 			if (str[++i] == '?')
 				ft_expand_exit(data, strexp, &i, &j);

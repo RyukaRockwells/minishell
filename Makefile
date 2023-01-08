@@ -6,7 +6,7 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2023/01/07 18:36:35 by nchow-yu         ###   ########.fr        #
+#    Updated: 2023/01/08 19:16:18 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ EXPAND	=	$(addprefix srcs/expand/, expand.c expand_utils.c expand_type.c expand_
 			translate_expand.c)
 UTILS	=	$(addprefix srcs/utils/, utils.c deco.c ft_split_quotes.c empty_ft.c)
 GNL		=	$(addprefix srcs/get_next_line/, get_next_line_bonus.c get_next_line_utils_bonus.c)
-BUILTIN	=	$(addprefix srcs/builtins/, builtin.c cd.c env.c pwd.c exit.c echo.c unset.c \
-			my_export.c export.c)
+BUILTIN	=	$(addprefix srcs/builtins/, builtin.c cd.c env.c pwd.c exit.c echo.c unset.c\
+			export.c utils.c)
 
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
@@ -61,5 +61,3 @@ fclean:    clean
 re:	fclean all
 
 .PHONY:	all clean fclean re
-
-#valgrind -s --suppressions=ignoreleak --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./minishell

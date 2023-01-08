@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:26:57 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/07 17:58:58 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:14:27 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	ft_builtin(t_data *data, char *lst_cmd)
 	else if (ft_strcmp(split_cmd[0], "pwd") == 0)
 		return_ft = ft_pwd();
 	else if (ft_strcmp(split_cmd[0], "export") == 0)
-		return_ft = my_export(split_cmd, data->envp);
+		return_ft = ft_export(split_cmd, data->envp, data);
 	else if (ft_strcmp(split_cmd[0], "unset") == 0)
-		return_ft = ft_unset(data, split_cmd, 1);
+		return_ft = ft_unset(data, split_cmd);
 	else if (ft_strcmp(split_cmd[0], "env") == 0)
 		return_ft = ft_env(data);
 	else if (ft_strcmp(split_cmd[0], "exit") == 0)

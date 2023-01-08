@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/06 19:37:12 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/08 16:03:13 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	ft_init(char **envp, t_data *data);
 void	ft_reinit(t_data *data);
 int		ft_env_nbline(char **envp);
 void	ft_env_init(t_data *data, char **envp);
-//void	ft_print_env(t_data *data);
 
 //ft_loop.c
 int		ft_get_cmd(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:28:10 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/07 15:41:29 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:21:05 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,6 @@ void	ft_replace_var_to_content(t_data *data, char *str, char *exp, int *j)
 	free(env);
 }
 
-void	ft_copy_single_quote(char *strexp, char *str, int *i, int *j)
-{
-	if (str[(*i)] == '\'')
-	{
-		strexp[(*j)++] = str[(*i)++];
-		while (str[(*i)] != '\'')
-			strexp[(*j)++] = str[(*i)++];
-		strexp[(*j)++] = str[(*i)++];
-	}
-}
-
 int	ft_exp_is_exist(t_data *data, char *str)
 {
 	char	*tmp;
@@ -77,4 +66,31 @@ int	ft_exp_is_exist(t_data *data, char *str)
 	free(env);
 	free(tmp);
 	return (0);
+}
+
+void	ft_copy_single_quote(char *strexp, char *str, int *i, int *j)
+{
+	if (str[(*i)] == '\'' && ft_nb_single_quote(str) >= 2)
+	{
+		strexp[(*j)++] = str[(*i)++];
+		while (str[(*i)] != '\'')
+			strexp[(*j)++] = str[(*i)++];
+		strexp[(*j)++] = str[(*i)++];
+	}
+}
+
+int	ft_nb_single_quote(char *str)
+{
+	int	i;
+	int	nb;
+
+	i = 0;
+	nb = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\'')
+			nb++;
+		i++;
+	}
+	return (nb);
 }

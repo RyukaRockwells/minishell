@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:23:19 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/07 18:35:07 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:14:03 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,21 @@ int		ft_echo(char **tab_arg);
 //builtins/exit.c
 int		ft_builtin_exit(char **str, t_data *data, char *lst_cmd);
 
-//builtins/unset.c
-int		ft_tablen(char **tab);
-void	ft_replace_tab(t_data *data, int *i, int size);
-int		ft_unset(t_data *data, char **var, int size);
+//builtins/ft_unset.c
+void	ft_unset_var(char *var_unset, t_data *data);
+int		ft_unset(t_data *data, char **split_cmd);
 
-//builtins/export.c
-char	**ft_export2(char *var, char *str, char **envp);
-int		ft_nb_equals(char *arg);
-char	*ft_get_key(char *arg);
-int		ft_key_is_upper(char *str);
-int		ft_export(char **args, char **envp);
+//builtins/ft_export.c
+char	*ft_get_var_up_to_equals(char *str);
+char	*ft_get_name_var(char *str);
+void	ft_modify_var_envp(t_data *data, char *var, char *name_var);
+void	ft_add_var_in_envp(t_data *data, char *var);
+int		ft_export(char **split_cmd, char **envp, t_data *data);
 
-//builtins/my_export.c
-int		my_export(char **split_cmd, char **envp);
+//builtins/utils.c
+int		ft_verify_exist_var(t_data *data, char *name_var);
+int		ft_strlen_name_var(char *s);
+int		ft_strlen_equal_var(char *s);
+char	*ft_check_valid_var(char *str);
 
 #endif

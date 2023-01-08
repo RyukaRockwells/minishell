@@ -1,62 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   my_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 17:44:17 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 18:51:12 by nicole           ###   ########.fr       */
+/*   Created: 2023/01/08 18:26:49 by nchow-yu          #+#    #+#             */
+/*   Updated: 2023/01/08 19:14:13 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_tablen(char **tab)
+void	ft_unset_var(char *var_unset, t_data *data)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	**envp;
 
 	i = 0;
-	while (tab[i] != NULL)
-		i++;
-	return (i);
-}
-
-void	ft_replace_tab(t_data *data, int *i, int size)
-{
-	if ((*i) < size - 1)
+	j = 0;
+	envp = malloc(sizeof(char *) * (ft_env_nbline(data->envp) + 1));
+	if (envp == NULL)
+		ft_exit(1);
+	while (data->envp[i] != NULL)
 	{
-		while (data->envp[(*i) + 1] != NULL)
-		{
-			data->envp[(*i)] = data->envp[(*i) + 1];
-			(*i)++;
-		}
+		if (ft_strncmp(data->envp[i], var_unset, ft_strlen(var_unset)) == 0)
+			i++;
+		else
+			envp[j++] = ft_strdup(data->envp[i++]);
 	}
-	data->envp[(*i)] = NULL;
+	envp[j] = NULL;
+	ft_free_tab(data->envp);
+	data->envp = envp;
 }
 
-int	ft_unset(t_data *data, char **var, int size)
+int	ft_unset(t_data *data, char **split_cmd)
 {
-	int	i;
+	int		i;
+	char	*var_unset;
 
-	i = 0;
-	size = ft_tablen(data->envp);
-	if (ft_tablen(var) < 2)
+	i = 1;
+	if (split_cmd[1] == NULL)
 	{
 		ft_putstr_fd("unset: not enough arguments\n", 2);
 		return (1);
 	}
-	var[1] = ft_strjoin(var[1], "=");
-	while (data->envp[i] != NULL)
+	while (split_cmd[i] != NULL)
 	{
-		if (ft_strncmp(data->envp[i], var[1], ft_strlen(var[1])) == 0)
-		{
-			free(data->envp[i]);
-			data->envp[i] = NULL;
-			ft_replace_tab(data, &i, size);
-			return (0);
-		}
+		var_unset = ft_strjoin(split_cmd[i], "=");
+		ft_unset_var(var_unset, data);
+		free(var_unset);
 		i++;
 	}
-	return (0);
+	return (1);
 }
