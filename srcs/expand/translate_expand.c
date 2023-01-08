@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:55:58 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/08 23:28:51 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/08 23:34:59 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ char	*ft_getenv(t_data *data, char *str)
 		return (NULL);
 	while (data->envp[i] != NULL)
 	{
-		if (ft_strncmp(str, data->envp[i], ft_strlen(str)) != 0)
+		if (ft_strncmp(str, data->envp[i], \
+			ft_strlen_equal_var(data->envp[i])) != 0)
 			i++;
 		else
 			break ;
