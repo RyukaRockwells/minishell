@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/08 23:50:59 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/10 01:53:33 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ int	ft_get_cmd(t_data *data)
 	if (error_status != 0)
 		return (error_status);
 	else
-	{
 		ft_tok(data);
-		ft_exe_lst(data);
-	}
 	return (0);
 }
 

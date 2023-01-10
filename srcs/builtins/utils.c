@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 19:05:24 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/08 19:11:30 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:35:38 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 int	ft_verify_exist_var(t_data *data, char *name_var)
 {
 	int	i;
+	int	length_var;
 
 	i = 0;
+	if (name_var[ft_strlen(name_var) - 1] == '=')
+		length_var = ft_strlen(name_var) - 1;
+	else
+		length_var = ft_strlen(name_var);
 	while (data->envp[i] != NULL)
 	{
-		if (ft_strncmp(data->envp[i], name_var, ft_strlen(name_var)) == 0)
+		if (ft_strncmp(data->envp[i], name_var, length_var) == 0)
 			return (1);
 		i++;
 	}

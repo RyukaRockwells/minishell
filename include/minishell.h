@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/08 21:48:12 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:06:04 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@
 # define HEREDOC_ERROR 27
 # define NEWLINE_ERROR 28
 # define EXIT_HEREDOC 130
+
+int		ft_nblen(int n);
 
 //ft_deco.c
 void	ft_deco(void);

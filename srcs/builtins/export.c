@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 17:54:56 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/08 23:53:45 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:45:43 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,14 @@ char	*ft_get_name_var(char *str)
 void	ft_modify_var_envp(t_data *data, char *var, char *name_var)
 {
 	int	i;
+	int	length_var;
 
 	i = 0;
-	while (ft_strncmp(data->envp[i], name_var, ft_strlen(name_var)) != 0)
+	if (name_var[ft_strlen(name_var) - 1] == '=')
+		length_var = ft_strlen(name_var) - 1;
+	else
+		length_var = ft_strlen(name_var);
+	while (ft_strncmp(data->envp[i], name_var, length_var) != 0)
 		i++;
 	free(data->envp[i]);
 	data->envp[i] = ft_strdup(var);

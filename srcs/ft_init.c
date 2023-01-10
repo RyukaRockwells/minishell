@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/04 01:45:54 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/10 01:40:54 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ void	ft_init(char **envp, t_data *data)
 	data->nb_pipe = 0;
 	data->token = NULL;
 	data->tok_exe = NULL;
-	data->fd_stdout = -1;
-	data->fd_stdin = -1;
+	data->fd_in = -1;
+	data->fd_out = -1;
+	data->type_in = 0;
+	data->type_out = 0;
+	data->type_dout = 0;
 	data->last_fd = -1;
 	ft_env_init(data, envp);
 }

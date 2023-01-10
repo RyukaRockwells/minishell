@@ -6,7 +6,7 @@
 #    By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 12:20:40 by nchow-yu          #+#    #+#              #
-#    Updated: 2023/01/08 23:45:35 by nchow-yu         ###   ########.fr        #
+#    Updated: 2023/01/10 01:04:12 by nchow-yu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,12 @@ SRCS	=	$(addprefix srcs/, main.c error.c ft_loop.c exit.c ft_init.c) \
 			${HEREDOC} ${EXPAND} ${UTILS} ${GNL} ${SIGNAL} ${BUILTIN} ${REDIRECT} \
 			${RM_QUOTE}
 SHOW	=	srcs/show/show.c
-REDIRECT=	$(addprefix srcs/redirect/, redirect.c)
+REDIRECT=	$(addprefix srcs/redirect/, redirect_file.c redirect.c)
 RM_QUOTE=	$(addprefix srcs/rm_quotes/, rm_quotes.c rm_quotes_redirect.c)
 SIGNAL	=	$(addprefix srcs/signal/, signal.c signal2.c)
 TOKEN	=	$(addprefix srcs/parsing/token/, token.c token_list.c)
 PARSER	=	$(addprefix srcs/parsing/parser/, parser.c parser_check.c)
 LEXER	=	$(addprefix srcs/parsing/lexer/, lexer.c lexer_utils.c lexer_check.c)
-PRE_EXEC=	$(addprefix srcs/pre_exec/, exe_list.c)
 FREE	=	$(addprefix srcs/free/, all_free.c all_free2.c)
 EXEC	=	$(addprefix srcs/exec/, exe_utils.c exec.c exe_simple_cmd.c \
 			exe_several_cmd.c rdline_mode_choice.c)
@@ -36,7 +35,7 @@ BUILTIN	=	$(addprefix srcs/builtins/, builtin.c cd.c env.c pwd.c exit.c echo.c u
 LIBFT	=	srcs/libft/libft.a
 OBJS	=	${SRCS:.c=.o}
 CC		=	cc
-CFLAGS	=	-Wall -Werror -Wextra -g3 -O0 -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra -g3 #-O0 -fsanitize=address
 NAME	=	minishell
 
 %.o:	%.c

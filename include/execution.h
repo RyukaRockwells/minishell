@@ -3,23 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:26:24 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 19:52:38 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/10 01:03:59 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
-
-//****-----------------****
-//****-----PRE_EXEC----****
-//****-----------------****
-
-//pre_exec/exe_list.c
-int		ft_nb_pipe(t_token *lst);
-void	ft_exe_lst(t_data *data);
 
 //****-----------------****
 //****------EXEC-------****
@@ -52,6 +44,10 @@ char	*ft_rdline_choose(int is_hd, t_data *data, char *str);
 //****-----------------****
 //****----REDIRECT-----****
 //****-----------------****
+
+//redirect/redirect_file.c
+void	ft_open_all_file(t_data *data, char *str);
+
 
 //redirect/redirect.c
 int		ft_is_rd(char *str);

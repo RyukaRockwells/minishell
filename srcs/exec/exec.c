@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/08 22:05:54 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/10 02:12:00 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,33 @@ void	ft_exe_cmd(t_data *data)
 			break ;
 		i++;
 	}
-	i = 0;
 	split_pipe = ft_split_quote(data->readline, '|');
-	while (split_pipe[i] != NULL)
-		i++;
+	while (split_pipe[data->nb_pipe] != NULL)
+		data->nb_pipe++;
 	ft_free_tab(split_pipe);
-	if (i == 1)
+	if (data->nb_pipe == 1)
 		ft_exe_simple_cmd(data);
-	else if (i > 1)
+	else if (data->nb_pipe > 1)
 		ft_exe_several_cmd(data);
 	data->file_exit = 0;
 }
 
 void	ft_choose_fd(int is_hd, t_data *data, char *str)
 {
-	if ((is_hd == 1 || ft_is_rd_in(str) == 0) && data->last_fd != -1)
+	if (is_hd == 1)
 	{
 		dup2(data->last_fd, 0);
 		close(data->last_fd);
 	}
-	else if (ft_is_rd_out(str) != 0 && data->last_fd != -1)
+	else if (ft_is_rd_in(str) == 0)
 	{
-		dup2(data->last_fd, 1);
-		close(data->last_fd);
+		dup2(data->fd_in, 0);
+		close(data->fd_in);
+	}
+	else if (ft_is_rd_out(str))
+	{
+		dup2(data->fd_out, 1);
+		close(data->fd_out);
 	}
 }
 
@@ -112,10 +116,10 @@ void	execute(char *lst_cmd, char **envp, t_data *data)
 
 	cmd = ft_split_quote(lst_cmd, ' ');
 	if (cmd == NULL)
-		ft_error();
+		ft_exit_no_path(data, cmd, lst_cmd);
 	path = find_path(cmd, envp, data, lst_cmd);
 	if (path == 0)
-		ft_error_exe(data, cmd, lst_cmd);
+		ft_exit_no_path(data, cmd, lst_cmd);
 	if (data->file_exit == 0)
 	{
 		if (execve(path, cmd, envp) == -1)

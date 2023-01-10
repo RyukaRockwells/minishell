@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:13:51 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/07 17:48:28 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:06:40 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,14 @@ int	ft_length_all_content_var(t_data *data, char *str)
 	length = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '$')
+		if (str[i] == '$' && str[i + 1] != '?')
 		{
 			length += ft_strlen_var(data, str + i + 1);
+			i = ft_skip_name_var(str, i + 1);
+		}
+		else if (str[i] == '$' && str[i + 1] == '?')
+		{
+			length += ft_nblen(data->code_exit);
 			i = ft_skip_name_var(str, i + 1);
 		}
 		else

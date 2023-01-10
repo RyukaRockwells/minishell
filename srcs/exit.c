@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:28:52 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/08 21:47:17 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:59:46 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ int	ft_exit_no_path(t_data *data, char **cmd, char *lst_cmd)
 	ft_putstr_fd(cmd[0], 2);
 	ft_putstr_fd(" command not found\n", 2);
 	ft_free_exe_simple(data, cmd, lst_cmd);
-	exit(EXIT_FAILURE);
+	exit(127);
 }
