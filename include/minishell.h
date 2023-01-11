@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/09 17:06:04 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:17:47 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	ft_catch_c_heredoc(void);
 void	nothing(int signal);
 void	ft_signore(void);
 void	ft_sigreset(void);
+void	ft_default_signal_child(void);
 
 //****-----------------****
 //****-------FREE------****

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 16:49:20 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:15:36 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	redirect_process(t_data *data, char **cmd_pipe, int *fd_pipe)
 		process = fork();
 		if (process == 0)
 		{
+			ft_default_signal_child();
 			if (i == 0)
 				first_process(data, cmd_pipe, fd_pipe, cmd_pipe[i]);
 			if (data->nb_pipe != i)
@@ -61,10 +62,11 @@ void	first_process(t_data *data, char **tab_cmd, int *fd_pipe, char *str)
 	char	*lst_cmd;
 	int		i;
 	int		is_hd;
+	int		return_dup;
 
 	i = 0;
 	is_hd = ft_is_heredoc(str);
-	dup2(fd_pipe[1], 1);
+	return_dup = dup2(fd_pipe[1], 1);
 	while (data->nb_pipe * 2 > i)
 	{
 		close(fd_pipe[i]);

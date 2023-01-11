@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 21:05:29 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/05 13:22:34 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/11 22:16:47 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,10 @@ void	ft_sigreset(void)
 	sigaction(SIGINT, &sa, 0);
 	sigaction(SIGQUIT, &sa, 0);
 	sigaction(SIGTERM, &sa, 0);
+}
+
+void	ft_default_signal_child(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 }

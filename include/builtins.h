@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:23:19 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/08 19:14:03 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:38:52 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		ft_echo(char **tab_arg);
 int		ft_builtin_exit(char **str, t_data *data, char *lst_cmd);
 
 //builtins/ft_unset.c
+char	*get_key(char *str);
 void	ft_unset_var(char *var_unset, t_data *data);
 int		ft_unset(t_data *data, char **split_cmd);
 

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 17:35:26 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:15:45 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_exe_simple_cmd(t_data *data)
 			p_exe = fork();
 			if (p_exe == 0)
 			{
+				ft_default_signal_child();
 				ft_choose_fd(is_hd, data);
 				execute(lst_cmd, data->envp, data);
 			}

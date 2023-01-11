@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/11 18:28:51 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:01:16 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ void	ft_exe_cmd(t_data *data)
 	split_pipe = ft_split_quote(data->readline, '|');
 	while (split_pipe[data->nb_pipe] != NULL)
 		data->nb_pipe++;
+	data->nb_pipe--;
 	ft_free_tab(split_pipe);
-	if (data->nb_pipe == 1)
+	if (data->nb_pipe == 0)
 		ft_exe_simple_cmd(data);
-	else if (data->nb_pipe > 1)
+	else if (data->nb_pipe >= 1)
 		ft_exe_several_cmd(data);
 	data->file_exit = 0;
 }
@@ -113,11 +114,9 @@ void	execute(char *lst_cmd, char **envp, t_data *data)
 	int		i;
 
 	i = 0;
-	fprintf(stderr, "lst_cmd: %s\n", lst_cmd);
 	cmd = ft_split_quote(lst_cmd, ' ');
 	while (cmd[i] != NULL)
 	{
-		fprintf(stderr, "cmd[%d]: %s\n", i, cmd[i]);
 		i++;
 	}
 	if (cmd == NULL)

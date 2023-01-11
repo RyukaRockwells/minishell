@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:16:39 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/11 18:05:40 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:07:05 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_get_pos_redirect(char *str)
 	int	i;
 
 	i = 0;
+	fprintf(stderr, "str = %s\n", str);
 	while (str[i + 1] != '\0' && (i + 1) < (int)ft_strlen(str))
 	{
 		if ((str[i] == '<' && str[i + 1] != '<')
@@ -45,7 +46,8 @@ void	ft_check_and_close_fd(int fd, char *file, t_data *data)
 		data->code_exit = 1;
 		fd_error(file);
 	}
-	close(fd);
+	else
+		close(fd);
 }
 
 void	ft_open_tmp_file(char *file, t_data *data)
@@ -57,6 +59,7 @@ void	ft_open_tmp_file(char *file, t_data *data)
 		i++;
 	if (ft_type_of_redirect(data->stmp) == 3 && data->file_exit != 1)
 	{
+		fprintf(stderr, "file_in = %s\n", file);
 		data->type_in = REDIRECT_IN;
 		data->file_in = file + i;
 		data->fd_in = open(file + i, O_RDONLY);
@@ -64,6 +67,7 @@ void	ft_open_tmp_file(char *file, t_data *data)
 	}
 	else if (ft_type_of_redirect(data->stmp) == 2 && data->file_exit != 1)
 	{
+		fprintf(stderr, "file_out = %s\n", file);
 		data->type_out = REDIRECT_OUT;
 		data->file_out = file + i;
 		data->fd_out = open(file + i, O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -71,6 +75,7 @@ void	ft_open_tmp_file(char *file, t_data *data)
 	}
 	else if (ft_type_of_redirect(data->stmp) == 1 && data->file_exit != 1)
 	{
+		fprintf(stderr, "file_dout = %s\n", file);
 		data->type_dout = D_REDIRECT_OUT;
 		data->file_out = file + i;
 		data->fd_out = open(file + i, O_RDWR | O_CREAT | O_APPEND);
@@ -107,6 +112,7 @@ void	ft_open_all_file(t_data *data, char *str)
 
 	data->stmp = ft_strdup(str);
 	i = ft_get_pos_redirect(data->stmp);
+	fprintf(stderr, "i = %d\n", i);
 	while (i != -1)
 	{
 		start = i;

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:09:25 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/10 18:42:49 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:56:39 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_get_cmd(t_data *data)
 	int	i;
 
 	i = ft_strlen(data->readline) - 1;
-	while (data->readline[i] == ' ')
+	while (data->readline[i] == ' ' && i != 0)
 		i--;
 	data->readline[i + 1] = '\0';
 	error_status = ft_lexer(data);

@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:36:27 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 18:23:28 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:34:17 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,21 @@
 int	ft_is_rd_in(t_data *data)
 {
 	t_token	*tmp;
+	int		return_in;
 
 	tmp = data->token;
 	while (tmp != NULL)
 	{
-		if (tmp->type == REDIRECT_IN || tmp->type == HEREDOC)
-			return (1);
+		if (tmp->type == REDIRECT_IN)
+			return_in = 1;
+		else if (tmp->type == HEREDOC)
+			return_in = 2;
 		tmp = tmp->next;
 	}
-	return (0);
+	if (return_in == 1)
+		return (data->fd_in);
+	else
+		return (data->last_fd);
 }
 
 int	ft_type_of_redirect(char *str)
@@ -53,7 +59,10 @@ char	*ft_is_redirect(char *str, t_data *data)
 		fprintf(stderr, "fd_in = %d | file = |%s|\n", data->fd_in, data->file_in);
 	}
 	if (data->type_out == REDIRECT_OUT && data->file_exit != 1)
+	{
 		data->fd_out = open(data->file_out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		fprintf(stderr, "fd_in = %d | file = |%s|\n", data->fd_out, data->file_out);
+	}
 	if (data->type_dout == D_REDIRECT_OUT && data->file_exit != 1)
 		data->fd_out = open(data->file_out, O_RDWR | O_CREAT | O_APPEND);
 	return (data->stmp);

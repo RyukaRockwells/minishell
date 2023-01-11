@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:36:40 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 16:42:45 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:11:52 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,18 @@ int	ft_is_metachar(char *str)
 char	*ft_rdline_choose(int is_hd, t_data *data, char *str)
 {
 	char	*lst_cmd;
-	/*if (ft_is_metachar(str) == 0)
-		return (NULL);
-	if (ft_is_builtin(str) == 0)
-	{
-		
-	}
-	else
-		return (ft_expand(data, str));*/
+
 	lst_cmd = str;
 	if (is_hd == 1)
+	{
+		fprintf(stderr, "heredoc\n");
 		lst_cmd = ft_rm_heredoc_in_str(lst_cmd);
+	}
 	if (ft_is_rd(data) == 1)
+	{
+		fprintf(stderr, "redirect\n");
 		lst_cmd = ft_is_redirect(lst_cmd, data);
+	}
 	else
 		lst_cmd = ft_expand(data, lst_cmd);
 	return (lst_cmd);

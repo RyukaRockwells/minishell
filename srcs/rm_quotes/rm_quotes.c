@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 14:53:28 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:31:27 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,21 @@ int	ft_strlen_before_hd(char *str)
 int	ft_strlen_after_hd(char *str)
 {
 	int	i;
-	int	length;
 	int	quote;
 
 	i = ft_strlen_before_hd(str) + 2;
-	length = 2;
 	quote = 0;
 	while (ft_is_space(str[i]) == 0 && str[i] != '\0')
 		i++;
-	while (str[i] != '\0')
+	while (str[i] != '\0' && (ft_is_space(str[i]) == 1 || quote != 0))
 	{
 		if (str[i] == quote)
 			quote = 0;
-		else if (str[i] == '\'' && str[i] == '\"' && quote == 0)
+		else if ((str[i] == '\'' || str[i] == '\"') && quote == 0)
 			quote = str[i];
-		else if (quote != 0)
-			length++;
-		else if (ft_isascii(str[i]) == 1 && quote == 0)
-			length++;
 		i++;
 	}
-	return (length);
+	return (i);
 }
 
 char	*ft_rm_heredoc_in_str(char *str)
@@ -91,6 +85,7 @@ char	*ft_rm_heredoc_in_str(char *str)
 	new_str = malloc(sizeof(char) * ft_strlen(str) + 1);
 	start = ft_strlen_before_hd(str);
 	end = ft_strlen_after_hd(str);
+	fprintf(stderr, "start = %d | end = %d\n", start, end);
 	while (str[i] != '\0')
 	{
 		if (i >= start && i <= end)
