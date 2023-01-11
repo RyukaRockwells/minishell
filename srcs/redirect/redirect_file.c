@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:16:39 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/11 17:48:21 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:05:40 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_get_pos_redirect(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i + 1] != '\0')
+	while (str[i + 1] != '\0' && (i + 1) < (int)ft_strlen(str))
 	{
 		if ((str[i] == '<' && str[i + 1] != '<')
 			|| (str[i] == '>' && str[i + 1] != '>'))
@@ -32,7 +32,7 @@ int	ft_get_pos_redirect(char *str)
 		}
 		i++;
 	}
-	if (str[i] == '\0')
+	if (str[i + 1] == '\0')
 		return (-1);
 	return (i);
 }
