@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:16:16 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 16:49:00 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:35:26 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_exe_simple_cmd(t_data *data)
 
 	is_hd = ft_is_heredoc(data->readline);
 	lst_cmd = ft_rdline_choose(is_hd, data, data->readline);
-	fprintf(stderr, "lst_cmd = %s\n", lst_cmd);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
 		if (ft_is_builtin(lst_cmd) == 1)

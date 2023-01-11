@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 20:36:27 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 16:47:50 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:35:06 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ char	*ft_is_redirect(char *str, t_data *data)
 		data->fd_out = open(data->file_out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (data->type_dout == D_REDIRECT_OUT && data->file_exit != 1)
 		data->fd_out = open(data->file_out, O_RDWR | O_CREAT | O_APPEND);
-	fprintf(stderr, "data = %s\n", data->stmp);
 	return (data->stmp);
 }
