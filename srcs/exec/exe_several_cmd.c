@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_several_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 19:27:06 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/11 16:49:20 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	first_process(t_data *data, char **tab_cmd, int *fd_pipe, char *str)
 	lst_cmd = ft_rdline_choose(is_hd, data, str);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
-		ft_choose_fd(is_hd, data, str);
+		ft_choose_fd(is_hd, data);
 		if (ft_builtin(data, lst_cmd) != 2)
 			ft_free_builtin(lst_cmd, tab_cmd);
 		ft_free_tab(tab_cmd);
@@ -101,7 +101,7 @@ void	mid_process(t_data *data, int i, int *fd_pipe, char **tab_cmd)
 	lst_cmd = ft_rdline_choose(is_hd, data, tab_cmd[i_cmd_active]);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
-		ft_choose_fd(is_hd, data, tab_cmd[i_cmd_active]);
+		ft_choose_fd(is_hd, data);
 		if (ft_builtin(data, lst_cmd) != 2)
 			ft_free_builtin(lst_cmd, tab_cmd);
 		ft_free_tab(tab_cmd);
@@ -129,7 +129,7 @@ void	end_process(t_data *data, char **tab_cmd, int *fd_pipe, char *str)
 	lst_cmd = ft_rdline_choose(is_hd, data, str);
 	if (ft_cmd_is_empty(lst_cmd) == 0)
 	{
-		ft_choose_fd(is_hd, data, str);
+		ft_choose_fd(is_hd, data);
 		if (ft_builtin(data, lst_cmd) != 2)
 			ft_free_builtin(lst_cmd, tab_cmd);
 		ft_free_tab(tab_cmd);

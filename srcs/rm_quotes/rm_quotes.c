@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rm_quotes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 19:51:56 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/11 14:53:28 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,20 @@ int	ft_length_str_without_quotes(char *str)
 int	ft_strlen_before_hd(char *str)
 {
 	int	i;
+	int	quote;
 
 	i = 0;
-	while (str[i] != str[i + 1] && str[i] != '\0')
+	quote = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == quote)
+			quote = 0;
+		else if (str[i] == '\'' && str[i] == '\"' && quote == 0)
+			quote = str[i];
+		else if (str[i] == '<' && str[i + 1] == '<' && quote == 0)
+			return (i);
 		i++;
+	}
 	return (i);
 }
 
@@ -46,25 +56,26 @@ int	ft_strlen_after_hd(char *str)
 {
 	int	i;
 	int	length;
+	int	quote;
 
-	length = 0;
-	i = ft_strlen_before_hd(str);
-	while (str[i] == '<')
+	i = ft_strlen_before_hd(str) + 2;
+	length = 2;
+	quote = 0;
+	while (ft_is_space(str[i]) == 0 && str[i] != '\0')
+		i++;
+	while (str[i] != '\0')
 	{
-		length++;
+		if (str[i] == quote)
+			quote = 0;
+		else if (str[i] == '\'' && str[i] == '\"' && quote == 0)
+			quote = str[i];
+		else if (quote != 0)
+			length++;
+		else if (ft_isascii(str[i]) == 1 && quote == 0)
+			length++;
 		i++;
 	}
-	while (ft_is_space(str[i]) == 0)
-	{
-		length++;
-		i++;
-	}
-	while ((str[i] != ' ' || ft_isascii(str[i]) == 1) && str[i] != '\0')
-	{
-		length++;
-		i++;
-	}
-	return (i);
+	return (length);
 }
 
 char	*ft_rm_heredoc_in_str(char *str)

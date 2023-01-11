@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:40:06 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/09 16:49:06 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:25:20 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,42 @@ int	ft_get_sep(t_data *data, int i)
 	return (0);
 }
 
-//recup le mot entre quotes
+int	ft_len_word_quote(char *str, int i, char c)
+{
+	int	quote;
+	int	length;
+
+	quote = 0;
+	length = 0;
+	while (str[i] != '\0' && str[i] != c)
+	{
+		if (str[i] == quote)
+			quote = 0;
+		else if (str[i] == '\'' && str[i] == '\"' && quote == 0)
+			quote = str[i];
+		else if (quote != 0)
+			length++;
+		else if (ft_isascii(str[i]) == 1 && quote == 0)
+			length++;
+		i++;
+	}
+	return (length);
+}
+
 int	ft_word_quote(char *str, int i, char c)
 {
-	int		j;
+	char	quote;
 
-	j = 0;
-	while (str[i] != c)
-	{	
+	quote = str[i];
+	while (i < ft_len_word_quote(str, i, c))
+	{
+		if (str[i] == quote)
+			quote = 0;
+		else if ((str[i] == '\'' || str[i] == '\"') && quote == 0)
+			quote = str[i];
 		i++;
-		j++;
 	}
-	if (str[i + 1] == '\0')
-		return (0);
-	else if (ft_check_metachar(str, i + 1) == 0)
+	if (str[i] != c)
 		return (1);
-	else
-		return (0);
+	return (0);
 }

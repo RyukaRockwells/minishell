@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:24:31 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/10 02:19:52 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:17:10 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ typedef struct s_data
 	t_token		*tok_exe;
 	int			fd_out;
 	int			fd_in;
+	int			last_fd;
 	int			type_in;
 	int			type_out;
 	int			type_dout;
 	char		*file_in;
 	char		*file_out;
-	char		*file_dout;
 	char		*stmp;
-	int			last_fd;
 }				t_data;
 
 #endif

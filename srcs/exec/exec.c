@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/10 02:12:00 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:48:34 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void	ft_exe_cmd(t_data *data)
 	i = 0;
 	while (data->readline[i] != '\0')
 	{
-		if (data->readline[i] == '<'
-			&& data->readline[i] == data->readline[i + 1])
-			return ;
 		if (data->readline[i] != ' ')
 			break ;
 		i++;
@@ -38,19 +35,19 @@ void	ft_exe_cmd(t_data *data)
 	data->file_exit = 0;
 }
 
-void	ft_choose_fd(int is_hd, t_data *data, char *str)
+void	ft_choose_fd(int is_hd, t_data *data)
 {
-	if (is_hd == 1)
+	if ((is_hd == 1 || data->type_in == REDIRECT_IN) && data->file_exit != 1)
 	{
-		dup2(data->last_fd, 0);
-		close(data->last_fd);
+		dup2(ft_is_rd_in(data), 0);
+		if (is_hd == 1)
+			close(data->last_fd);
+		if (data->type_in == REDIRECT_IN)
+			close(data->fd_in);
 	}
-	else if (ft_is_rd_in(str) == 0)
-	{
-		dup2(data->fd_in, 0);
-		close(data->fd_in);
-	}
-	else if (ft_is_rd_out(str))
+	if ((data->type_out == REDIRECT_OUT
+			|| data->type_dout == D_REDIRECT_OUT)
+		&& data->file_exit != 1)
 	{
 		dup2(data->fd_out, 1);
 		close(data->fd_out);

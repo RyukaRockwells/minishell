@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:43:30 by nchow-yu          #+#    #+#             */
-/*   Updated: 2022/12/28 18:10:02 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/10 14:40:20 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,26 @@
 
 int	ft_is_heredoc(char *str)
 {
-	int	i;
+	int		i;
+	int		return_hd;
+	char	quote;
 
 	i = 0;
+	return_hd = 0;
+	quote = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '<' && str[i] == str[i + 1])
-			return (1);
+		if (str[i] == quote)
+			quote = 0;
+		else if ((str[i] == '\'' || str[i] == '\"') && quote == 0)
+			quote = str[i];
+		else if (str[i] == '<' && str[i + 1] == '<' && quote != 0)
+			return_hd = 0;
+		else if (str[i] == '<' && str[i + 1] == '<' && quote == 0)
+			return_hd = 1;
 		i++;
 	}
-	return (0);
+	return (return_hd);
 }
 
 void	ft_waitpid_h(t_data *data, int i)

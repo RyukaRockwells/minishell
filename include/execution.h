@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:26:24 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/10 01:03:59 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:49:51 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 //exec/exec.c
 void	ft_exe_cmd(t_data *data);
-void	ft_choose_fd(int is_hd, t_data *data, char *str);
+void	ft_choose_fd(int is_hd, t_data *data);
 void	execute(char *lst_cmd, char **envp, t_data *data);
 
 //exec/exe_simple_cmd.c
@@ -39,6 +39,7 @@ void	end_process(t_data *data, char **tab_cmd, int *fd_pipe, char *str);
 void	redirect_process(t_data *data, char **cmd_pipe, int *fd_pipe);
 
 //exec/rdline_mode_choice.c
+int		ft_is_rd(t_data *data);
 char	*ft_rdline_choose(int is_hd, t_data *data, char *str);
 
 //****-----------------****
@@ -46,13 +47,15 @@ char	*ft_rdline_choose(int is_hd, t_data *data, char *str);
 //****-----------------****
 
 //redirect/redirect_file.c
+int		ft_get_pos_redirect(char *str);
+void	ft_check_and_close_fd(int fd, char *file, t_data *data);
+void	ft_open_tmp_file(char *file, t_data *data);
+char	*ft_rm_redirect(t_data *data, char *str);
 void	ft_open_all_file(t_data *data, char *str);
 
 
 //redirect/redirect.c
-int		ft_is_rd(char *str);
-int		ft_is_rd_in(char *str);
-int		ft_is_rd_out(char *str);
+int		ft_is_rd_in(t_data *data);
 int		ft_type_of_redirect(char *str);
 char	*ft_is_redirect(char *str, t_data *data);
 
@@ -65,9 +68,7 @@ int		ft_strlen_after_hd(char *str);
 int		ft_strlen_before_hd(char *str);
 char	*ft_rm_heredoc_in_str(char *str);
 
-char	*ft_get_file(t_data *data, char *str);
 int		ft_before_redirect(char *str);
 int		ft_after_redirect(char *str);
-char	*ft_rm_redirect_in_str(t_data *data, char *str);
 
 #endif
