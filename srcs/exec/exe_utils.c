@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:21:49 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/06 16:46:10 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/12 18:03:33 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,29 @@ void	close_and_wait_process(t_data *data, int *fd_pipe, char **cmd_pipe)
 {
 	int	i;
 	int	status;
+	int	pid;
+	int	oldpid;
+	int	max_status;
 
 	i = 0;
+	pid = 0;
+	oldpid = 0;
+	max_status = 0;
 	while (data->nb_pipe * 2 > i)
-	{
-		close(fd_pipe[i]);
-		i++;
-	}
+		close(fd_pipe[i++]);
 	free(fd_pipe);
 	ft_signore();
 	i = 0;
 	while (cmd_pipe[i] != NULL)
 	{
-		waitpid(0, &status, 0);
+		pid = waitpid(0, &status, 0);
+		if (pid >= oldpid)
+			max_status = status;
+		oldpid = pid;
 		i++;
 	}
 	ft_sigreset();
+	ft_set_code_exit(data, max_status);
 }
 
 void	check_path_null(char *tab_path, char *cmd, char **path)
