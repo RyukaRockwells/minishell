@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:35:11 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/11 17:24:37 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:08:43 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_init(char **envp, t_data *data)
 	data->file_exit = 0;
 	data->readline = NULL;
 	data->envp = NULL;
+	data->cmd_pipe = NULL;
 	data->nb_pipe = 0;
 	data->token = NULL;
 	data->tok_exe = NULL;
@@ -32,6 +33,7 @@ void	ft_init(char **envp, t_data *data)
 
 void	ft_reinit(t_data *data)
 {
+	data->cmd_pipe = NULL;
 	data->nb_pipe = 0;
 	data->fd_in = -1;
 	data->fd_out = -1;
