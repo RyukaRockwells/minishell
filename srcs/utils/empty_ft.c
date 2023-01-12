@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:14:58 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 21:54:02 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:44:12 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_cmd_is_empty(char *str)
 
 	if (str == NULL)
 		return (1);
-	i = skip_space(str);
+	i = skip_space(str) - 1;
 	while (str[++i] != '\0')
 	{
 		if (str[i] != ' ')
