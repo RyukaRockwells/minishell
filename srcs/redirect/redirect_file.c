@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:16:39 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/12 14:27:14 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:38:25 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,18 @@ int	ft_get_pos_redirect(char *str)
 void	ft_check_and_close_fd(int fd, char *file, t_data *data)
 {
 	if (ft_type_of_redirect(data->stmp) == 3 && data->file_exit != 1)
+	{
+		if (data->file_in != NULL)
+			free(data->file_in);
 		data->file_in = ft_strdup(file);
-	else if (ft_type_of_redirect(data->stmp) == 2 && data->file_exit != 1)
+	}
+	else if ((ft_type_of_redirect(data->stmp) == 2
+			|| ft_type_of_redirect(data->stmp) == 1) && data->file_exit != 1)
+	{
+		if (data->file_out != NULL)
+			free(data->file_out);
 		data->file_out = ft_strdup(file);
-	else if (ft_type_of_redirect(data->stmp) == 1 && data->file_exit != 1)
-		data->file_out = ft_strdup(file);
+	}
 	if (fd == -1)
 	{
 		data->file_exit = 1;

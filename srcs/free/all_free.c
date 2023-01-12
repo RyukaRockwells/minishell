@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:11:18 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/12 14:01:25 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:14:09 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@ void	ft_free_all(t_data *data)
 	ft_free_tok_exe(data);
 	ft_free_data(data);
 	if (data->file_in != NULL)
+	{
 		free(data->file_in);
+		data->file_in = NULL;
+	}
 	if (data->file_out != NULL)
+	{
 		free(data->file_out);
+		data->file_out = NULL;
+	}
 }
 
 void	ft_free_token(t_data *data)

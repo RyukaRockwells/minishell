@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/12 12:47:10 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:06:36 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,7 @@ void	execute(char *lst_cmd, char **envp, t_data *data)
 	if (data->file_exit == 0)
 	{
 		if (execve(path, cmd, envp) == -1)
-		{
-			free(path);
 			ft_error_exe(data, cmd, lst_cmd);
-		}
 	}
 	ft_free_exe_simple(data, cmd, lst_cmd);
 	free(path);
