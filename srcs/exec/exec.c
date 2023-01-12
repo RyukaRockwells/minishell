@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:41:32 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/11 21:01:16 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 10:57:21 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,7 @@ void	execute(char *lst_cmd, char **envp, t_data *data)
 	i = 0;
 	cmd = ft_split_quote(lst_cmd, ' ');
 	while (cmd[i] != NULL)
-	{
 		i++;
-	}
 	if (cmd == NULL)
 		ft_exit_no_path(data, cmd, lst_cmd);
 	path = find_path(cmd, envp, data, lst_cmd);

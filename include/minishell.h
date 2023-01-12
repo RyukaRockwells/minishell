@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:10:38 by nchow-yu          #+#    #+#             */
-/*   Updated: 2023/01/11 22:17:47 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 10:59:21 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	ft_free_exe(t_data *data);
 //free/all_free2.c
 void	ft_free_tab(char **envp);
 void	ft_free_exe_simple(t_data *data, char **cmd, char *lst_cmd);
-void	ft_free_builtin(char *lst_cmd, char **tab_cmd);
+void	ft_free_builtin(t_data *data, char *lst_cmd, char **tab_cmd);
 
 //****-----------------****
 //****------SHOW-------****

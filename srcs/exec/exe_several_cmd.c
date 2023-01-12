@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:06 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 22:15:36 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 10:59:00 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	first_process(t_data *data, char **tab_cmd, int *fd_pipe, char *str)
 	{
 		ft_choose_fd(is_hd, data);
 		if (ft_builtin(data, lst_cmd) != 2)
-			ft_free_builtin(lst_cmd, tab_cmd);
+			ft_free_builtin(data, lst_cmd, tab_cmd);
 		ft_free_tab(tab_cmd);
 		execute(lst_cmd, data->envp, data);
 	}
@@ -105,7 +105,7 @@ void	mid_process(t_data *data, int i, int *fd_pipe, char **tab_cmd)
 	{
 		ft_choose_fd(is_hd, data);
 		if (ft_builtin(data, lst_cmd) != 2)
-			ft_free_builtin(lst_cmd, tab_cmd);
+			ft_free_builtin(data, lst_cmd, tab_cmd);
 		ft_free_tab(tab_cmd);
 		execute(lst_cmd, data->envp, data);
 	}
@@ -133,7 +133,7 @@ void	end_process(t_data *data, char **tab_cmd, int *fd_pipe, char *str)
 	{
 		ft_choose_fd(is_hd, data);
 		if (ft_builtin(data, lst_cmd) != 2)
-			ft_free_builtin(lst_cmd, tab_cmd);
+			ft_free_builtin(data, lst_cmd, tab_cmd);
 		ft_free_tab(tab_cmd);
 		execute(lst_cmd, data->envp, data);
 	}

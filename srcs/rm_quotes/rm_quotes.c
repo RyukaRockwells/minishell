@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:46:06 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 21:31:27 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:02:26 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ char	*ft_rm_heredoc_in_str(char *str)
 	new_str = malloc(sizeof(char) * ft_strlen(str) + 1);
 	start = ft_strlen_before_hd(str);
 	end = ft_strlen_after_hd(str);
-	fprintf(stderr, "start = %d | end = %d\n", start, end);
 	while (str[i] != '\0')
 	{
 		if (i >= start && i <= end)
