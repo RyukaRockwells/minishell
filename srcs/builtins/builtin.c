@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:26:57 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 22:08:48 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:13:23 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	ft_builtin_no_fork(t_data *data, int is_hd, char *lst_cmd)
 	ft_choose_fd(is_hd, data);
 	if (data->file_exit == 0)
 	{
-		data->code_exit = 0;
-		ft_builtin(data, lst_cmd);
+		data->code_exit = ft_builtin(data, lst_cmd);
 	}
 	dup2(old_in, 0);
 	dup2(old_out, 1);

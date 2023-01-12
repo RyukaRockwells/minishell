@@ -6,7 +6,7 @@
 /*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 07:24:31 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/11 12:17:10 by nchow-yu         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:20:38 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_data
 	int			file_exit;
 	char		*readline;
 	char		**envp;
+	char		**cmd_pipe;
 	int			last_pipe;
 	int			nb_pipe;
 	t_token		*token;

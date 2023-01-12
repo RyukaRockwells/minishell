@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicole <nicole@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nchow-yu <nchow-yu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 02:10:19 by nicole            #+#    #+#             */
-/*   Updated: 2023/01/06 20:17:08 by nicole           ###   ########.fr       */
+/*   Updated: 2023/01/12 11:22:05 by nchow-yu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_msg_error_arg(char **str, t_data *data, char *lst_cmd)
 	ft_putstr_fd(": numeric argument required\n", 2);
 	ft_free_all(data);
 	ft_free_tab(data->envp);
+	ft_free_tab(data->cmd_pipe);
+	free(data->readline);
 	ft_free_tab(str);
 	free(lst_cmd);
 	exit(2);
@@ -29,6 +31,8 @@ void	ft_free_exit(char **str, t_data *data, char *lst_cmd)
 {
 	ft_free_all(data);
 	ft_free_tab(data->envp);
+	ft_free_tab(data->cmd_pipe);
+	free(data->readline);
 	ft_free_tab(str);
 	free(lst_cmd);
 }
